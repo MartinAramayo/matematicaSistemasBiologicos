@@ -5,6 +5,7 @@
 \usepackage[spanish, es-tabla]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{siunitx}
 \usepackage{multirow}
 \usepackage{float}
@@ -33,6 +34,8 @@
 
 \newcommand{\nstar}{n^*} 
 \newcommand{\Nstar}{N^*} 
+\newcommand{\talf}{\frac{\alpha - 1}{\alpha \beta - 1} } 
+\newcommand{\tbet}{\frac{\beta  - 1}{\alpha \beta - 1} }  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -68,88 +71,6 @@
 
 \section{Resolucion Ej 1:}
 
-Para este sistema discreto: 
-$$n_{t+1} = f(n_t, K, r)= \frac{r n_t}{1+\frac{r-1}{K} n_t}$$, 
-
-los puntos fijos $n^*$ se obtienen resolviendo la ecuación:
-
-$$
-n^* = f(n^*, K, r)
-$$
-
-Reemplazando:
-
-$$
-\nstar = \frac{r \nstar}{1+\frac{r-1}{K} \nstar}
-$$
-
-
-Resolvemos esta ecuación para $r\neq 1$ (donde hay dinámica):
-
-$$
-\nstar (r-1) (\nstar-K) = 0 \Rightarrow \left\lbrace ^{\nstar = K} _{\nstar = 0}  \right .
-$$
-
-Usando el siguiente criterio de estabilidad, proveniente de un analisis de pequeñas perturbaciones (Valido bajo las mismas hipotesis que permiten un desarrollo en series de Taylor), donde $n_{t+1} = f(n_t,r)$ representa el mapeo 1D y $\nstar$ el punto fijo a analizar:
-
-$$
-\begin{aligned}
-|f_{n}\left(n^{*},r\right)| = |\lambda| &=\left\{\begin{array}{ll}
-<1 & \text { Estable } \\
->1 & \text { Inestable } \\
-=1 & \text { Marginalmente estable } \\
-=0 & \text { Superestable }
-\end{array}\right.
-\end{aligned}
-$$
-
-Se obtiene que:
-
-$$
-|f_{n}\left(n^{*},r\right)|=\frac{K^{2} r}{(K+\nstar(r-1))^{2}}
-$$
-
-De analizar este expresion y analizar r=0 aparte, se obtiene lo que puede verse en la Fig. \ref{fig:estabilidad}.
-
-%**********
-\begin{figure}[ht!]
-    \centering
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width = 0.9\textwidth]{figuras/estabilidadK.pdf}
-        \caption{}
-        \label{fig:figuras/estabilidadK}
-    \end{subfigure}\qquad
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width = 0.9\textwidth]{figuras/estable0.pdf}
-        \caption{}
-        \label{fig:figuras/estable0}
-    \end{subfigure}\quad
-    \caption{Estabilidad de los puntos fijos en segun el parametro $r$. El color negro indica el inicio de un intervalo de estabilidad y el blanco de un intervalo de inestabilidad. El circulo negro con marca blanca circular es un punto superestable.}
-    \label{fig:estabilidad}
-\end{figure}
-%**********
-
-En la Fig. \ref{fig:scripts/ex1} se tienen graficos de los mapeos. Se observa que dentro de un intervalo de estabilidad $r$ controla la velocidad de crecimiento de la poblacion. Hay dos casos particulares, si $r=1$ o $r=0$ no hay evolucion y $n=0$, $n=n_0$ son sus respectivos puntos superestables. 
-
-% En la Fig. !!!! se tiene lo que ocurre para valores iniciales superiores a $K$, lo cual lleva a que el sistema se estabilice en $K$. 
-
-\begin{figure*}[ht!]  
-    \centering
-    % \begin{subfigure}[b]{0.33\linewidth}
-        \centering 
-        \includegraphics[width = 0.99\textwidth]{scripts/ex1.pdf}
-        \caption{Grafico del mapeo para distintos valores del parametro $r$, los puntos fijos se indican con linea punteada}
-        \label{fig:scripts/ex1}
-    % \end{subfigure}\quad
-\end{figure*}
-
-% \begin{equation}\label{eqn:etiqueta1}
-%     \textit{Aca te metes alta ecuación bb}
-% \end{equation}
-
-% Acá te referencio la ecuación anterior, porque puedo, porque quiero y porque se me da la gana \ref{eqn:etiqueta1}.
 
 % 
 % ███████╗██╗  ██╗    ██████╗  
@@ -160,61 +81,6 @@ En la Fig. \ref{fig:scripts/ex1} se tienen graficos de los mapeos. Se observa qu
 % ╚══════╝╚═╝  ╚═╝    ╚══════╝
 
 \section{Resolucion Ej 2:}
-
-\begin{figure}[ht!]
-    \centering
-    % \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width = 0.49\textwidth]{scripts/ex2-cosa.pdf}
-        \caption{Soluciones de la ecuacion logistica con delay para tres valores del parametro $r$.}
-        \label{fig:scripts/ex2-cosa}
-    % \end{subfigure}\quad
-\end{figure}
-
-\begin{figure}[ht!]
-    \centering
-    % \begin{subfigure}[b]{0.33\linewidth}
-        \centering
-        \includegraphics[width = 0.49\textwidth]{scripts/ex2-aprox.pdf} 
-        \caption{Grafico de soluciones ciclo limite para distintas condiciones inciales}
-        \label{fig:scripts/ex2-aprox}
-    % \end{subfigure}\quad
-\end{figure}
-
-\begin{figure}[ht!]
-    \centering
-    % \begin{subfigure}[b]{0.33\linewidth}
-        \centering
-        \includegraphics[width = 0.49\textwidth]{scripts/ex2-fourier-log.pdf}
-        \caption{Transformada de Fourier del ciclo limite, para distintos valores de las condiciones iniciales.}
-        \label{fig:scripts/ex2-fourier-log}
-    % \end{subfigure}\quad
-\end{figure}
-
-\begin{figure}[ht!]
-    \centering
-    % \begin{subfigure}[b]{0.33\linewidth}
-        \centering
-        \includegraphics[width = 0.49\textwidth]{scripts/ex2-fourier-acotado.pdf}
-        \caption{Transformada de Fourier del ciclo limite, puede verse que el periodo difiere de $4T$ en un 3\%.}
-        \label{fig:scripts/ex2-fourier-acotado}
-    % \end{subfigure}\quad
-\end{figure}
-
-En la Fig. \ref{fig:scripts/ex2-cosa} se tiene un gráfico de soluciones de la ecuacion logistica con delay. Estan presentes los 3 regímenes de la ecuación logística con Delay:
-
-$$
-\begin{array}{|l|l|}
-\hline 0<r T <e^{-1} & \text { monótono } \\
-e^{-1}<r T <\pi / 2 & \text { oscilatorio amortiguado } \\
-\pi / 2<r T  & \text { ciclo límite } \\
-\hline
-\end{array}
-$$
-
-
-
-
 
 % 
 % ███████╗██╗  ██╗    ██████╗     
@@ -228,34 +94,151 @@ $$
 
 \section{Resolucion Ej 3:}
 
-Sea $R(r)$ la funcion polinomica:
+Para el siguiente sistema de competencia ciclica:
+$$
+\begin{aligned}
+\frac{d n_{1}}{d t}&=n_{1}\left(1-n_{1}-\alpha n_{2}-\beta n_{3}\right) \\
+\frac{d n_{2}}{d t}&=n_{2}\left(1-\beta n_{1}-n_{2}-\alpha n_{3}\right) \\
+\frac{d n_{3}}{d t}&=n_{3}\left(1-\alpha n_{1}-\beta n_{2}-n_{3}\right)
+\end{aligned}
+$$
+con $0<\beta<1<\alpha$ y $\alpha+\beta>2$. Pueden obtenerse los  equilibrios viendo todos los puntos que cumplan simultaneamente: 
 
-\begin{equation}\label{eqn:etiqueta1}
-    R(r) = r^{k+1} 
-        - \left( 
-            r^k f_0 
-            - \sum_{l=1}^k 
-            \left( 
-            r^{k-l} f_l \prod_{j=0}^{l-1} s_j  
-            \right) 
-        \right)
-\end{equation}
+$$
+\begin{aligned}
+    f_1(\nstar_1,\nstar_2,\nstar_3) = 0\\ 
+    f_2(\nstar_1,\nstar_2,\nstar_3) = 0\\ 
+    f_3(\nstar_1,\nstar_2,\nstar_3) = 0   
+\end{aligned}
+$$
 
-tal que $R(1)=R$. Puede verse que:
+Son 8 puntos de equilibrios $P_j = (\nstar_{1,j},\nstar_{2,j},\nstar_{3,j}), j= 1, 3, ..., 8$.
 
-\begin{equation}\label{eqn:etiqueta2}
-    R(0) = - f_k \cdot  s_{k-1} \cdot \ldots \cdot s_{0}
-\end{equation}
+$$
+\begin{aligned}
+    P_1 &= (0, 0, 0) \\ 
+    P_2 &= (1, 0, 0) \\ 
+    P_3 &= (0, 1, 0) \\ 
+    P_4 &= (0, 0, 1) \\  
+    P_5 &= \frac{1}{\alpha \beta - 1} 
+                       (\alpha - 1, \beta - 1 , 0) \\ 
+    P_6 &= \frac{1}{\alpha \beta - 1} 
+                       (0         , \alpha - 1, \beta - 1) \\ 
+    P_7 &= \frac{1}{\alpha \beta - 1} 
+                       (\beta - 1 , 0         , \alpha - 1) \\ 
+    P_8 &= \frac{1}{\alpha + \beta + 1}(1, 1, 1) 
+\end{aligned}
+$$
 
-Como es sabido, se cumple $f_j \geq 0, \forall \in \lbrace 0, \ldots, k \rbrace$, y sobre la supervivencia $  0 < s_j < 1, \forall \in \lbrace 0, \ldots, k - 1 \rbrace$.
+Analizamos el la matriz jacobiana de este sistema:
 
-Si se cumple que $f_k > 0$ se tiene que $R(0) < 0$. 
+% $$
+% \mathbf{J} = 
+% \begin{bmatrix}
+%     1 - 2 x - \alpha y - \beta z & - \alpha x & - \beta x \\
+%     - \beta y & 1 - 2 y - \beta x - \alpha z & - \alpha y \\
+%     - \alpha z & - \beta z & 1 - \alpha x - \beta y - 2 z
+% \end{bmatrix}
+% $$
 
-$R$ es un polinomio y por tanto una función continua. Por esto tiene tantos cambios de signo en su valor a lo largo de $r$ como raíces tenga $R$. 
+$$
+\mathbf{J}_5 = 
+\begin{bmatrix}
+    -\talf  & - \alpha (\talf)& - \beta (\talf)\\
+    - \beta (\tbet) & -\tbet & - \alpha (\tbet) \\
+    0 & 0 & 1 - \alpha (\talf) - \beta (\tbet)
+\end{bmatrix}
+$$
 
-El criterio de Descartes indica que esta raíz es positiva y hay solo una, sea $r_1$ esta raíz. Como hay una única raíz hay un único cambio de signo en $R$ respecto a $r$ en la recta real. 
+$$
+\mathbf{J}_6 = 
+\begin{bmatrix}
+    1 - \alpha (\talf) - \beta (\tbet) & 0 & 0 \\
+    - \beta (\talf) & -\talf & - \alpha (\talf) \\
+    - \alpha (\tbet) & - \beta (\tbet) & \tbet
+\end{bmatrix}
+$$
 
-Si se tiene que $R(0)$ y $R(1)$ son negativos y $r1>0$, se tiene que el cambio de signo ocurre después de estos valores. Es decir, la raíz no puede estar entre 0 y 1 porque eso implica que hay mas de un cambio de signo (uno para ir de $R(0)$ negativo a positivo y otro para volver al negativo en $R(1)$) como esto no es posible por el criterio de Descartes se tiene que $r1>1$.
+$$
+\mathbf{J}_7 = 
+\begin{bmatrix}
+    -\tbet & - \alpha (\tbet) & - \beta (\tbet) \\
+    0 & 1 - \beta (\tbet) - \alpha (\talf) & 0 \\
+    - \alpha (\talf) & - \beta (\talf) & \talf
+\end{bmatrix}
+$$
+
+
+$$
+\mathbf{J}_1 = 
+\begin{bmatrix}
+    1  & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+\end{bmatrix}
+\quad 
+\mathbf{J}_8 = 
+\frac{1}{1+\alpha+\beta}\begin{bmatrix}
+    -1 & -\alpha & -\beta \\
+    -\beta & -1 & -\alpha \\
+    -\alpha & -\beta & -1
+\end{bmatrix}
+$$
+
+$$
+\mathbf{J}_2 = 
+\begin{bmatrix}
+    -1 & - \alpha & - \beta \\
+    0 & 1-\beta & 0 \\
+    0 & 0 & 1- \alpha
+\end{bmatrix}
+$$
+
+$$
+\mathbf{J}_3 = 
+\begin{bmatrix}
+    1 - \alpha  & 0 & 0 \\
+    - \beta & -1 & - \alpha \\
+    0 & 0 & 1  - \beta
+\end{bmatrix}
+,
+\mathbf{J}_4 = 
+\begin{bmatrix}
+    1 - \beta  & 0 & 0 \\
+    0 & 1 -\alpha  & 0 \\
+    - \alpha  & -\beta & -1
+\end{bmatrix}
+$$
+
+
+
+El origen es equilibrio (una fuente) y los versores $(1,0,0)$ etc. son puntos de ensilladura. Hay otros 3 equilibrios con dos poblaciones finitas y una nula. Finalmente, existe un equilibrio interior al octante $\mathbb{R}_{+}^{3}$, dado por:
+$$
+x_{1}^{*}=x_{2}^{*}=x_{3}^{*}=\frac{1}{1+\alpha+\beta} .
+$$
+Este equilibrio de coexistencia es una ensilladura, lo cual se demuestra fácilmente porque los autovalores son muy sencillos. La matriz del sistema linealizado es "circulante":
+$$
+\frac{1}{1+\alpha+\beta}\left(\begin{array}{ccc}
+-1 & -\alpha & -\beta \\
+-\beta & -1 & -\alpha \\
+-\alpha & -\beta & -1
+\end{array}\right)
+$$
+con lo que sus autovalores son combinaciones de las raíces cúbicas de la unidad:
+$$
+\lambda_{k}=\sum_{j=0}^{n-1} c_{j} \gamma_{j}^{k}, \quad k=0,1, \ldots, n-1
+$$
+con $c_{j}$ los elementos de la matriz y $\gamma_{j}$ las raíces de la unidad, $\gamma_{j}=\exp (2 \pi i / n)$, en general. Así que:
+$$
+\begin{array}{c}
+\lambda_{0}=-1, \text { con autovector }(1,1,1) \\
+\lambda_{1}=\lambda_{2}^{*}=\frac{1}{1+\alpha+\beta}\left(-1-\alpha e^{2 x i / 3}-\beta e^{4 \pi i / 3}\right),
+\end{array}
+$$
+que satisfacen:
+$$
+\operatorname{Re}\left(\lambda_{1}\right)=\operatorname{Re}\left(\lambda_{2}\right)=\frac{1}{1+\alpha+\beta}\left(-1+\frac{\overbrace{\alpha+\beta}^{>2}}{2}\right)>0
+$$
 
 % 
 % ███████╗██╗  ██╗    ██╗  ██╗
@@ -269,19 +252,6 @@ Si se tiene que $R(0)$ y $R(1)$ son negativos y $r1>0$, se tiene que el cambio d
 
 \section{Resolucion Ej 4:}
 
-Se grafican en la Fig. \ref{fig:scripts/ex4} del mapeo con distintas semillas de números aleatorios. Las secuencias aleatorias de $r$ produce un rango amplio de máximos de población. Una secuencia de valores altos de r producen poblaciones enormes. Asimismo una racha de valores bajos resulta en la extinción de la población.
-
-%**********
-\begin{figure}[ht!]
-    \centering
-    % \begin{subfigure}[b]{0.33\linewidth}
-        \centering
-        \includegraphics[width = 0.45\textwidth]{scripts/ex4.pdf}
-        \caption{Gráficos del mapeo con distintas semillas de números aleatorios. Una secuencia especifica de valores de $r$ produce un rango amplio de máximos de población.}
-        \label{fig:scripts/ex4}
-    % \end{subfigure}\quad
-\end{figure}
-%**********
 
 % 
 % ███████╗██╗  ██╗    ███████╗
@@ -295,34 +265,6 @@ Se grafican en la Fig. \ref{fig:scripts/ex4} del mapeo con distintas semillas de
 
 \section{Resolucion Ej 5:}
 
-%**********
-\begin{figure*}[ht!]
-    \centering
-    \begin{subfigure}[b]{0.9\linewidth}
-        \centering
-        \includegraphics[width = 0.9\textwidth]{scripts/plots/ex5-02.pdf}
-        \caption{}
-        \label{fig:scripts/plots/ex5-02}
-    \end{subfigure}\quad
-% \end{figure*}
-% \begin{figure*}[ht!]
-%     \centering
-    \begin{subfigure}[b]{0.9\linewidth}
-        \centering
-        \includegraphics[width = 0.9\textwidth]{scripts/plots/ex5-19.pdf}
-        \caption{}
-        \label{fig:scripts/plots/ex5-19}
-    \end{subfigure}\quad
-    \caption{Grafico del modelo !!! para distintos valores de $p$}
-    \label{fig:scripts/plots/ex5}
-\end{figure*}
-%**********
-
-Utilizando un modelo logístico interrumpido por "desastres" que perturban la solución con un parámetro $p$ tal que: $N(t^+)=pN(t)$. Con un tiempo medio entre desastres $1/\lambda$. Se resolvieron las ecuaciones para 20 valores distintos de p, en dos casos: $r = \text{1.01}, \lambda = \text{0.422}$ en Fig. \ref{fig:scripts/plots/ex5-02} (Caso a) y $r = \text{1.01}, \lambda = \text{0.422}$ \ref{fig:scripts/plots/ex5-19} (Caso b). Dentro de cada caso se utiliza la misma secuencia de eventos desastrosos para comparar el efecto del parametro $p$. En ambos casos se resolvio para 50 eventos desastrosos. 
-
-Respecto a la dinamica se observo en el caso b que a medida que $p$ baja, la posibilidad de completar el crecimiento baja y la población empieza a crecer por debajo del punto fijo $K$. Se torna complicada la recuperación, para el caso a se observa que de las 20 curvas consideradas solo las 5 con el valor de $p$ mas alto sobreviven, en el resto de casos se llego a una extinción. 
-En el caso b el tiempo medio de desastres $\lambda$ es mas corto que el tiempo de recuperación $1/r$, para este caso todos los valores de $p$ intentados se encuentran por debajo de $K$. Esto no ocurre en el caso a donde el tiempo medio de la ecuacion logistica es mas corto que el de la ocurrencia de desastres, por lo que la poblacion se recupera hasta el valor $K$ para 16 de los 20 valores de $p$ considerados. Con esto en cuenta, es posible que el sistema se recupere si $1/r > 1/\lambda$. Esto depende de $p$ porque aun para el caso a se observa una extincion en estas condiciones para $p =\text{0.05}$.
-
 % 
 % ███████╗██╗  ██╗     ██████╗ 
 % ██╔════╝╚██╗██╔╝    ██╔════╝ 
@@ -334,87 +276,6 @@ En el caso b el tiempo medio de desastres $\lambda$ es mas corto que el tiempo d
 % 
 
 \section{Resolucion Ej 6:}
-
-Para este sistema continuo:
-
-$$
-\frac{d N}{d t} =r N\left[1-\frac{N}{K}\right]\left[\frac{N}{A}-1\right] = f(N, K, r, A)
-$$
-
-$$
-\frac{d N}{d t} = f(N, K, r, A) \qquad r>0, K>0 , A>0
-$$
-
-es conocido que los puntos fijos $N^*$ son las soluciones a la ecuación:
-
-\begin{equation}\label{eqn:etiqueta3}
-    0 = f(N^*, K, r, A), r>0, K>0, A >0
-\end{equation}
-
-Resolvemos esta ecuación para $r\neq 1$ (donde hay dinámica):
-
-\begin{equation}\label{eqn:etiqueta3}
-    - r \Nstar  (1 - \frac{\Nstar}{K}) (1 - \frac{\Nstar}{A}) = 0 \Rightarrow \left\lbrace ^{\Nstar = K, \Nstar = A} _{\Nstar = 0, }  \right .
-\end{equation}
-
-Usando el siguiente criterio de estabilidad, proveniente de un analisis de pequeñas perturbaciones (Valido bajo las mismas hipotesis que permiten un desarrollo en series de Taylor), donde $\frac{dN}{dt} = f(N, K, r, A)$ representa el sistema dinamico y $\Nstar$ el punto fijo a analizar:
-
-$$
-\begin{aligned}
-    \frac{d f\left(x^{*}, r\right)}{d x} &=\left\{ 
-        \begin{array}{ll}
-            <0 & \text { Estable } \\
-            >0 & \text { Inestable }
-        \end{array}\right.
-\end{aligned}
-$$
-
-Se tiene en este caso 3 puntos fijos pero hay 2 que estan "conectados", la forma del binomio es identica pero con distinto parametro, los puntos fijos son los ceros de la funcion.
-
-Para $\frac{d f\left(x^{*}, r\right)}{d x} (0):$ 
-
-$$\frac{d f\left(x^{*}, r\right)}{d x} (0) = -r \Rightarrow \text{Estable}$$ 
-
-Para $\frac{d f\left(x^{*}, r\right)}{d x} (A):$ 
-
-$$\frac{d f\left(x^{*}, r\right)}{d x} (A) = \frac{r}{K} (K-A)  
-\left\lbrace
-^{ K<A \Rightarrow \text{Estable}}
-_{ K>A \Rightarrow \text{Inestable}} \right.$$ 
-
-Para $\frac{d f\left(x^{*}, r\right)}{d x} (K):$ 
-
-$$\frac{d f\left(x^{*}, r\right)}{d x} (K) = \frac{r}{A} (A-K) 
-\left\lbrace ^{ K>A \Rightarrow \text{Estable}}
-_{ K<A \Rightarrow \text{Inestable}} \right. $$ 
-
-En la Fig. \ref{fig:scripts/plots/ex6-y0chico02} se puede ver que para condiciones iniciales superiores a $A$ la poblacion decrece hasta $A$, un punto fijo estable. Para valores de $A$ menores a $K$, el punto fijo resulta en A.
-
-En la Fig. \ref{fig:scripts/plots/ex6-y0grande02} para condiciones iniciales entre 0 y $K$. Para un mismo r, a valores $A$ menores a $N_0$ el sistema tiende a $K$. A valores de $A$ mayores a $N_0$, la poblacion decrece a 0. 
-
-De ejemplos anteriores, el parametro $r$ solo controla la rapidez con la que se llega a los puntos fijos. Pero no altera la estabilidad.
-
-%**********
-\begin{figure*}[ht!]
-    \centering
-    \begin{subfigure}[b]{0.9\linewidth}
-        \centering
-        \includegraphics[width = 0.9\textwidth]{scripts/plots/ex6-y0chico02.pdf}
-        \caption{}
-        \label{fig:scripts/plots/ex6-y0chico02}
-    \end{subfigure}\quad
-% \end{figure*}
-% \begin{figure*}[ht!]
-    % \centering
-    \begin{subfigure}[b]{0.9\linewidth}
-        \centering
-        \includegraphics[width = 0.9\textwidth]{scripts/plots/ex6-y0grande02.pdf}
-        \caption{}
-        \label{fig:scripts/plots/ex6-y0grande02}
-    \end{subfigure}
-    \caption{Graficos de la solucion de la Ec. !!! para $r=0.1$ y distintos valores de $A$.}
-\end{figure*}
-%**********
 
 \bibliography{sample}
 
