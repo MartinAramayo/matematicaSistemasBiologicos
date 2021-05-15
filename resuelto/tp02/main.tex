@@ -34,6 +34,7 @@
 
 \newcommand{\nstar}{n^*} 
 \newcommand{\Nstar}{N^*} 
+% \newcommand{\star}{^*} 
 \newcommand{\talf}{\frac{\alpha - 1}{\alpha \beta - 1} } 
 \newcommand{\tbet}{\frac{\beta  - 1}{\alpha \beta - 1} }  
 
@@ -71,6 +72,53 @@
 
 \section{Resolucion Ej 1:}
 
+El análisis en general no debería ser ahora difícil para ustedes. Supongamos que cada población tiene un comportamiento logístico en ausencia de la otra, y parámetros de interacción genéricos:
+$$
+\begin{aligned}
+\frac{d x}{d t}=r_{1} x\left[1-\frac{x}{K_{1}}-b_{12} \frac{y}{K_{1}}\right] \\
+\frac{d y}{d t}=r_{2} y\left[1-\frac{y}{K_{2}}-b_{21} \frac{x}{K_{2}}\right]
+\end{aligned}
+$$
+
+donde $b_{12}$ y $b_{21}$ miden los efectos de la mutua competencia. Adimensionalizamos:
+
+$$
+\begin{aligned}
+\frac{d u_{1}}{d t}=u_{1}\left(1-u_{1}-a_{12} u_{2}\right)=f_{1}\left(u_{1}, u_{2}\right) \\
+\frac{d u_{2}}{d t}=\rho u_{2}\left(1-u_{2}-a_{21} u_{1}\right)=f_{2}\left(u_{1}, u_{2}\right)
+\end{aligned}
+$$
+
+Los equilibrios vienen dados por:
+
+$$
+\begin{aligned}
+    f_1(u_1, u_2) = 0\\ 
+    f_2(u_1, u_2) = 0
+\end{aligned}
+$$
+
+Son 8 puntos de equilibrios $P_j = (u^*_{1,j},u^*_{2,j}), j= 1, 2, ..., 4$.
+
+$$
+\begin{aligned}
+    P_1 &= (0, 0) \\ 
+    P_2 &= (0, 1) \\ 
+    P_3 &= (1, 0) \\ 
+    P_4 &= \frac{1}{1-a_{12} a_{21}}(1-a_{21}, 1-a_{21})
+\end{aligned}
+$$
+
+Existen tres o cuatro equilibrios, que podemos encontrar graficando las nulclinas $f_{1}=0$ y $f_{2}=0$ en el plano $\left(u_{1}, u_{2}\right) .$ Es un caso sencillo que podemos tratar analíticamente:
+$$
+\begin{array}{l}
+f_{1}=0 \Rightarrow 1-u_{1}-a_{12} u_{2}=0 \Rightarrow u_{2}=1 / a_{12}-u_{1} / a_{12} \\
+f_{2}=0 \Rightarrow 1-u_{2}-a_{21} u_{1}=0 \Rightarrow u_{2}=1-a_{21} u_{1}
+\end{array}
+$$
+que son, como vemos, rectas. Si se intersecan tendremos equilibrios con poblaciones positivas, además de los equilibrios más obvios en el origen $\left(u_{1}=u_{2}=0\right), \mathrm{y}$ en los ejes $\left(u_{1}=0, u_{2}=1 \mathrm{y} u_{1}=1, u_{2}=0\right) .$ Es decir,
+tenemos las cuatro situaciones que ilustra la figura $2.2$. El resultado del análisis de estabilidad lineal se muestra en la figura 2.3.
+Es decir, en tres de los casos, la coexistencia es imposible. El equilibrio con coexistencia sólo es posible si $a_{12}<1 \mathrm{y}$ si $a_{21}<1$, que en términos dimensionales significa $b_{12} K_{2} / K_{1}<1$ y $b_{21} K_{1} / K_{2}<1$. Por ejemplo, si $K_{1} \approx$
 
 % 
 % ███████╗██╗  ██╗    ██████╗  
@@ -81,6 +129,15 @@
 % ╚══════╝╚═╝  ╚═╝    ╚══════╝
 
 \section{Resolucion Ej 2:}
+
+En la Fig. \ref{fig:mosquitos} pueden verse graficos de la resolucion numerica del sistema para distintos valores de el parametro $n$.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.55\textwidth]{figuras/ex5.pdf}
+    \caption{Evolucion de los mosquitos fertiles para distintos valores de los mosquitos esteriles.}
+    \label{fig:mosquitos}
+\end{figure}
 
 % 
 % ███████╗██╗  ██╗    ██████╗     
@@ -97,9 +154,9 @@
 Para el siguiente sistema de competencia ciclica:
 $$
 \begin{aligned}
-\frac{d n_{1}}{d t}&=n_{1}\left(1-n_{1}-\alpha n_{2}-\beta n_{3}\right) \\
-\frac{d n_{2}}{d t}&=n_{2}\left(1-\beta n_{1}-n_{2}-\alpha n_{3}\right) \\
-\frac{d n_{3}}{d t}&=n_{3}\left(1-\alpha n_{1}-\beta n_{2}-n_{3}\right)
+\frac{d n_{1}}{d t}&=n_{1}\left(1-n_{1}-\alpha n_{2}-\beta n_{3}\right) = f_1(n_1,n_2,n_3)\\
+\frac{d n_{2}}{d t}&=n_{2}\left(1-\beta n_{1}-n_{2}-\alpha n_{3}\right) = f_2(n_1,n_2,n_3) \\
+\frac{d n_{3}}{d t}&=n_{3}\left(1-\alpha n_{1}-\beta n_{2}-n_{3}\right) = f_3(n_1,n_2,n_3)
 \end{aligned}
 $$
 con $0<\beta<1<\alpha$ y $\alpha+\beta>2$. Pueden obtenerse los  equilibrios viendo todos los puntos que cumplan simultaneamente: 
@@ -252,6 +309,73 @@ $$
 
 \section{Resolucion Ej 4:}
 
+El sistema de ecuaciones
+$$
+\begin{aligned}
+\frac{d x}{d t} = f_1(x, y, z) &=-c_{a} x y+e_{a} y-c_{b} x z+e_{b} z \\
+\frac{d y}{d t} = f_2(x, y, z) &=c_{a} x y-e_{a} y+c_{a} z y          \\
+\frac{d z}{d t} = f_3(x, y, z) &=c_{b} x z-e_{b} z-c_{a} z y            
+\end{aligned}
+$$
+
+Los equilibrios vienen dados por 
+
+$$
+\begin{aligned}
+    f_1(x^*, y^*, z^*) = 0\\ 
+    f_2(x^*, y^*, z^*) = 0\\ 
+    f_3(x^*, y^*, z^*) = 0   
+\end{aligned}
+$$
+
+Por esto los puntos fijos son:
+
+$$
+\begin{aligned}
+    P_1 &= (0, 0, 0) \\ 
+    P_2 &= (\frac{e_b}{c_b}, 0, z) \\ 
+    P_3 &= (\frac{e_a}{c_a}, y, 0) \\ 
+    P_4 &= (\frac{e_a}{c_a} - c_a z, z, \frac{c_b}{c_a} (\frac{e_a}{c_a} - c_a z) - \frac{e_b}{c_a}) 
+\end{aligned}
+$$
+
+
+$$
+J = 
+\begin{bmatrix}  
+    - y c_a - z c_b & - x c_a + e_a & - x c_b + e_b \\
+    y c_a & x c_a - e_a + z c_a & y c_a \\
+    z c_b & - z c_a & x c_b - e_b - y c_a 
+\end{bmatrix}
+$$
+
+$$
+J_1 = 
+\begin{bmatrix}
+    0 & e_a & e_b \\
+    0 & - e_a & 0 \\
+    0 & 0 & - e_b 
+\end{bmatrix}
+$$
+
+$$
+J_2 = 
+\begin{bmatrix}  
+    - z c_b & - (\frac{e_b}{c_b}) c_a + e_a & - (\frac{e_b}{c_b}) c_b + e_b \\
+    0 & (\frac{e_b}{c_b}) c_a - e_a + z c_a & 0 \\
+    z c_b & - z c_a & (\frac{e_b}{c_b}) c_b - e_b
+\end{bmatrix}
+$$
+
+
+$$
+J = 
+\begin{bmatrix}  
+    - y c_a & - (\frac{e_a}{c_a}) c_a + e_a & - (\frac{e_a}{c_a}) c_b + e_b \\
+    y c_a & (\frac{e_a}{c_a}) c_a - e_a  & y c_a \\
+    0 & 0 & (\frac{e_a}{c_a}) c_b - e_b - y c_a 
+\end{bmatrix}
+$$
 
 % 
 % ███████╗██╗  ██╗    ███████╗
