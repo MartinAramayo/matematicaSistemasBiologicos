@@ -117,7 +117,7 @@ for i, r in np.ndenumerate(np.flipud(array_r)): # in reverse
     lgd = ax.legend(ncol=1, bbox_to_anchor=(1.25, 0.5), loc='center right')
     ax.set_ylabel("Población $N$")
     ax.set_xlabel("tiempo(años)")
-    ax.set_title(f'$r$ = {r:3.2f}, $K$ = {K:4.3f}, $N_0$ = {y0:2.1f}')
+    ax.set_title(f'$r$ = {r:3.2f}, $K$ = {K:3.2f}, $N_0$ = {y0:2.1f}')
     axes_no_corner(ax)
 
     fig.savefig('plots/ex6-y0grande' + f'{i[0]:02}' + '.pdf',

@@ -133,14 +133,12 @@ De analizar esta expresión (y analizar $r=0$ aparte), se obtiene lo que puede v
 
 En la Fig. \ref{fig:scripts/ex1} se tienen gráficos de los mapeos. Se observa que dentro de un intervalo de estabilidad $r$ controla la velocidad de crecimiento de la población. Hay dos casos particulares, si $r=1$ o $r=0$ no hay evolución y $n=0$, $n=n_0$ son sus respectivos puntos superestables. 
 
-% En la Fig. !!!! se tiene lo que ocurre para valores iniciales superiores a $K$, lo cual lleva a que el sistema se estabilice en $K$. 
-
 \begin{figure*}[ht!]  
     \centering
     % \begin{subfigure}[b]{0.33\linewidth}
         \centering 
         \includegraphics[width = 0.76\textwidth]{scripts/ex1.pdf}
-        \caption{Gráfico del mapeo para distintos valores del parámetro $r$, los puntos fijos se indican con línea punteada.}
+        \caption{Gráfico del mapeo para distintos valores del parámetro $r$, los puntos fijos se indican con línea punteada. Hay un punto superestable cuando $r=1$, donde no hay dinámica. Se grafica con: $K = 0.5,N0 = 0.1$.}
         \label{fig:scripts/ex1}
     % \end{subfigure}\quad
 \end{figure*}
@@ -200,7 +198,7 @@ En la Fig. \ref{fig:scripts/ex1} se tienen gráficos de los mapeos. Se observa q
     % \begin{subfigure}[b]{0.33\linewidth}
         \centering
         \includegraphics[width = 0.7\textwidth]{scripts/ex2-cosaPrueba.pdf}
-        \caption{Gráficos de la aproximación analítica (línea continua) y solución numérica (línea discontinua) para valores de $N_0$ cercanos a $K$.}
+        \caption{Gráficos de la aproximación analítica (línea continua) y solución numérica (línea discontinua) para valores de $N_0$ cercanos a $K$. Se grafica para $r = 0.3, K=10, \epsilon = 0.01$.}
         \label{fig:scripts/ex2-cosaPrueba}
     % \end{subfigure}\quad
 \end{figure*}
@@ -345,7 +343,6 @@ Para este sistema continuo:
 \frac{d N}{d t} =r N\left[1-\frac{N}{K}\right]\left[\frac{N}{A}-1\right] = f(N, K, r, A)
 \end{equation}
 
-
 $$
 \frac{d N}{d t} = f(N, K, r, A) \qquad r>0, K>0 , A>0
 $$
@@ -417,7 +414,7 @@ De ejemplos anteriores, el parámetro $r$ solo controla la rapidez con la que se
         \caption{}
         \label{fig:scripts/plots/ex6-y0grande02}
     \end{subfigure}
-    \caption{Gráficos de la solución de la Ec. \ref{eqn:Alle} para $r=0.1$ y distintos valores de $A$.}
+    \caption{Gráficos de la solución de la Ec. \ref{eqn:Alle} para $r=0.1$ y distintos valores de $A$. Por la naturaleza de uno de los puntos fijos, solo pueden verse para condiciones iniciales mayores a K.}
 \end{figure*}
 %**********
 

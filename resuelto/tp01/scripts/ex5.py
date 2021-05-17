@@ -100,7 +100,7 @@ for j, λ in np.ndenumerate(array_lambda):
     lgd = ax.legend(ncol=1, bbox_to_anchor=(1.25, 0.5), loc='center right')
     ax.set_ylabel("Población $N$")
     ax.set_xlabel("tiempo(años)")
-    ax.set_title(f'$r$ = {r:3.2f}, $\lambda$ = {λ:4.3f}')
+    ax.set_title(f'$r$ = {r:3.2f}, $\lambda$ = {λ:4.3f}, $N_0$ = {y0:4.3f}')
     axes_no_corner(ax)
 
     fig.savefig('plots/ex5-' + f'{j[0]:02}' + '.pdf',
