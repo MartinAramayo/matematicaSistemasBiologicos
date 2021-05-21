@@ -75,26 +75,32 @@
 
 El análisis en general no debería ser ahora difícil para ustedes. Supongamos que cada población tiene un comportamiento logístico en ausencia de la otra, y parámetros de interacción genéricos:
 $$
+\left\{
 \begin{aligned}
-\frac{d x}{d t}=r_{1} x\left[1-\frac{x}{K_{1}}-b_{12} \frac{y}{K_{1}}\right] \\
-\frac{d y}{d t}=r_{2} y\left[1-\frac{y}{K_{2}}-b_{21} \frac{x}{K_{2}}\right]
+    \frac{d x}{d t}=r_{1} x\left[1-\frac{x}{K_{1}}-b_{12} \frac{y}{K_{1}}\right] \\
+    \frac{d y}{d t}=r_{2} y\left[1-\frac{y}{K_{2}}-b_{21} \frac{x}{K_{2}}\right]
 \end{aligned}
+\right.
 $$
 
 donde $b_{12}$ y $b_{21}$ miden los efectos de la mutua competencia. Adimensionalizamos:
 
 $$
+\left\{
 \begin{aligned}
-\frac{d u_{1}}{d t}=u_{1}\left(1-u_{1}+a_{12} u_{2}\right)=f_{1}\left(u_{1}, u_{2}\right) \\
-\frac{d u_{2}}{d t}=\rho u_{2}\left(1-u_{2}+a_{21} u_{1}\right)=f_{2}\left(u_{1}, u_{2}\right)
+    \frac{d u_{1}}{d t}=u_{1}\left(1-u_{1}+a_{12} u_{2}\right)=f_{1}\left(u_{1}, u_{2}\right) \\
+    \frac{d u_{2}}{d t}=\rho u_{2}\left(1-u_{2}+a_{21} u_{1}\right)=f_{2}\left(u_{1}, u_{2}\right)
 \end{aligned}
+\right.
 $$
 
 $$
+\left\lvert 
 \begin{aligned}
 u_1(\tau) &= \frac{x(t)}{K_{1}}, a_{12} = b_{12} \frac{K_{2}}{K_{1}}, \tau=r_{1} t \\
 u_2(\tau) &= \frac{y(t)}{K_{2}}, a_{21} = b_{21} \frac{K_{1}}{K_{2}}, \rho=\frac{r_{2}}{r_{1}}
 \end{aligned}
+\right.
 $$
 
 Los equilibrios vienen dados por: $\left\lbrace
@@ -173,14 +179,88 @@ Para este sistema es mas conveniente un analisis grafico como el que puede verse
 
 \section{Resolucion Ej 2:}
 
+Para el sistema:
+
+\begin{equation}
+    \frac{d N}{d t}=\left[\frac{a N}{N+n}-b\right] N- k N(N+n),
+\end{equation}
+
+donde $a$ es la natalidad, $b$ es la mortalidad y $k$ un coeficiente de capacidad. Con esto en cuenta puede plantearse un sistema en el que se suelte una unica vez a los mosquitos esteriles.
+
+\begin{equation}
+    \left\lbrace
+    \begin{aligned}
+        \frac{d n}{d t}&=  -b n - k (N+n) n \\
+        \frac{d N}{d t}&=\left[\frac{a N}{N+n}-b\right] N- k N(N+n)
+    \end{aligned}
+    \right. ,
+\end{equation}
+
+donde $b$ es la mortalidad, y $k$ el coeficiente de 
+capacidad.
+
+
+Son 3 puntos de equilibrios $P_j = (\nstar_{j},\Nstar_{j}), j= 1, 2, 3$.
+
+$$
+\begin{aligned}
+    P_1 &= (0, 0) \\ 
+    P_2 &= (0, \frac{a-b}{k}), P_3 = (- \frac{b}{k}, 0)
+\end{aligned}
+$$
+
+$$
+J = 
+\begin{bmatrix}
+    -2kx-ky-b & -kx \\
+    \frac{-ky^2-2kyx-ay-kx^2}{\left(y+x\right)^2} & \frac{-kx^2+ax-2kyx-ky^2}{\left(y+x\right)^2}
+\end{bmatrix}
+$$
+
+$$
+J = 
+\begin{bmatrix}
+    -2kx-ky-b & -kx \\
+    \frac{-ky^2-2kyx-ay-kx^2}{\left(y+x\right)^2} & \frac{-kx^2+ax-2kyx-ky^2}{\left(y+x\right)^2}
+\end{bmatrix}
+$$
+
+
+Si se propone que una fraccion $\gamma$ de los mosquitos nace esteriles se tiene que:
+
+\begin{equation}
+    \left\lbrace
+    \begin{aligned}
+        \frac{d N}{d t}&=\left[\frac{a N}{N+n}-b\right] N- k N(N+n) \\
+        \frac{d n}{d t}&=  \gamma N - k (N+n) n
+    \end{aligned}
+    \right. ,
+\end{equation}
+
+
 En la Fig. \ref{fig:mosquitos} pueden verse graficos de la resolucion numerica del sistema para distintos valores de el parametro $n$.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.51\textwidth]{figuras/ex5.pdf}
+    \includegraphics[width=0.51\textwidth]{figuras/ex02.pdf}
     \caption{Evolucion de los mosquitos fertiles para distintos valores de los mosquitos esteriles.}
     \label{fig:mosquitos}
 \end{figure}
+
+We incorporated into our model(s) the following explicit assumptions that would seem to apply to a rather wide range of biological situations: 
+
+\begin{enumerate}[label=\alph*)]
+    \item Las poblaciones existen como continuos y se reproducen de forma continua en el tiempo.
+    \item La población crece similar a una curva logística.
+    \item La capacidad de carga de un ambiente es constante.
+    \item Los machos estériles y no estériles compiten en pie de igualdad.
+    \item El apareamiento es al azar, la proporción de apareamientos fértiles es directamente proporcional al número de individuos fértiles presentes en la población.
+    % \item Ambos géneros son monogámicos o si las hembras se aparean es igual de posible que lo haga con un individuo fértil o uno no fértil.
+    % \item En caso de que exista poligamia cada individuo se aparea un número aleatorio de veces. El número de eventos de apareamiento siguen una distribución Poisson con media idéntica para todos los individuos.
+    \item Los géneros están en una razón 1 a 1 constantemente.
+    \item La liberación de individuos estériles es continua y a un ritmo constante por unidad de tiempo y hábitat.
+    \item La liberación lleva a la completa e instantánea mezcla de individuos.
+\end{enumerate}
 
 % 
 % ███████╗██╗  ██╗    ██████╗     
@@ -196,11 +276,13 @@ En la Fig. \ref{fig:mosquitos} pueden verse graficos de la resolucion numerica d
 
 Para el siguiente sistema de competencia ciclica:
 $$
+\left\{
 \begin{aligned}
 \frac{d n_{1}}{d t}&=n_{1}\left(1-n_{1}-\alpha n_{2}-\beta n_{3}\right) = f_1(n_1,n_2,n_3)\\
 \frac{d n_{2}}{d t}&=n_{2}\left(1-\beta n_{1}-n_{2}-\alpha n_{3}\right) = f_2(n_1,n_2,n_3) \\
 \frac{d n_{3}}{d t}&=n_{3}\left(1-\alpha n_{1}-\beta n_{2}-n_{3}\right) = f_3(n_1,n_2,n_3)
 \end{aligned}
+\right.
 $$
 con $0<\beta<1<\alpha$ y $\alpha+\beta>2$. Pueden obtenerse los  equilibrios viendo todos los puntos que cumplan simultaneamente: 
 
@@ -302,8 +384,6 @@ $$
 \end{bmatrix}
 $$
 
-
-
 El origen es equilibrio (una fuente) y los versores $(1,0,0)$ etc. son puntos de ensilladura. Hay otros 3 equilibrios con dos poblaciones finitas y una nula. Finalmente, existe un equilibrio interior al octante $\mathbb{R}_{+}^{3}$, dado por:
 $$
 x_{1}^{*}=x_{2}^{*}=x_{3}^{*}=\frac{1}{1+\alpha+\beta} .
@@ -346,21 +426,25 @@ $$
 
 El sistema de ecuaciones
 $$
+\left\{
 \begin{aligned}
 \frac{d x}{d t} = f_1(x, y, z) &=-c_{a} x y+e_{a} y-c_{b} x z+e_{b} z \\
 \frac{d y}{d t} = f_2(x, y, z) &=c_{a} x y-e_{a} y+c_{a} z y          \\
 \frac{d z}{d t} = f_3(x, y, z) &=c_{b} x z-e_{b} z-c_{a} z y            
 \end{aligned}
+\right.
 $$
 
 Los equilibrios vienen dados por 
 
 $$
+\left\{
 \begin{aligned}
     f_1(x^*, y^*, z^*) = 0\\ 
     f_2(x^*, y^*, z^*) = 0\\ 
     f_3(x^*, y^*, z^*) = 0   
 \end{aligned}
+\right.
 $$
 
 Por esto los puntos fijos son:
@@ -424,9 +508,96 @@ $$
 
 \section{Resolucion Ej 5:}
 
+Metapoblaciones - Modelo de Levins
 
 
-\bibliography{sample}
+$$\frac{d p}{d t}=c p(1-p)-e p = f(p)$$
+
+\begin{itemize}
+    \item $c:$ Tasa de colonización local de un parche (o probabilidad de que un parche vacío sea colonizado por individuos que migran al mismo parche desde parches ocupados). 
+    \item $p:$ Fracción de parches ocupados
+    \item $1-p:$ Fracción de parches vacíos
+    \item $e:$ Tasa de extinción de cualquier subpoblación (población local en un parche) o probabilidad de que un parche ocupado quede vacío (extinción local).
+\end{itemize}
+
+Lo que parece un término logístico tiene un origen muy diferente. La posibilidad de que aumente la fracción de parches ocupados depende de cuantos parches hay ocupados y de la posibilidad de ocupar uno nuevo, que para eso, debe estar vacio. De ahí el producto de ambas cantidades
+
+$$
+f(p) = 0 \Rightarrow\left\{
+\begin{array}{l}
+    p=0 \\ 
+    p=1-\frac{e}{c}
+\end{array}
+\right.
+$$
+Metapoblaciones - Competencia
+Tenemos dos especies compitiendo, pero una de las dos (s) es mejor colonizadora y
+
+$$
+\left\{
+\begin{aligned}
+    \frac{d p_{s}}{d t} &=f_{s}(p)=c_{s} p_{s}\left(1-p_{s}\right)-e_{s} p_{s} \\ 
+    \frac{d p_{i}}{d t} &=f_{i}(p)=c_{i} p_{i}\left(1-p_{i}-p_{s}\right)-e_{i} p_{i}-c_{s} p_{i} p_{s}
+\end{aligned} 
+\right.
+$$
+
+$$
+\left\{
+\begin{array} { l } 
+    { f _ { i } = 0 } \\
+    { f _ { s } = 0 }
+\end{array} 
+\right. 
+\Rightarrow 
+\left\{
+\begin{array}{l}
+    p_{i}=p_{s}=0 \\
+    p_{i}=0, p_{s}=1-e_{s} / c_{s} \\
+    p_{i}=1-e_{i} / c_{i}, p_{s}=0 \\
+    p_{i}=p_{i}^{*}, p_{s}=p_{s}^{*}
+\end{array}
+\right.
+$$
+
+
+
+$$
+p_{s}^{*}=1-\frac{e_{s}}{c_{c}}, p_{i}^{*}=1-p_{s}^{*}-\frac{e_{i}+c_{s} p_{s}^{*}}{c_{i}}
+$$
+
+$$
+1 - \frac{e_{s}}{c_{s}} > 0
+$$
+
+\begin{equation}
+    \mathbf{J}=\left(
+    \begin{array}{cc}
+        -c_{s}+e_{s} & 0 \\
+        \frac{d f_{i}}{d p_{i}} & c_{i}\left(1-p_{s}^{*}-2 p_{i}^{*}\right)-e_{i}-c_{s} p_{s}^{*}
+    \end{array}
+    \right)
+\end{equation}
+
+Para que la coexistencia sea estable necesito dos autovalores negativos, es decir
+
+$$
+c_{i}\left(1-p_{s}^{*}-2 p_{i}^{*}\right)-e_{i}-c_{s} p_{s}^{*}<0
+$$
+
+$$
+c_{i}>c_{s}\left(\frac{e_{i}}{e_{s}}+\frac{p_{s}^{*}}{1-p_{s}^{*}}\right) \quad c_{i}>c_{s}\left(\frac{c_{s}+e_{i}-e_{s}}{e_{s}}\right)
+$$
+
+Supongamos que los coeficientes de extinción son iguales. Si $p_{s}{ }^{*}<1$ vemos que
+
+$$
+c_{i}>c_{s}
+$$
+
+La coexistencia ocurre porque $s$ deja huecos ya sea porque coloniza peor o tiene una mayor tasa de extinción.
+
+% \bibliography{sample}
 
 \end{document}
 
