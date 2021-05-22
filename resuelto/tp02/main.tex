@@ -39,6 +39,11 @@
 \newcommand{\tone}{\frac{1-a_{12}}{1-a_{12} a_{21}}}  
 \newcommand{\ttwo}{\frac{1-a_{21}}{1-a_{12} a_{21}}}  
 
+\newcommand*\sepline{%
+  \begin{center}
+    \rule[1ex]{.5\textwidth}{.5pt}
+  \end{center}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -88,8 +93,8 @@ donde $b_{12}$ y $b_{21}$ miden los efectos de la mutua competencia. Adimensiona
 $$
 \left\{
 \begin{aligned}
-    \frac{d u_{1}}{d t}=u_{1}\left(1-u_{1}+a_{12} u_{2}\right)=f_{1}\left(u_{1}, u_{2}\right) \\
-    \frac{d u_{2}}{d t}=\rho u_{2}\left(1-u_{2}+a_{21} u_{1}\right)=f_{2}\left(u_{1}, u_{2}\right)
+    \frac{d u_{1}}{d t} &= f_{1}\left(u_{1}, u_{2}\right) = u_{1}\left(1-u_{1}+a_{12} u_{2}\right) \\
+    \frac{d u_{2}}{d t} &= f_{2}\left(u_{1}, u_{2}\right) = \rho u_{2}\left(1-u_{2}+a_{21} u_{1}\right)
 \end{aligned}
 \right.
 $$
@@ -182,10 +187,44 @@ Para este sistema es mas conveniente un analisis grafico como el que puede verse
 Para el sistema:
 
 \begin{equation}
-    \frac{d N}{d t}=\left[\frac{a N}{N+n}-b\right] N- k N(N+n),
+    \frac{d N}{d t} = f(N,a,b,k,n) 
+    = \left[\frac{a N}{N+n}-b\right] N- k N(N+n)
 \end{equation}
 
+% $
+% = \left[ \frac{a N}{N+n} - k (N+n) -b \right] N 
+% $
+
+Punto fijo dado por: $f(N,a,b,k,n) = 0$
+
+$$
+\Nstar_1 = 0, 
+\Nstar_{2,3} = \frac{1}{2k} 
+\left( 
+    \pm \sqrt{(b-a)^2 - 4 a k n} + 
+    a - 2kn - b
+\right)
+$$
+
+
+$$
+\frac{d f}{d N} = - b + \frac{ aN^2 + 2 a n N}{( N + n )^2}
+- k (2N + n)
+$$
+
+La estabilidad de $\Nstar_1$:
+
+$$
+\frac{d f}{d N} = - b - k  n \Rightarrow  \Nstar_1 \text{Es estable}
+$$
+
+
+
 donde $a$ es la natalidad, $b$ es la mortalidad y $k$ un coeficiente de capacidad. Con esto en cuenta puede plantearse un sistema en el que se suelte una unica vez a los mosquitos esteriles.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\sepline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{equation}
     \left\lbrace
@@ -202,29 +241,53 @@ capacidad.
 
 Son 3 puntos de equilibrios $P_j = (\nstar_{j},\Nstar_{j}), j= 1, 2, 3$.
 
+El origen es un punto estable, la derivada se anula en ese punto y no hay dinamica.
+
 $$
 \begin{aligned}
-    P_1 &= (0, 0) \\ 
-    P_2 &= (0, \frac{a-b}{k}), P_3 = (- \frac{b}{k}, 0)
+    P_1 &= (0, 0) &, P_2 = \left( 0, \frac{a-b}{k} \right), \\ 
+    P_3 &= \left(- \frac{b}{k}, 0 \right) \left(^\text{Población}_\text{Negativa} \right) &,  P_4 = \left(- \frac{b}{k}, \frac{b+a}{k} \right) \left(^\text{Población}_\text{Negativa} \right)
 \end{aligned}
 $$
 
-$$
-J = 
-\begin{bmatrix}
-    -2kx-ky-b & -kx \\
-    \frac{-ky^2-2kyx-ay-kx^2}{\left(y+x\right)^2} & \frac{-kx^2+ax-2kyx-ky^2}{\left(y+x\right)^2}
-\end{bmatrix}
-$$
+% $$
+% J = 
+% \begin{bmatrix}
+%     -2kx-ky-b & -kx \\
+%     \frac{-ky^2-2kyx-ay-kx^2}{\left(y+x\right)^2} & \frac{-kx^2+ax-2kyx-ky^2}{\left(y+x\right)^2}
+% \end{bmatrix}
+% $$
+
+% $$
+% J_1 = 
+% \begin{bmatrix}
+%     -b & 0 \\
+%     0 & 0
+% \end{bmatrix}
+% $$
 
 $$
-J = 
+J_2 = 
 \begin{bmatrix}
-    -2kx-ky-b & -kx \\
-    \frac{-ky^2-2kyx-ay-kx^2}{\left(y+x\right)^2} & \frac{-kx^2+ax-2kyx-ky^2}{\left(y+x\right)^2}
+    -a & 0  \\
+    k \frac{b - 2a}{ a - b } & -k 
 \end{bmatrix}
+\Rightarrow  P_2 \ \text{Estable}
 $$
 
+El punto $P_3$ no forma parte de la dinamica (No hay poblaciones negativas)
+
+% $$
+% J_3 = 
+% \begin{bmatrix}
+%     b & b \\
+%     -k &  - k \frac{ b+a}{ b }
+% \end{bmatrix}
+% $$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\sepline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Si se propone que una fraccion $\gamma$ de los mosquitos nace esteriles se tiene que:
 
@@ -237,15 +300,14 @@ Si se propone que una fraccion $\gamma$ de los mosquitos nace esteriles se tiene
     \right. ,
 \end{equation}
 
-
-En la Fig. \ref{fig:mosquitos} pueden verse graficos de la resolucion numerica del sistema para distintos valores de el parametro $n$.
-
 \begin{figure}
     \centering
     \includegraphics[width=0.51\textwidth]{figuras/ex02.pdf}
     \caption{Evolucion de los mosquitos fertiles para distintos valores de los mosquitos esteriles.}
-    \label{fig:mosquitos}
+    \label{fig:esteriles}
 \end{figure}
+
+En la Fig. \ref{fig:esteriles} pueden verse graficos de la resolucion numerica del sistema para distintos valores de el parametro $n$.
 
 We incorporated into our model(s) the following explicit assumptions that would seem to apply to a rather wide range of biological situations: 
 
@@ -305,11 +367,11 @@ $$
     P_1 &= (0, 0, 0) \\ 
     P_2 &= (1, 0, 0), P_3 = (0, 1, 0), P_4 = (0, 0, 1) \\
     P_5 &= \frac{1}{\alpha \beta - 1} 
-                       (\alpha - 1, \beta - 1 , 0) \\ 
+                       (\alpha - 1, \beta - 1 , 0)  \left(^\text{Población}_\text{Negativa} \right)  \\ 
     P_6 &= \frac{1}{\alpha \beta - 1} 
-                       (0         , \alpha - 1, \beta - 1) \\ 
+                       (0         , \alpha - 1, \beta - 1)  \left(^\text{Población}_\text{Negativa} \right)  \\ 
     P_7 &= \frac{1}{\alpha \beta - 1} 
-                       (\beta - 1 , 0         , \alpha - 1) \\ 
+                       (\beta - 1 , 0         , \alpha - 1)  \left(^\text{Población}_\text{Negativa} \right)  \\ 
     P_8 &= \frac{1}{\alpha + \beta + 1}(1, 1, 1) 
 \end{aligned}
 $$
@@ -322,7 +384,7 @@ $$
     1  & 0 & 0 \\
     0 & 1 & 0 \\
     0 & 0 & 1
-\end{bmatrix}
+\end{bmatrix} (\text{estable})
 \quad 
 \mathbf{J}_8 = 
 \frac{1}{1+\alpha+\beta}\begin{bmatrix}
@@ -338,7 +400,7 @@ $$
     -1 & - \alpha & - \beta \\
     0 & 1-\beta & 0 \\
     0 & 0 & 1- \alpha
-\end{bmatrix}
+\end{bmatrix} (\text{Punto silla})
 $$
 
 $$
@@ -347,42 +409,46 @@ $$
     1 - \alpha  & 0 & 0 \\
     - \beta & -1 & - \alpha \\
     0 & 0 & 1  - \beta
-\end{bmatrix}
-,
+\end{bmatrix} (\text{Punto silla})
+$$
+
+$$
 \mathbf{J}_4 = 
 \begin{bmatrix}
     1 - \beta  & 0 & 0 \\
     0 & 1 -\alpha  & 0 \\
     - \alpha  & -\beta & -1
-\end{bmatrix}
+\end{bmatrix} (\text{Punto silla})
 $$
 
-$$
-\mathbf{J}_5 = 
-\begin{bmatrix}
-    -\talf  & - \alpha (\talf)& - \beta (\talf)\\
-    - \beta (\tbet) & -\tbet & - \alpha (\tbet) \\
-    0 & 0 & 1 - \alpha (\talf) - \beta (\tbet)
-\end{bmatrix}
-$$
+% $$
+% \mathbf{J}_5 = 
+% \begin{bmatrix}
+%     -\talf  & - \alpha (\talf)& - \beta (\talf)\\
+%     - \beta (\tbet) & -\tbet & - \alpha (\tbet) \\
+%     0 & 0 & 1 - \alpha (\talf) - \beta (\tbet)
+% \end{bmatrix}
+% $$
 
-$$
-\mathbf{J}_6 = 
-\begin{bmatrix}
-    1 - \alpha (\talf) - \beta (\tbet) & 0 & 0 \\
-    - \beta (\talf) & -\talf & - \alpha (\talf) \\
-    - \alpha (\tbet) & - \beta (\tbet) & \tbet
-\end{bmatrix}
-$$
+% $$
+% \mathbf{J}_6 = 
+% \begin{bmatrix}
+%     1 - \alpha (\talf) - \beta (\tbet) & 0 & 0 \\
+%     - \beta (\talf) & -\talf & - \alpha (\talf) \\
+%     - \alpha (\tbet) & - \beta (\tbet) & \tbet
+% \end{bmatrix}
+% $$
 
-$$
-\mathbf{J}_7 = 
-\begin{bmatrix}
-    -\tbet & - \alpha (\tbet) & - \beta (\tbet) \\
-    0 & 1 - \beta (\tbet) - \alpha (\talf) & 0 \\
-    - \alpha (\talf) & - \beta (\talf) & \talf
-\end{bmatrix}
-$$
+% $$
+% \mathbf{J}_7 = 
+% \begin{bmatrix}
+%     -\tbet & - \alpha (\tbet) & - \beta (\tbet) \\
+%     0 & 1 - \beta (\tbet) - \alpha (\talf) & 0 \\
+%     - \alpha (\talf) & - \beta (\talf) & \talf
+% \end{bmatrix}
+% $$
+
+$P_5, P_6, P_7$ no es accesible en el modelo porque son valores negativos y se estan tratando poblaciones.
 
 El origen es equilibrio (una fuente) y los versores $(1,0,0)$ etc. son puntos de ensilladura. Hay otros 3 equilibrios con dos poblaciones finitas y una nula. Finalmente, existe un equilibrio interior al octante $\mathbb{R}_{+}^{3}$, dado por:
 $$
