@@ -60,9 +60,9 @@
 % ██   ██ ██      ██   ██ ██   ██
 % ██   ██ ███████ ██   ██ ██████
 
-\title{Practico 1}
+\title{Práctico 2}
 \author{M. G. Aramayo}
-\affiliation{Matematica de sistemas biologicos, Instituto Balseiro}
+\affiliation{Matemática de sistemas biológicos, Instituto Balseiro}
 
 % \begin{abstract}
 % Mete acá las conclusiones.
@@ -178,7 +178,7 @@ $$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Para este punto es mas conveniente un análisis gráfico de las trayectorias como el que puede verse en la Fig. \ref{fig:mosquitos}. El punto $P_4$ es la intersección de las rectas roja y azul. Se tienen tres casos según los valores de $a_{12}, a_{21}$:
+Para este punto es más conveniente un análisis gráfico de las trayectorias como el que puede verse en la Fig. \ref{fig:mosquitos}. El punto $P_4$ es la intersección de las rectas roja y azul. Se tienen tres casos según los valores de $a_{12}, a_{21}$:
 
 \begin{itemize}
     \item Si $a_{12} a_{21} = 1$ las rectas son paralelas y no hay un punto de equilibrio. 
@@ -240,15 +240,6 @@ Puede verse que la Ec. \ref{eq:esteril1} es una ecuación logística modificada,
 
 Volviendo a Ec. \ref{eq:esteril1} los puntos fijos están dados por: $f(N,a,b,k,n) = 0$
 
-% $$
-% \Nstar_1 = 0, 
-% \Nstar_{2,3} = \frac{1}{2k} 
-% \left( 
-%     \pm \sqrt{(b-a)^2 - 4 a k n} + 
-%     a - 2kn - b
-% \right)
-% $$
-
 $$
 \Nstar_1 = 0, 
 \Nstar_{2,3} = \pm 
@@ -259,20 +250,22 @@ $$
 - n
 $$
 
-Para anlizar la estabilidad de los puntos fijos, analizamos $\frac{d f}{d N}$:
+Para analizar la estabilidad de los puntos fijos, analizamos $\frac{d f}{d N}$:
 
 $$
-\frac{d f}{d N} = - b + \frac{ aN^2 + 2 a n N}{( N + n )^2}
-- k (2N + n)
+\frac{d f}{d N} = \frac{ aN^2 + 2 a n N}{( N + n )^2}
+- k (2N + n) - b 
 $$
 
 La estabilidad de $\Nstar_1$:
 
 $$
-\frac{d f}{d N} = - b - k  n \Rightarrow  \Nstar_1 \text{ Es estable}
+\frac{d f}{d N} = - b - k  n  
+\ \Rightarrow  \ 
+\Nstar_1 \text{  Es estable}
 $$
 
-La estabilidad de los puntos $\Nstar_{2,3}$ es un tanto mas complicada, pero podemos analizar bajo que condiciones estos puntos fijos desaparecen. Podemos obtener un numero crítico de mosquitos estériles $n_c$ a partir del cual $\Nstar_{2,3}$ es un numero complejo si analizamos donde se anula el radicando:
+La estabilidad de los puntos $\Nstar_{2,3}$ es un tanto más complicada, pero podemos analizar bajo que condiciones estos puntos fijos desaparecen. Podemos obtener un número crítico de mosquitos estériles $n_c$ a partir del cual $\Nstar_{2,3}$ es un número complejo si analizamos donde se anula el radicando:
 
 $$
 n_c =  
@@ -307,7 +300,7 @@ Con Ec. \ref{eq:esteril1} en cuenta puede plantearse un sistema en el que se sue
     \right. ,
 \end{equation}
 
-Son 3 puntos de equilibrios $P_j = (\nstar_{j},\Nstar_{j}), j= 1, 2, 3$. Para el caso de $P_2$ se analiza mediante una matriz jacobiana.
+Son 3 puntos de equilibrios $P_j = (\nstar_{j},\Nstar_{j}), j= 1, 2, 3$. Para el caso de $P_2$ se analiza mediante una matriz Jacobiana.
 
 % $$
 % \begin{aligned}
@@ -337,13 +330,15 @@ $$
 % \end{bmatrix}
 % $$
 
-% $$
-% J_1 = 
-% \begin{bmatrix}
-%     -b & 0 \\
-%     0 & 0
-% \end{bmatrix}
-% $$
+$$
+P_1 = (0, 0)
+\Rightarrow
+J_1 = 
+\begin{bmatrix}
+    -b & 0 \\
+    0 & 0
+\end{bmatrix} \Rightarrow (^\text{Acumulacion}_\text{de inestables})
+$$
 
 $$
 P_2 = \left( 0, \frac{a-b}{k} \right)  \Rightarrow  
@@ -355,12 +350,12 @@ J_2 =
 \Rightarrow  P_2 \ \text{Estable}
 $$
 
-El punto $P_3$ no forma parte de la dinámica (No hay poblaciones negativas). Por otro lado, se tiene que el origen no es un punto estable. Esto implica la extinción no es inevitable en este caso y una única liberación no es suficiente. En la Fig. se tiene un analisis grafico.
+El punto $P_3$ no forma parte de la dinámica (No hay poblaciones negativas). Por otro lado, se tiene que el origen no es un punto estable. Esto implica la extinción no es inevitable en este caso y una única liberación no es suficiente. En la Fig. \ref{fig:cosa} se tiene un análisis gráfico.
 
 \begin{figure}[!ht]
     \centering  
     \includegraphics[width=0.18\textwidth]{figuras/cosa.pdf}
-    \caption{Evolución de los mosquitos fértiles para distintos valores de los mosquitos estériles.}
+    \caption{Análisis gráfico de estabilidad de los puntos $P_1$ y $P_2$.}
     \label{fig:cosa}
 \end{figure}
 
@@ -376,7 +371,7 @@ El punto $P_3$ no forma parte de la dinámica (No hay poblaciones negativas). Po
 \sepline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Si se propone que una fraccion $\gamma$ de los mosquitos nace estériles se tiene que:
+Si se propone que una fracción $\gamma$ de los mosquitos nace estériles se tiene que:
 
 \begin{equation}
     \left\lbrace
@@ -444,7 +439,7 @@ $$
 % \end{bmatrix}
 % $$
 
-Para que con este modelo la extinción sea inevitable, es decir, tengamos un unico nodo estable en el origen. Se requiere que $\gamma = a-b$. En este caso se pierde el segundo punto fijo.
+Para que con este modelo la extinción sea inevitable, es decir, tengamos un único nodo estable en el origen. Se requiere que $\gamma = a-b$. En este caso se pierde el segundo punto fijo.
 
 % 
 % ███████╗██╗  ██╗    ██████╗     
@@ -456,9 +451,9 @@ Para que con este modelo la extinción sea inevitable, es decir, tengamos un uni
 %                                 
 % 
 
-\section{Resolucion Ej 3:}
+\section{Resolución Ej 3:}
 
-Para el siguiente sistema de competencia ciclica:
+Para el siguiente sistema de competencia cíclica:
 $$
 \left\{
 \begin{aligned}
@@ -469,7 +464,6 @@ $$
 \right.
 $$
 con $0<\beta<1<\alpha$ y $\alpha+\beta>2$. Pueden obtenerse los  equilibrios viendo todos los puntos que cumplan simultáneamente: 
-
 $$\left\lbrace
 \begin{aligned}
     f_1(\nstar_1,\nstar_2,\nstar_3) = 0\\ 
@@ -495,7 +489,7 @@ $$
 \end{aligned}
 $$
 
-Analizamos el la matriz Jacobiana de este sistema:
+Analizamos la matriz Jacobiana de este sistema:
 
 $$
 \mathbf{J}_1 = 
@@ -503,7 +497,7 @@ $$
     1  & 0 & 0 \\
     0 & 1 & 0 \\
     0 & 0 & 1
-\end{bmatrix} (\text{estable})
+\end{bmatrix} (\text{Inestable})
 \quad 
 \mathbf{J}_8 = 
 \frac{1}{1+\alpha+\beta}\begin{bmatrix}
@@ -567,13 +561,15 @@ $$
 % \end{bmatrix}
 % $$
 
-$P_5, P_6, P_7$ no es accesible en el modelo porque son valores negativos y se estan tratando poblaciones.
+$P_5, P_6, P_7$ no es accesible en el modelo porque son valores negativos y se están tratando poblaciones.
 
-El origen es equilibrio (una fuente) y los versores $(1,0,0)$ etc. son puntos de ensilladura. Hay otros 3 equilibrios con dos poblaciones finitas y una nula. Finalmente, existe un equilibrio interior al octante $\mathbb{R}_{+}^{3}$, dado por:
+El origen es inestable y los versores $(1,0,0)$ etc. son puntos de ensilladura. 
+% Hay otros 3 equilibrios con dos poblaciones finitas y una nula. 
+Finalmente, existe un equilibrio interior al octante $\mathbb{R}_{+}^{3}$, dado por:
 $$
 x_{1}^{*}=x_{2}^{*}=x_{3}^{*}=\frac{1}{1+\alpha+\beta} .
 $$
-Este equilibrio de coexistencia es una ensilladura, lo cual se demuestra fácilmente porque los autovalores son muy sencillos. La matriz del sistema linealizado es "circulante":
+Este equilibrio de coexistencia es una ensilladura. La matriz del sistema linealizado es \textit{circulante}:
 $$
 \frac{1}{1+\alpha+\beta}\left(\begin{array}{ccc}
 -1 & -\alpha & -\beta \\
@@ -607,7 +603,7 @@ $$
 %                             
 % 
 
-\section{Resolucion Ej 4:}
+\section{Resolución Ej 4:}
 
 % El sistema de ecuaciones
 % $$
@@ -695,85 +691,79 @@ $$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Supongamos que se produce una fragmentación del hábitat y que hay parches que son inhabitables. 
+Considerando competencia entre $s$ e $i$. Pero con una fracción de zonas habitables $h<1$ 
 
-Seguimos considerando competencia entre s e $i$. 
+$h:$ Fracción de zonas habitables.
 
-Pero ahora hay una fracción de zonas habitables $h<1$ 
+$v=h-p_{s}-p_{i}:$ Fracción de zonas vacías.
 
-$h \quad$ Fracción de zonas habitables 
-
-$v=h-p_{s}-p_{i} \quad$ Fracción de zonas vacías 
-
-$$
-\left\{ 
-    \begin{aligned}
-        \frac{d p_{s}}{d t} = f_{s}(p) &= c_{s} p_{s}\left(h-p_{s}\right)-e_{s} p_{s} \\
-        \frac{d p_{i}}{d t} = f_{i}(p) &= c_{i} p_{i}\left(h-p_{i}-p_{s}\right)-e_{i} p_{i}-c_{s} p_{i} p_{s}
-    \end{aligned}
-\right.
-$$
-
-$$
-\left\{ 
-    \begin{aligned}
-        \frac{d p_{s}}{d t} = f_{s}(p) &= c_{s} p_{s}\left(v+p_{i}\right)+-e_{s} p_{s} \\
-        \frac{d p_{i}}{d t} = f_{i}(p) &= c_{i} p_{i} v-e_{i} p_{i}-c_{s} p_{i} p_{s}=f_{i}(p)
-    \end{aligned}
-\right.
-$$
-
-$$
-\frac{d v}{d t}=e_{i} p_{i}+e_{s} p_{s}-v\left(c_{s} p_{s}+c_{i} p_{i}\right)
-$$
+% $$
+% \begin{aligned}
+%     \frac{d     v}{d t} &= e_{i} p_{i}+e_{s} p_{s}-v\left(c_{s} p_{s}+c_{i} p_{i}\right) \\
+%     \frac{d p_{s}}{d t} &= c_{s} p_{s}\left(h-p_{s}\right)-e_{s} p_{s} \\
+%     \frac{d p_{i}}{d t} &= c_{i} p_{i}\left(h-p_{i}-p_{s}\right)-e_{i} p_{i}-c_{s} p_{i} p_{s} 
+% \end{aligned} 
+% $$
 
 $$
 \begin{aligned}
-    \frac{d p_{s}}{d t} &= c_{s} p_{s}\left(h-p_{s}\right)-e_{s} p_{s} \\
-    \frac{d p_{i}}{d t} &= c_{i} p_{i}\left(h-p_{i}-p_{s}\right)-e_{i} p_{i}-c_{s} p_{i} p_{s} \\
-    \frac{d     v}{d t} &= e_{i} p_{i}+e_{s} p_{s}-v\left(c_{s} p_{s}+c_{i} p_{i}\right)
-\end{aligned}
+    \frac{d     x}{d t} &= e_{b} z +e_{a}  y -x\left(c_{a}  y +c_{b} z \right) \\
+    \frac{d  y }{d t} &= c_{a}  y \left(h- y \right)-e_{a}  y  \\
+    \frac{d z }{d t} &= c_{b} z \left(h-z - y \right)-e_{b} z -c_{a} z   y  
+\end{aligned} 
 $$
 
-$$
-\left\{
-\begin{array}{l}
-    c_{s} p_{s}\left(h-p_{s}\right)-e_{s} p_{s}=0 \\
-    c_{s}\left(h-p_{s}\right)-e_{s}=0
-\end{array} 
-\Rightarrow 
-p_{s}^{*}=h-\frac{e_{s}}{c_{s}}
-\right.
-$$
+% $$
+% \left\{
+% \begin{array}{l}
+%     c_{s} p_{s}\left(h-p_{s}\right)-e_{s} p_{s}=0 \\
+%     c_{s}\left(h-p_{s}\right)-e_{s}=0
+% \end{array} 
+% \Rightarrow 
+% p_{s}^{*}=h-\frac{e_{s}}{c_{s}}
+% \right.
+% $$
+
+% \begin{equation}
+%     \left\{
+%     \begin{array}{l}
+%     c_{i} p_{i}\left(h-p_{i}-p_{s}\right)-e_{i} p_{i}-c_{s} p_{i} p_{s}=0 \\
+%     c_{i}\left(h-p_{i}-h+\frac{e_{s}}{c_{s}}\right)-e_{i}-c_{s}\left(h-\frac{e_{s}}{c_{s}}\right)=0 \\
+%     -c_{i} p_{i}-\frac{c_{i} e_{s}}{c_{s}}-e_{i}-c_{s} h+e_{s}=0
+%     \end{array}
+%     \right.
+% \end{equation}
+
+% \begin{equation}
+%     \left\{
+%     \begin{aligned}
+%         p_{s}^{*} &= h - \frac{e_{s}}{c_{s}} \\
+%         p_{i}^{*} &= \frac{e_{s} \left( c_{s} + c_{i} \right)}{c_{s} c_{i}} - \frac{e_{i}}{c_{i}} - \frac{h c_{s}}{c_{i}} \\
+%         v^{*}     &= \frac{h c_{s} - e_{s} + e_{i}}{c_{i}}
+%     \end{aligned}
+%     \right.
+% \end{equation}
 
 \begin{equation}
     \left\{
-    \begin{array}{l}
-    c_{i} p_{i}\left(h-p_{i}-p_{s}\right)-e_{i} p_{i}-c_{s} p_{i} p_{s}=0 \\
-    c_{i}\left(h-p_{i}-h+\frac{e_{s}}{c_{s}}\right)-e_{i}-c_{s}\left(h-\frac{e_{s}}{c_{s}}\right)=0 \\
-    -c_{i} p_{i}-\frac{c_{i} e_{s}}{c_{s}}-e_{i}-c_{s} h+e_{s}=0
-    \end{array}
+    \begin{aligned}
+        y^{*} &= h - \frac{e_{a}}{c_{a}} \\
+        z^{*} &= \frac{e_{a} \left( c_{a} + c_{b} \right)}{c_{a} c_{b}} - \frac{e_{b}}{c_{b}} - \frac{h c_{a}}{c_{b}} \\
+        x^{*} &= \frac{h c_{a} - e_{a} + e_{b}}{c_{b}}
+    \end{aligned}
     \right.
 \end{equation}
 
-\begin{equation}
-    \left\{\begin{array}{l}
-    p_{s}^{*}=h-\frac{e_{s}}{c_{s}} \\
-    p_{i}^{*}=\frac{e_{s}\left(c_{s}+c_{i}\right)}{c_{s} c_{i}}-\frac{e_{i}}{c_{i}}-\frac{h c_{s}}{c_{i}} \\
-    v^{*}=\frac{h c_{s}-e_{s}+e_{i}}{c_{i}}
-    \end{array}\right.
-\end{equation}
-
-Vemos que cuando el valor de h está por debajo de $\mathrm{e}_{\mathrm{s} /} \mathrm{c}_{\mathrm{s}}$ la población de s se extingue. En ese caso, en ausencia de s, la población de $i$ puede persistir si
+Vemos que cuando el valor de $h$ está por debajo de $\frac{e_{a}}{c_{a}}$ la población de $A$ se extingue. En ese caso, en ausencia de $A$, la población de $B$ puede persistir si
 $$
-\frac{c_{i}}{e_{i}}>\frac{c_{s}}{e_{s}}
+\frac{c_{b}}{e_{b}}>\frac{c_{a}}{e_{a}}
 $$
-ya que en ese caso la ecuación para i es
+ya que en ese caso la ecuación para $B$ es
 $$
-\frac{d p_{i}}{d t}=c_{i} p_{i}\left(h-p_{i}\right)-e_{i} p_{i}
+\frac{d z}{d t} = c_{b} z \left( h - z \right) - e_{b} z
 $$
 
-Los valores estacionarios muestran que cuando $h$ disminuye aumenta la población de $i $ y disminuye la de s. Las ventajas de $i$ surgen de una menor mortalidad o una mejor estrategia de colonización
+Los valores estacionarios muestran que cuando $h$ disminuye aumenta la población de $B$ y disminuye la de $A$. Las ventajas de $B$ surgen de una menor mortalidad o una mejor estrategia de colonización.
 
 % 
 % ███████╗██╗  ██╗    ███████╗
@@ -785,31 +775,10 @@ Los valores estacionarios muestran que cuando $h$ disminuye aumenta la població
 %                             
 % 
 
-\section{Resolucion Ej 5:}
+\section{Resolución Ej 5:}
 
-Metapoblaciones - Modelo de Levins
+Metapoblaciones - Competencia:
 
-
-$$\frac{d p}{d t}=c p(1-p)-e p = f(p)$$
-
-\begin{itemize}
-    \item $c:$ Tasa de colonización local de un parche (o probabilidad de que un parche vacío sea colonizado por individuos que migran al mismo parche desde parches ocupados). 
-    \item $p:$ Fracción de parches ocupados
-    \item $1-p:$ Fracción de parches vacíos
-    \item $e:$ Tasa de extinción de cualquier subpoblación (población local en un parche) o probabilidad de que un parche ocupado quede vacío (extinción local).
-\end{itemize}
-
-Lo que parece un término logístico tiene un origen muy diferente. La posibilidad de que aumente la fracción de parches ocupados depende de cuantos parches hay ocupados y de la posibilidad de ocupar uno nuevo, que para eso, debe estar vacio. De ahí el producto de ambas cantidades
-
-$$
-f(p) = 0 \Rightarrow\left\{
-\begin{array}{l}
-    p=0 \\ 
-    p=1-\frac{e}{c}
-\end{array}
-\right.
-$$
-Metapoblaciones - Competencia
 Tenemos dos especies compitiendo, pero una de las dos (s) es mejor colonizadora y
 
 $$
