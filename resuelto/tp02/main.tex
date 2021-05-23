@@ -78,9 +78,10 @@
 % ███████╗██╔╝ ██╗ ██║
 % ╚══════╝╚═╝  ╚═╝ ╚═╝
 
-\section{Resolucion Ej 1:}
+\section{Resolución Ej 1:}
 
-El análisis en general no debería ser ahora difícil para ustedes. Supongamos que cada población tiene un comportamiento logístico en ausencia de la otra, y parámetros de interacción genéricos:
+Supongamos que cada población tiene un comportamiento logístico en ausencia de la otra:
+
 $$
 \left\{
 \begin{aligned}
@@ -90,48 +91,46 @@ $$
 \right.
 $$
 
-donde $b_{12}$ y $b_{21}$ miden los efectos de la mutua competencia. Adimensionalizamos:
+donde $b_{12}$ y $b_{21}$ miden los efectos de la mutua competencia. 
 
-$$
+Si se realiza el cambio de variable:
+
+\begin{equation} \label{eq:cambio de variable}
+\left\lvert 
+    \begin{aligned}
+    u_1(\tau) &= \frac{x(t)}{K_{1}}, \quad a_{12} = b_{12} \frac{K_{2}}{K_{1}}, \quad \tau=r_{1} t \\
+    u_2(\tau) &= \frac{y(t)}{K_{2}}, \quad a_{21} = b_{21} \frac{K_{1}}{K_{2}}, \quad \rho=\frac{r_{2}}{r_{1}}
+    \end{aligned}
+\right. ,
+\end{equation}
+
+se obtiene:
+
+\begin{equation} \label{eq:adimenzionalizada}
 \left\{
 \begin{aligned}
     \frac{d u_{1}}{d t} &= f_{1}\left(u_{1}, u_{2}\right) = u_{1}\left(1-u_{1}+a_{12} u_{2}\right) \\
     \frac{d u_{2}}{d t} &= f_{2}\left(u_{1}, u_{2}\right) = \rho u_{2}\left(1-u_{2}+a_{21} u_{1}\right)
 \end{aligned}
-\right.
-$$
+\right.  .  
+\end{equation}
+
+Los puntos de equilibrios $P_j = (u^*_{1,j},u^*_{2,j})$ donde $j= 1, 2, ..., 4$ están dados por: 
 
 $$
-\left\lvert 
-\begin{aligned}
-u_1(\tau) &= \frac{x(t)}{K_{1}}, \quad a_{12} = b_{12} \frac{K_{2}}{K_{1}}, \quad \tau=r_{1} t \\
-u_2(\tau) &= \frac{y(t)}{K_{2}}, \quad a_{21} = b_{21} \frac{K_{1}}{K_{2}}, \quad \rho=\frac{r_{2}}{r_{1}}
-\end{aligned}
-\right.
-$$
-
-% Los equilibrios vienen dados por: $\left\lbrace
-% \begin{aligned}
-%     f_1(u_1, u_2) = 0\\ 
-%     f_2(u_1, u_2) = 0
-% \end{aligned} \right.
-% $
-
-Los 4 puntos de equilibrios $P_j = (u^*_{1,j},u^*_{2,j})$ donde $j= 1, 2, ..., 4$ estan dados por: $\left\lbrace
+\left\{
 \begin{aligned}
     f_1(u_1, u_2) = 0\\ 
     f_2(u_1, u_2) = 0
-\end{aligned} \right.
-$
-
-$$
+\end{aligned} \right. \Rightarrow
+\left\lvert 
 \begin{aligned}
     P_1 &= (0, 0), \quad P_2 = (0, 1), \quad P_3 = (1, 0) \\ 
     P_4 &= \frac{1}{1-a_{12} a_{21}}(1+a_{12}, 1+a_{21})
-\end{aligned}
+\end{aligned} \right.
 $$
 
-La estabilidad puede analizarse mediante la matriz jacobiana en cada punto de equilibrio:
+La estabilidad puede analizarse mediante la matriz Jacobiana:
 
 $$
 J_1 = \begin{bmatrix}
@@ -151,12 +150,12 @@ J_3 = \begin{bmatrix}
 $$
 
 \begin{itemize}
-    \item Para $P_1$: tengo dos autovalores positivos por lo que se trata de un nodo inestable.
-    \item Para $P_2$: Punto silla.
-    \item Para $P_3$: Punto silla.
+    \item Para $P_1$: Autovalores positivos $\Rightarrow$ nodo inestable.
+    \item Para $P_2$: Autovalores de distinto signo $\Rightarrow$ punto silla.
+    \item Para $P_3$: Autovalores de distinto signo $\Rightarrow$ punto silla.
 \end{itemize}
 
-El cuarto punto de equilibrio tiene una expresion larga para sus autovalores, su matriz jacobiana es:
+El cuarto punto de equilibrio tiene una expresión larga para sus autovalores, su matriz Jacobiana es:
 
 $$
 J_4 = 
@@ -173,13 +172,20 @@ $$
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{figuras/equilibrio.pdf}
-    \caption{Análisis gráfico del equilibrio del punto $P_4$. La flecha indica la dirección en la que crece la función.}
+    \caption{Análisis gráfico del equilibrio del punto $P_4$. La flecha indica la dirección en la que decrece la función.}
     \label{fig:mosquitos}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Para este punto es mas conveniente un análisis gráfico como el que puede verse en la Fig. \ref{fig:mosquitos}. El punto $P_4$ es la interseccion de las rectas roja y azul. Si $a_{12} a_{21} = 1$ las rectas son paralelas y no hay un punto de equilibrio. Si $a_{12} a_{21} > 1$ la interseccion de la recta y por tanto el punto de equilibrio queda fuera del rango del problema ($u_1$ y $u_2$ son poblaciones y por tanto positivas). Si $a_{12} a_{21} < 1$ El punto de equilibrio queda en el primer cuadrante del plano $u_1, u_2$. Como por arriba de la recta roja $f_2>0$ y por arriba de la recta azul $f_1>0$ la direccion de crecimiento es la que se indica en la figura. La flecha va de valores crecientes a decrecientes. Con este analisis es posible determinar que la interseccion de las rectas para $a_{12} a_{21} < 1$ es un nodo estable.
+Para este punto es mas conveniente un análisis gráfico de las trayectorias como el que puede verse en la Fig. \ref{fig:mosquitos}. El punto $P_4$ es la intersección de las rectas roja y azul. Se tienen tres casos según los valores de $a_{12}, a_{21}$:
+
+\begin{itemize}
+    \item Si $a_{12} a_{21} = 1$ las rectas son paralelas y no hay un punto de equilibrio. 
+    \item Si $a_{12} a_{21} > 1$ la intersección de la recta y por tanto el punto de equilibrio queda fuera del rango del problema ($u_1$ y $u_2$ son poblaciones y por tanto positivas). 
+    \item Si $a_{12} a_{21} < 1$ El punto de equilibrio queda en el primer cuadrante del plano $u_1, u_2$ y es un nodo estable.
+\end{itemize}
+
 
 % 
 % ███████╗██╗  ██╗    ██████╗  
@@ -189,7 +195,7 @@ Para este punto es mas conveniente un análisis gráfico como el que puede verse
 % ███████╗██╔╝ ██╗    ███████╗
 % ╚══════╝╚═╝  ╚═╝    ╚══════╝
 
-\section{Resolucion Ej 2:}
+\section{Resolución Ej 2:}
 
 Para el sistema:
 
@@ -198,9 +204,9 @@ Para el sistema:
     = \left[\frac{a N}{N+n}-b\right] N- k N(N+n)
 \end{equation}
 
-donde $a$ es la natalidad, $b$ es la mortalidad y $k$ un coeficiente de capacidad. Y $n$ es la poblacion de mosquitos esteriles que se mantiene constante.
+donde $a$ es la natalidad, $b$ es la mortalidad y $k$ un coeficiente de capacidad. Y $n$ es la población de mosquitos estériles que se mantiene constante.
 
-Este modelo cuenta con las siguientes suposiciones:
+Este modelo asume lo siguiente:
 
 % We incorporated into our model(s) the following explicit assumptions that would seem to apply to a rather wide range of biological situations: 
 
@@ -217,7 +223,11 @@ Este modelo cuenta con las siguientes suposiciones:
     \item La liberación lleva a la completa e instantánea mezcla de individuos.
 \end{enumerate}
 
-Para obtener la capacidad del sistema analizamos el caso en el que $n=0$. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\sepline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Para obtener la capacidad del sistema analizamos el caso particular en el que $n=0$. 
 
 \begin{equation}\label{eq:esteril2}
     \frac{d N}{d t} = f(N,a,b,k,0) 
@@ -226,9 +236,9 @@ Para obtener la capacidad del sistema analizamos el caso en el que $n=0$.
     , \text{con } r = a-b
 \end{equation}
 
-Esta es una ecuacion logistica modificada, la natalidad esta controlada por la porcion de mosquitos que son esteriles. Ademas que los mosquitos esteriles influyen en la capacidad del sistema. Como sabemos los puntos fijos de un sistema logistico son, 0 y la capacidad del sistema, de esto puede verse de que $\frac{a-b}{k}$ es la capacidad del sistema.
+Puede verse que la Ec. \ref{eq:esteril1} es una ecuación logística modificada, la natalidad está controlada por la porción de mosquitos que son estériles. Además que los mosquitos estériles influyen en la capacidad del sistema. Como sabemos los puntos fijos de un sistema logístico son, 0 y la capacidad del sistema, por esto de Ec. \ref{eq:esteril2} puede verse que $\frac{a-b}{k}$ es la capacidad del sistema.
 
-Volviendo a Ec. \ref{eq:esteril1} los puntos fijos dados por: $f(N,a,b,k,n) = 0$
+Volviendo a Ec. \ref{eq:esteril1} los puntos fijos están dados por: $f(N,a,b,k,n) = 0$
 
 % $$
 % \Nstar_1 = 0, 
@@ -262,13 +272,13 @@ $$
 \frac{d f}{d N} = - b - k  n \Rightarrow  \Nstar_1 \text{ Es estable}
 $$
 
-La estabilidad de los puntos $\Nstar_{2,3}$ es un tanto mas complicada, pero podemos analizar bajo que condiciones estos puntos fijos desaparecen (se vuelven valores complejos).
+La estabilidad de los puntos $\Nstar_{2,3}$ es un tanto mas complicada, pero podemos analizar bajo que condiciones estos puntos fijos desaparecen. Podemos obtener un numero crítico de mosquitos estériles $n_c$ a partir del cual $\Nstar_{2,3}$ es un numero complejo si analizamos donde se anula el radicando:
 
 $$
 n_c =  
 \frac{1}{4} 
 \frac{k}{a} 
-\left( \frac{a-b}{k} \right)^2 = n 
+\left( \frac{a-b}{k} \right)^2
 $$
 
 Donde, reordenando, vemos que $n_c$ es menor que $ \frac{1}{4} $ de la capacidad:
@@ -280,11 +290,13 @@ n_c =
 \underbrace{\left( \frac{a-b}{k} \right)}_{Capacidad }
 $$
 
+Con esto puede verse que bajo este modelo $n > n_c$ es una condición suficiente para la extinción de los mosquitos.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \sepline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Con Ec. \ref{eq:esteril1} en cuenta puede plantearse un sistema en el que se suelte una unica vez a los mosquitos esteriles.
+Con Ec. \ref{eq:esteril1} en cuenta puede plantearse un sistema en el que se suelte una única vez a los mosquitos estériles.
 
 \begin{equation}
     \left\lbrace
@@ -295,16 +307,25 @@ Con Ec. \ref{eq:esteril1} en cuenta puede plantearse un sistema en el que se sue
     \right. ,
 \end{equation}
 
-Para la Ec. \ref{eq:esteril1}  $a$ es la natalidad, $b$ es la mortalidad y $k$ un coeficiente de capacidad. Con esto en cuenta puede plantearse un sistema en el que se suelte una unica vez a los mosquitos esteriles.
+Son 3 puntos de equilibrios $P_j = (\nstar_{j},\Nstar_{j}), j= 1, 2, 3$. Para el caso de $P_2$ se analiza mediante una matriz jacobiana.
 
-Son 3 puntos de equilibrios $P_j = (\nstar_{j},\Nstar_{j}), j= 1, 2, 3$.
+% $$
+% \begin{aligned}
+%     P_1 &= (0, 0) , &P_2 &= \left( 0, \frac{a-b}{k} \right) \\ 
+%     P_3 &= \left(- \frac{b}{k}, 0 \right) \left(^\text{Población}_\text{Negativa} \right) ,  &P_4 &= \left(- \frac{b}{k}, \frac{b+a}{k} \right) \left(^\text{Población}_\text{Negativa} \right)
+% \end{aligned}
+% $$
 
-El origen es un punto estable, la derivada se anula en ese punto y no hay dinamica.
+% $$
+% \begin{aligned}
+%     P_1 &= (0, 0) , &P_2 &= \left( 0, \frac{a-b}{k} \right) \\ 
+%     P_3 &= \left(- \frac{b}{k}, 0 \right) \left(^\text{Población}_\text{Negativa} \right)
+% \end{aligned}
+% $$
 
 $$
 \begin{aligned}
-    P_1 &= (0, 0) , &P_2 &= \left( 0, \frac{a-b}{k} \right) \\ 
-    P_3 &= \left(- \frac{b}{k}, 0 \right) \left(^\text{Población}_\text{Negativa} \right) ,  &P_4 &= \left(- \frac{b}{k}, \frac{b+a}{k} \right) \left(^\text{Población}_\text{Negativa} \right)
+    P_1 = (0, 0), \quad P_3 = \left(- \frac{b}{k}, 0 \right) \left(^\text{Población}_\text{Negativa} \right)
 \end{aligned}
 $$
 
@@ -325,6 +346,7 @@ $$
 % $$
 
 $$
+P_2 = \left( 0, \frac{a-b}{k} \right)  \Rightarrow  
 J_2 = 
 \begin{bmatrix}
     -a & 0  \\
@@ -333,7 +355,14 @@ J_2 =
 \Rightarrow  P_2 \ \text{Estable}
 $$
 
-El punto $P_3$ no forma parte de la dinamica (No hay poblaciones negativas)
+El punto $P_3$ no forma parte de la dinámica (No hay poblaciones negativas). Por otro lado, se tiene que el origen no es un punto estable. Esto implica la extinción no es inevitable en este caso y una única liberación no es suficiente. En la Fig. se tiene un analisis grafico.
+
+\begin{figure}[!ht]
+    \centering  
+    \includegraphics[width=0.18\textwidth]{figuras/cosa.pdf}
+    \caption{Evolución de los mosquitos fértiles para distintos valores de los mosquitos estériles.}
+    \label{fig:cosa}
+\end{figure}
 
 % $$
 % J_3 = 
@@ -343,13 +372,11 @@ El punto $P_3$ no forma parte de la dinamica (No hay poblaciones negativas)
 % \end{bmatrix}
 % $$
 
-Donde puede verse que no se puede llegar a la extinción mediante este método de liberación.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \sepline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Si se propone que una fraccion $\gamma$ de los mosquitos nace esteriles se tiene que:
+Si se propone que una fraccion $\gamma$ de los mosquitos nace estériles se tiene que:
 
 \begin{equation}
     \left\lbrace
@@ -364,12 +391,9 @@ Si se propone que una fraccion $\gamma$ de los mosquitos nace esteriles se tiene
 % \begin{figure}[!ht]
 %     \centering
 %     \includegraphics[width=0.51\textwidth]{figuras/ex02.pdf}
-%     \caption{Evolucion de los mosquitos fertiles para distintos valores de los mosquitos esteriles.}
-%     \label{fig:esteriles}
+%     \caption{Evolucion de los mosquitos fertiles para distintos valores de los mosquitos estériles.}
+%     \label{fig:estériles}
 % \end{figure}
-
-% En la Fig. \ref{fig:esteriles} pueden verse graficos de la resolucion numerica del sistema para distintos valores de el parametro $n$.
-
 
 $$
 \begin{aligned}
@@ -420,22 +444,7 @@ $$
 % \end{bmatrix}
 % $$
 
-Para que con este modelo la extincion sea inevitable, es decir, tengamos un unico nodo estable en el origen. Se requiere que $\gamma = a-b$. En este caso se pierde el segundo punto fijo.
-
-% We incorporated into our model(s) the following explicit assumptions that would seem to apply to a rather wide range of biological situations: 
-
-% \begin{enumerate}[label=\alph*)]
-%     \item Las poblaciones existen como continuos y se reproducen de forma continua en el tiempo.
-%     \item La población crece similar a una curva logística.
-%     \item La capacidad de carga de un ambiente es constante.
-%     \item Los machos estériles y no estériles compiten en pie de igualdad.
-%     \item El apareamiento es al azar, la proporción de apareamientos fértiles es directamente proporcional al número de individuos fértiles presentes en la población.
-%     % \item Ambos géneros son monogámicos o si las hembras se aparean es igual de posible que lo haga con un individuo fértil o uno no fértil.
-%     % \item En caso de que exista poligamia cada individuo se aparea un número aleatorio de veces. El número de eventos de apareamiento siguen una distribución Poisson con media idéntica para todos los individuos.
-%     \item Los géneros están en una razón 1 a 1 constantemente.
-%     \item La liberación de individuos estériles es continua y a un ritmo constante por unidad de tiempo y hábitat.
-%     \item La liberación lleva a la completa e instantánea mezcla de individuos.
-% \end{enumerate}
+Para que con este modelo la extinción sea inevitable, es decir, tengamos un unico nodo estable en el origen. Se requiere que $\gamma = a-b$. En este caso se pierde el segundo punto fijo.
 
 % 
 % ███████╗██╗  ██╗    ██████╗     
@@ -459,18 +468,15 @@ $$
 \end{aligned}
 \right.
 $$
-con $0<\beta<1<\alpha$ y $\alpha+\beta>2$. Pueden obtenerse los  equilibrios viendo todos los puntos que cumplan simultaneamente: 
+con $0<\beta<1<\alpha$ y $\alpha+\beta>2$. Pueden obtenerse los  equilibrios viendo todos los puntos que cumplan simultáneamente: 
 
-\begin{itemize}\centering
-    \item[] 
-    $\left\lbrace
-    \begin{aligned}
-        f_1(\nstar_1,\nstar_2,\nstar_3) = 0\\ 
-        f_2(\nstar_1,\nstar_2,\nstar_3) = 0\\ 
-        f_3(\nstar_1,\nstar_2,\nstar_3) = 0   
-    \end{aligned}\right.
-    $
-\end{itemize}
+$$\left\lbrace
+\begin{aligned}
+    f_1(\nstar_1,\nstar_2,\nstar_3) = 0\\ 
+    f_2(\nstar_1,\nstar_2,\nstar_3) = 0\\ 
+    f_3(\nstar_1,\nstar_2,\nstar_3) = 0   
+\end{aligned}\right.
+$$
 
 
 Son 8 puntos de equilibrios $P_j = (\nstar_{1,j},\nstar_{2,j},\nstar_{3,j}), j= 1, 3, ..., 8$.
@@ -489,7 +495,7 @@ $$
 \end{aligned}
 $$
 
-Analizamos el la matriz jacobiana de este sistema:
+Analizamos el la matriz Jacobiana de este sistema:
 
 $$
 \mathbf{J}_1 = 
