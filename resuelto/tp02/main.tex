@@ -44,6 +44,8 @@
     \rule[1ex]{.5\textwidth}{.5pt}
   \end{center}}
 
+\newcommand{\tusa}{ \frac{a-b-\gamma}{k(1+\frac{\gamma}{b})^2} }  
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -102,24 +104,29 @@ $$
 $$
 \left\lvert 
 \begin{aligned}
-u_1(\tau) &= \frac{x(t)}{K_{1}}, a_{12} = b_{12} \frac{K_{2}}{K_{1}}, \tau=r_{1} t \\
-u_2(\tau) &= \frac{y(t)}{K_{2}}, a_{21} = b_{21} \frac{K_{1}}{K_{2}}, \rho=\frac{r_{2}}{r_{1}}
+u_1(\tau) &= \frac{x(t)}{K_{1}}, \quad a_{12} = b_{12} \frac{K_{2}}{K_{1}}, \quad \tau=r_{1} t \\
+u_2(\tau) &= \frac{y(t)}{K_{2}}, \quad a_{21} = b_{21} \frac{K_{1}}{K_{2}}, \quad \rho=\frac{r_{2}}{r_{1}}
 \end{aligned}
 \right.
 $$
 
-Los equilibrios vienen dados por: $\left\lbrace
+% Los equilibrios vienen dados por: $\left\lbrace
+% \begin{aligned}
+%     f_1(u_1, u_2) = 0\\ 
+%     f_2(u_1, u_2) = 0
+% \end{aligned} \right.
+% $
+
+Los 4 puntos de equilibrios $P_j = (u^*_{1,j},u^*_{2,j})$ donde $j= 1, 2, ..., 4$ estan dados por: $\left\lbrace
 \begin{aligned}
     f_1(u_1, u_2) = 0\\ 
     f_2(u_1, u_2) = 0
 \end{aligned} \right.
 $
 
-Son 4 puntos de equilibrios $P_j = (u^*_{1,j},u^*_{2,j}), j= 1, 2, ..., 4$.
-
 $$
 \begin{aligned}
-    P_1 &= (0, 0), P_2 = (0, 1), P_3 = (1, 0) \\ 
+    P_1 &= (0, 0), \quad P_2 = (0, 1), \quad P_3 = (1, 0) \\ 
     P_4 &= \frac{1}{1-a_{12} a_{21}}(1+a_{12}, 1+a_{21})
 \end{aligned}
 $$
@@ -144,7 +151,7 @@ J_3 = \begin{bmatrix}
 $$
 
 \begin{itemize}
-    \item Para $P_1$: tengo dos autovalores reales por lo que se trata de un nodo inestable.
+    \item Para $P_1$: tengo dos autovalores positivos por lo que se trata de un nodo inestable.
     \item Para $P_2$: Punto silla.
     \item Para $P_3$: Punto silla.
 \end{itemize}
@@ -166,13 +173,13 @@ $$
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{figuras/equilibrio.pdf}
-    \caption{Evolucion de los mosquitos fertiles para distintos valores de los mosquitos esteriles.}
+    \caption{Análisis gráfico del equilibrio del punto $P_4$. La flecha indica la dirección en la que crece la función.}
     \label{fig:mosquitos}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Para este sistema es mas conveniente un analisis grafico como el que puede verse en la Fig. \ref{fig:mosquitos}. El punto $P_4$ es la interseccion de las rectas roja y azul. Si $a_{12} a_{21} = 1$ las rectas son paralelas y no hay un punto de equilibrio. Si $a_{12} a_{21} > 1$ la interseccion de la recta y por tanto el punto de equilibrio queda fuera del rango del problema ($u_1$ y $u_2$ son poblaciones y por tanto positivas). Si $a_{12} a_{21} < 1$ El punto de equilibrio queda en el primer cuadrante del plano $u_1, u_2$. Como por arriba de la recta roja $f_2>0$ y por arriba de la recta azul $f_1>0$ la direccion de crecimiento es la que se indica en la figura. La flecha va de valores crecientes a decrecientes. Con este analisis es posible determinar que la interseccion de las rectas para $a_{12} a_{21} < 1$ es un nodo estable.
+Para este punto es mas conveniente un análisis gráfico como el que puede verse en la Fig. \ref{fig:mosquitos}. El punto $P_4$ es la interseccion de las rectas roja y azul. Si $a_{12} a_{21} = 1$ las rectas son paralelas y no hay un punto de equilibrio. Si $a_{12} a_{21} > 1$ la interseccion de la recta y por tanto el punto de equilibrio queda fuera del rango del problema ($u_1$ y $u_2$ son poblaciones y por tanto positivas). Si $a_{12} a_{21} < 1$ El punto de equilibrio queda en el primer cuadrante del plano $u_1, u_2$. Como por arriba de la recta roja $f_2>0$ y por arriba de la recta azul $f_1>0$ la direccion de crecimiento es la que se indica en la figura. La flecha va de valores crecientes a decrecientes. Con este analisis es posible determinar que la interseccion de las rectas para $a_{12} a_{21} < 1$ es un nodo estable.
 
 % 
 % ███████╗██╗  ██╗    ██████╗  
@@ -186,26 +193,63 @@ Para este sistema es mas conveniente un analisis grafico como el que puede verse
 
 Para el sistema:
 
-\begin{equation}
+\begin{equation}\label{eq:esteril1}
     \frac{d N}{d t} = f(N,a,b,k,n) 
     = \left[\frac{a N}{N+n}-b\right] N- k N(N+n)
 \end{equation}
 
-% $
-% = \left[ \frac{a N}{N+n} - k (N+n) -b \right] N 
-% $
+donde $a$ es la natalidad, $b$ es la mortalidad y $k$ un coeficiente de capacidad. Y $n$ es la poblacion de mosquitos esteriles que se mantiene constante.
 
-Punto fijo dado por: $f(N,a,b,k,n) = 0$
+Este modelo cuenta con las siguientes suposiciones:
+
+% We incorporated into our model(s) the following explicit assumptions that would seem to apply to a rather wide range of biological situations: 
+
+\begin{enumerate}[label=\alph*)]
+    \item Las poblaciones existen como continuos y se reproducen de forma continua en el tiempo.
+    \item La población crece similar a una curva logística.
+    \item La capacidad de carga de un ambiente es constante.
+    \item Los machos estériles y no estériles compiten en pie de igualdad.
+    \item El apareamiento es al azar, la proporción de apareamientos fértiles es directamente proporcional al número de individuos fértiles presentes en la población.
+    % \item Ambos géneros son monogámicos o si las hembras se aparean es igual de posible que lo haga con un individuo fértil o uno no fértil.
+    % \item En caso de que exista poligamia cada individuo se aparea un número aleatorio de veces. El número de eventos de apareamiento siguen una distribución Poisson con media idéntica para todos los individuos.
+    \item Los géneros están en una razón 1 a 1 constantemente.
+    \item La liberación de individuos estériles es continua y a un ritmo constante por unidad de tiempo y hábitat.
+    \item La liberación lleva a la completa e instantánea mezcla de individuos.
+\end{enumerate}
+
+Para obtener la capacidad del sistema analizamos el caso en el que $n=0$. 
+
+\begin{equation}\label{eq:esteril2}
+    \frac{d N}{d t} = f(N,a,b,k,0) 
+    = 
+    rN(1-\frac{k}{r}N)
+    , \text{con } r = a-b
+\end{equation}
+
+Esta es una ecuacion logistica modificada, la natalidad esta controlada por la porcion de mosquitos que son esteriles. Ademas que los mosquitos esteriles influyen en la capacidad del sistema. Como sabemos los puntos fijos de un sistema logistico son, 0 y la capacidad del sistema, de esto puede verse de que $\frac{a-b}{k}$ es la capacidad del sistema.
+
+Volviendo a Ec. \ref{eq:esteril1} los puntos fijos dados por: $f(N,a,b,k,n) = 0$
+
+% $$
+% \Nstar_1 = 0, 
+% \Nstar_{2,3} = \frac{1}{2k} 
+% \left( 
+%     \pm \sqrt{(b-a)^2 - 4 a k n} + 
+%     a - 2kn - b
+% \right)
+% $$
 
 $$
 \Nstar_1 = 0, 
-\Nstar_{2,3} = \frac{1}{2k} 
-\left( 
-    \pm \sqrt{(b-a)^2 - 4 a k n} + 
-    a - 2kn - b
-\right)
+\Nstar_{2,3} = \pm 
+\sqrt{
+    \frac{1}{4} \left( \frac{a-b}{k} \right)^2 - a n 
+    }
++ \frac{a-b}{2k} 
+- n
 $$
 
+Para anlizar la estabilidad de los puntos fijos, analizamos $\frac{d f}{d N}$:
 
 $$
 \frac{d f}{d N} = - b + \frac{ aN^2 + 2 a n N}{( N + n )^2}
@@ -215,16 +259,32 @@ $$
 La estabilidad de $\Nstar_1$:
 
 $$
-\frac{d f}{d N} = - b - k  n \Rightarrow  \Nstar_1 \text{Es estable}
+\frac{d f}{d N} = - b - k  n \Rightarrow  \Nstar_1 \text{ Es estable}
 $$
 
+La estabilidad de los puntos $\Nstar_{2,3}$ es un tanto mas complicada, pero podemos analizar bajo que condiciones estos puntos fijos desaparecen (se vuelven valores complejos).
 
+$$
+n_c =  
+\frac{1}{4} 
+\frac{k}{a} 
+\left( \frac{a-b}{k} \right)^2 = n 
+$$
 
-donde $a$ es la natalidad, $b$ es la mortalidad y $k$ un coeficiente de capacidad. Con esto en cuenta puede plantearse un sistema en el que se suelte una unica vez a los mosquitos esteriles.
+Donde, reordenando, vemos que $n_c$ es menor que $ \frac{1}{4} $ de la capacidad:
+
+$$
+n_c =  
+\underbrace{\frac{a-b}{a} }_{<1}
+\frac{1}{4} 
+\underbrace{\left( \frac{a-b}{k} \right)}_{Capacidad }
+$$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \sepline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Con Ec. \ref{eq:esteril1} en cuenta puede plantearse un sistema en el que se suelte una unica vez a los mosquitos esteriles.
 
 \begin{equation}
     \left\lbrace
@@ -235,9 +295,7 @@ donde $a$ es la natalidad, $b$ es la mortalidad y $k$ un coeficiente de capacida
     \right. ,
 \end{equation}
 
-donde $b$ es la mortalidad, y $k$ el coeficiente de 
-capacidad.
-
+Para la Ec. \ref{eq:esteril1}  $a$ es la natalidad, $b$ es la mortalidad y $k$ un coeficiente de capacidad. Con esto en cuenta puede plantearse un sistema en el que se suelte una unica vez a los mosquitos esteriles.
 
 Son 3 puntos de equilibrios $P_j = (\nstar_{j},\Nstar_{j}), j= 1, 2, 3$.
 
@@ -245,8 +303,8 @@ El origen es un punto estable, la derivada se anula en ese punto y no hay dinami
 
 $$
 \begin{aligned}
-    P_1 &= (0, 0) &, P_2 = \left( 0, \frac{a-b}{k} \right), \\ 
-    P_3 &= \left(- \frac{b}{k}, 0 \right) \left(^\text{Población}_\text{Negativa} \right) &,  P_4 = \left(- \frac{b}{k}, \frac{b+a}{k} \right) \left(^\text{Población}_\text{Negativa} \right)
+    P_1 &= (0, 0) , &P_2 &= \left( 0, \frac{a-b}{k} \right) \\ 
+    P_3 &= \left(- \frac{b}{k}, 0 \right) \left(^\text{Población}_\text{Negativa} \right) ,  &P_4 &= \left(- \frac{b}{k}, \frac{b+a}{k} \right) \left(^\text{Población}_\text{Negativa} \right)
 \end{aligned}
 $$
 
@@ -285,6 +343,8 @@ El punto $P_3$ no forma parte de la dinamica (No hay poblaciones negativas)
 % \end{bmatrix}
 % $$
 
+Donde puede verse que no se puede llegar a la extinción mediante este método de liberación.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \sepline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -294,35 +354,88 @@ Si se propone que una fraccion $\gamma$ de los mosquitos nace esteriles se tiene
 \begin{equation}
     \left\lbrace
     \begin{aligned}
-        \frac{d N}{d t}&=\left[\frac{a N}{N+n}-b\right] N- k N(N+n) \\
-        \frac{d n}{d t}&=  \gamma N - k (N+n) n
+        \frac{d n}{d t}&=  \gamma N - b n
+        \\
+        \frac{d N}{d t}&=\left[\frac{a N}{N+n}-b\right] N- k N(N+n) 
     \end{aligned}
     \right. ,
 \end{equation}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.51\textwidth]{figuras/ex02.pdf}
-    \caption{Evolucion de los mosquitos fertiles para distintos valores de los mosquitos esteriles.}
-    \label{fig:esteriles}
-\end{figure}
+% \begin{figure}[!ht]
+%     \centering
+%     \includegraphics[width=0.51\textwidth]{figuras/ex02.pdf}
+%     \caption{Evolucion de los mosquitos fertiles para distintos valores de los mosquitos esteriles.}
+%     \label{fig:esteriles}
+% \end{figure}
 
-En la Fig. \ref{fig:esteriles} pueden verse graficos de la resolucion numerica del sistema para distintos valores de el parametro $n$.
+% En la Fig. \ref{fig:esteriles} pueden verse graficos de la resolucion numerica del sistema para distintos valores de el parametro $n$.
 
-We incorporated into our model(s) the following explicit assumptions that would seem to apply to a rather wide range of biological situations: 
 
-\begin{enumerate}[label=\alph*)]
-    \item Las poblaciones existen como continuos y se reproducen de forma continua en el tiempo.
-    \item La población crece similar a una curva logística.
-    \item La capacidad de carga de un ambiente es constante.
-    \item Los machos estériles y no estériles compiten en pie de igualdad.
-    \item El apareamiento es al azar, la proporción de apareamientos fértiles es directamente proporcional al número de individuos fértiles presentes en la población.
-    % \item Ambos géneros son monogámicos o si las hembras se aparean es igual de posible que lo haga con un individuo fértil o uno no fértil.
-    % \item En caso de que exista poligamia cada individuo se aparea un número aleatorio de veces. El número de eventos de apareamiento siguen una distribución Poisson con media idéntica para todos los individuos.
-    \item Los géneros están en una razón 1 a 1 constantemente.
-    \item La liberación de individuos estériles es continua y a un ritmo constante por unidad de tiempo y hábitat.
-    \item La liberación lleva a la completa e instantánea mezcla de individuos.
-\end{enumerate}
+$$
+\begin{aligned}
+    P_1 &= (0, 0) ,\\
+    P_2 &= \left( \frac{\gamma}{b} \left( \tusa \right), \left( \tusa \right) \right), \\ 
+\end{aligned}
+$$
+
+% $$
+% J = 
+% \begin{bmatrix}
+%     -2kx-ky-b & -kx \\
+%     \frac{-ky^2-2kyx-ay-kx^2}{\left(y+x\right)^2} & \frac{-kx^2+ax-2kyx-ky^2}{\left(y+x\right)^2}
+% \end{bmatrix}
+% $$
+
+
+% $$
+% J_1 = 
+% \begin{bmatrix}
+%     -b & \gamma \\
+%     \frac{-k(0)^2-2k(0)(0)-a(0)-k(0)^2}{\left((0)+(0)\right)^2} & \frac{-k(0)^2+a(0)-2k(0)(0)-k(0)^2}{\left((0)+(0)\right)^2}
+% \end{bmatrix}
+% $$
+
+
+% $$
+% J_2 = 
+% \begin{bmatrix}
+%     -b & \gamma \\
+%     \frac{-k(N)^2-2k(N)(\frac{\gamma}{b} N)-a(N)-k(\frac{\gamma}{b} N)^2}{ N^2 \left( 1 + \frac{\gamma}{b} \right)^2} & \frac{-k(\frac{\gamma}{b} N)^2+a(\frac{\gamma}{b} N)-2k(N)(\frac{\gamma}{b} N)-k(N)^2}{ N^2 \left( 1 + \frac{\gamma}{b} \right)^2}
+% \end{bmatrix}
+% $$
+
+% $$
+% J_2 = 
+% \begin{bmatrix}
+%     -b & \gamma \\
+%     -k \frac{(2a-(b+\gamma)}{a-(b+\gamma)} & \frac{-k(\frac{\gamma}{b} N)^2+a(\frac{\gamma}{b} N)-2k(N)(\frac{\gamma}{b} N)-k(N)^2}{ N^2 \left( 1 + \frac{\gamma}{b} \right)^2}
+% \end{bmatrix}
+% $$
+
+% $$
+% J_2 = 
+% \begin{bmatrix}
+%     -b & \gamma \\
+%     -k \frac{2a-(b+\gamma)}{a-(b+\gamma)} & -k \frac{a (1 - \frac{\gamma}{b}) -(b+\gamma)}{a-(b+\gamma)}
+% \end{bmatrix}
+% $$
+
+Para que con este modelo la extincion sea inevitable, es decir, tengamos un unico nodo estable en el origen. Se requiere que $\gamma = a-b$. En este caso se pierde el segundo punto fijo.
+
+% We incorporated into our model(s) the following explicit assumptions that would seem to apply to a rather wide range of biological situations: 
+
+% \begin{enumerate}[label=\alph*)]
+%     \item Las poblaciones existen como continuos y se reproducen de forma continua en el tiempo.
+%     \item La población crece similar a una curva logística.
+%     \item La capacidad de carga de un ambiente es constante.
+%     \item Los machos estériles y no estériles compiten en pie de igualdad.
+%     \item El apareamiento es al azar, la proporción de apareamientos fértiles es directamente proporcional al número de individuos fértiles presentes en la población.
+%     % \item Ambos géneros son monogámicos o si las hembras se aparean es igual de posible que lo haga con un individuo fértil o uno no fértil.
+%     % \item En caso de que exista poligamia cada individuo se aparea un número aleatorio de veces. El número de eventos de apareamiento siguen una distribución Poisson con media idéntica para todos los individuos.
+%     \item Los géneros están en una razón 1 a 1 constantemente.
+%     \item La liberación de individuos estériles es continua y a un ritmo constante por unidad de tiempo y hábitat.
+%     \item La liberación lleva a la completa e instantánea mezcla de individuos.
+% \end{enumerate}
 
 % 
 % ███████╗██╗  ██╗    ██████╗     
@@ -490,77 +603,171 @@ $$
 
 \section{Resolucion Ej 4:}
 
-El sistema de ecuaciones
+% El sistema de ecuaciones
+% $$
+% \left\{
+% \begin{aligned}
+% \frac{d x}{d t} = f_1(x, y, z) &=-c_{a} x y+e_{a} y-c_{b} x z+e_{b} z \\
+% \frac{d y}{d t} = f_2(x, y, z) &=c_{a} x y-e_{a} y+c_{a} z y          \\
+% \frac{d z}{d t} = f_3(x, y, z) &=c_{b} x z-e_{b} z-c_{a} z y            
+% \end{aligned}
+% \right.
+% $$
+
+% Los equilibrios vienen dados por 
+
+% $$
+% \left\{
+% \begin{aligned}
+%     f_1(x^*, y^*, z^*) &= 0\\ 
+%     f_2(x^*, y^*, z^*) &= 0\\ 
+%     f_3(x^*, y^*, z^*) &= 0\\
+%     x^* + y^* + z^* &= h
+% \end{aligned}
+% \right.
+% $$
+
+% Por esto los puntos fijos son:
+
+% % $$
+% % \begin{aligned}
+% %     P_1 &= (0, 0, 0) \\ 
+% %     P_2 &= (\frac{e_b}{c_b}, 0, z) \\ 
+% %     P_3 &= (\frac{e_a}{c_a}, y, 0) \\ 
+% %     P_4 &= (\frac{e_a}{c_a} - c_a z, z, \frac{c_b}{c_a} (\frac{e_a}{c_a} - c_a z) - \frac{e_b}{c_a}) 
+% % \end{aligned}
+% % $$
+
+% $$
+% \begin{aligned}
+%     P_1 &= (0, 0, 0) \\ 
+%     P_2 &= (\frac{e_b}{c_b}, 0, h - \frac{e_b}{c_b}) \\ 
+%     P_3 &= (\frac{e_a}{c_a}, h - \frac{e_a}{c_a}, 0) \\ 
+%     P_4 &= (\frac{e_a}{c_a} - c_a z, z, \frac{c_b}{c_a} (\frac{e_a}{c_a} - c_a z) - \frac{e_b}{c_a}) 
+% \end{aligned}
+% $$
+
+% $$
+% J = 
+% \begin{bmatrix}  
+%     - y c_a - z c_b & - x c_a + e_a & - x c_b + e_b \\
+%     y c_a & x c_a - e_a + z c_a & y c_a \\
+%     z c_b & - z c_a & x c_b - e_b - y c_a 
+% \end{bmatrix}
+% $$
+
+% $$
+% J_1 = 
+% \begin{bmatrix}
+%     0 & e_a & e_b \\
+%     0 & - e_a & 0 \\
+%     0 & 0 & - e_b 
+% \end{bmatrix}
+% $$
+
+% $$
+% J_2 = 
+% \begin{bmatrix}  
+%     - z c_b & - (\frac{e_b}{c_b}) c_a + e_a & - (\frac{e_b}{c_b}) c_b + e_b \\
+%     0 & (\frac{e_b}{c_b}) c_a - e_a + z c_a & 0 \\
+%     z c_b & - z c_a & (\frac{e_b}{c_b}) c_b - e_b
+% \end{bmatrix}
+% $$
+
+
+% $$
+% J = 
+% \begin{bmatrix}  
+%     - y c_a & - (\frac{e_a}{c_a}) c_a + e_a & - (\frac{e_a}{c_a}) c_b + e_b \\
+%     y c_a & (\frac{e_a}{c_a}) c_a - e_a  & y c_a \\
+%     0 & 0 & (\frac{e_a}{c_a}) c_b - e_b - y c_a 
+% \end{bmatrix}
+% $$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Supongamos que se produce una fragmentación del hábitat y que hay parches que son inhabitables. 
+
+Seguimos considerando competencia entre s e $i$. 
+
+Pero ahora hay una fracción de zonas habitables $h<1$ 
+
+$h \quad$ Fracción de zonas habitables 
+
+$v=h-p_{s}-p_{i} \quad$ Fracción de zonas vacías 
+
 $$
-\left\{
-\begin{aligned}
-\frac{d x}{d t} = f_1(x, y, z) &=-c_{a} x y+e_{a} y-c_{b} x z+e_{b} z \\
-\frac{d y}{d t} = f_2(x, y, z) &=c_{a} x y-e_{a} y+c_{a} z y          \\
-\frac{d z}{d t} = f_3(x, y, z) &=c_{b} x z-e_{b} z-c_{a} z y            
-\end{aligned}
+\left\{ 
+    \begin{aligned}
+        \frac{d p_{s}}{d t} = f_{s}(p) &= c_{s} p_{s}\left(h-p_{s}\right)-e_{s} p_{s} \\
+        \frac{d p_{i}}{d t} = f_{i}(p) &= c_{i} p_{i}\left(h-p_{i}-p_{s}\right)-e_{i} p_{i}-c_{s} p_{i} p_{s}
+    \end{aligned}
 \right.
 $$
 
-Los equilibrios vienen dados por 
-
 $$
-\left\{
-\begin{aligned}
-    f_1(x^*, y^*, z^*) = 0\\ 
-    f_2(x^*, y^*, z^*) = 0\\ 
-    f_3(x^*, y^*, z^*) = 0   
-\end{aligned}
+\left\{ 
+    \begin{aligned}
+        \frac{d p_{s}}{d t} = f_{s}(p) &= c_{s} p_{s}\left(v+p_{i}\right)+-e_{s} p_{s} \\
+        \frac{d p_{i}}{d t} = f_{i}(p) &= c_{i} p_{i} v-e_{i} p_{i}-c_{s} p_{i} p_{s}=f_{i}(p)
+    \end{aligned}
 \right.
 $$
 
-Por esto los puntos fijos son:
+$$
+\frac{d v}{d t}=e_{i} p_{i}+e_{s} p_{s}-v\left(c_{s} p_{s}+c_{i} p_{i}\right)
+$$
 
 $$
 \begin{aligned}
-    P_1 &= (0, 0, 0) \\ 
-    P_2 &= (\frac{e_b}{c_b}, 0, z) \\ 
-    P_3 &= (\frac{e_a}{c_a}, y, 0) \\ 
-    P_4 &= (\frac{e_a}{c_a} - c_a z, z, \frac{c_b}{c_a} (\frac{e_a}{c_a} - c_a z) - \frac{e_b}{c_a}) 
+    \frac{d p_{s}}{d t} &= c_{s} p_{s}\left(h-p_{s}\right)-e_{s} p_{s} \\
+    \frac{d p_{i}}{d t} &= c_{i} p_{i}\left(h-p_{i}-p_{s}\right)-e_{i} p_{i}-c_{s} p_{i} p_{s} \\
+    \frac{d     v}{d t} &= e_{i} p_{i}+e_{s} p_{s}-v\left(c_{s} p_{s}+c_{i} p_{i}\right)
 \end{aligned}
 $$
 
-
 $$
-J = 
-\begin{bmatrix}  
-    - y c_a - z c_b & - x c_a + e_a & - x c_b + e_b \\
-    y c_a & x c_a - e_a + z c_a & y c_a \\
-    z c_b & - z c_a & x c_b - e_b - y c_a 
-\end{bmatrix}
-$$
-
-$$
-J_1 = 
-\begin{bmatrix}
-    0 & e_a & e_b \\
-    0 & - e_a & 0 \\
-    0 & 0 & - e_b 
-\end{bmatrix}
+\left\{
+\begin{array}{l}
+    c_{s} p_{s}\left(h-p_{s}\right)-e_{s} p_{s}=0 \\
+    c_{s}\left(h-p_{s}\right)-e_{s}=0
+\end{array} 
+\Rightarrow 
+p_{s}^{*}=h-\frac{e_{s}}{c_{s}}
+\right.
 $$
 
+\begin{equation}
+    \left\{
+    \begin{array}{l}
+    c_{i} p_{i}\left(h-p_{i}-p_{s}\right)-e_{i} p_{i}-c_{s} p_{i} p_{s}=0 \\
+    c_{i}\left(h-p_{i}-h+\frac{e_{s}}{c_{s}}\right)-e_{i}-c_{s}\left(h-\frac{e_{s}}{c_{s}}\right)=0 \\
+    -c_{i} p_{i}-\frac{c_{i} e_{s}}{c_{s}}-e_{i}-c_{s} h+e_{s}=0
+    \end{array}
+    \right.
+\end{equation}
+
+\begin{equation}
+    \left\{\begin{array}{l}
+    p_{s}^{*}=h-\frac{e_{s}}{c_{s}} \\
+    p_{i}^{*}=\frac{e_{s}\left(c_{s}+c_{i}\right)}{c_{s} c_{i}}-\frac{e_{i}}{c_{i}}-\frac{h c_{s}}{c_{i}} \\
+    v^{*}=\frac{h c_{s}-e_{s}+e_{i}}{c_{i}}
+    \end{array}\right.
+\end{equation}
+
+Vemos que cuando el valor de h está por debajo de $\mathrm{e}_{\mathrm{s} /} \mathrm{c}_{\mathrm{s}}$ la población de s se extingue. En ese caso, en ausencia de s, la población de $i$ puede persistir si
 $$
-J_2 = 
-\begin{bmatrix}  
-    - z c_b & - (\frac{e_b}{c_b}) c_a + e_a & - (\frac{e_b}{c_b}) c_b + e_b \\
-    0 & (\frac{e_b}{c_b}) c_a - e_a + z c_a & 0 \\
-    z c_b & - z c_a & (\frac{e_b}{c_b}) c_b - e_b
-\end{bmatrix}
+\frac{c_{i}}{e_{i}}>\frac{c_{s}}{e_{s}}
+$$
+ya que en ese caso la ecuación para i es
+$$
+\frac{d p_{i}}{d t}=c_{i} p_{i}\left(h-p_{i}\right)-e_{i} p_{i}
 $$
 
-
-$$
-J = 
-\begin{bmatrix}  
-    - y c_a & - (\frac{e_a}{c_a}) c_a + e_a & - (\frac{e_a}{c_a}) c_b + e_b \\
-    y c_a & (\frac{e_a}{c_a}) c_a - e_a  & y c_a \\
-    0 & 0 & (\frac{e_a}{c_a}) c_b - e_b - y c_a 
-\end{bmatrix}
-$$
+Los valores estacionarios muestran que cuando $h$ disminuye aumenta la población de $i $ y disminuye la de s. Las ventajas de $i$ surgen de una menor mortalidad o una mejor estrategia de colonización
 
 % 
 % ███████╗██╗  ██╗    ███████╗
