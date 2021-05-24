@@ -425,6 +425,88 @@ $>$ \textbf{Analisis lineal 2D:}
   \caption{\label{fig:figura1} Criterio de estabilidad.}
 \end{figure*} 
 
+\section{Simulación estocástica}
+
+$*$ \textbf{Proceso de nacimiento}
+
+Sistema:
+\begin{itemize}
+  \item Individuos homogéneos
+  \item Inmortales
+  \item Natalidad $b$
+  \item No hay limitaciones de recursos ni competencia. 
+\end{itemize}
+
+En continuo:
+$$
+\begin{aligned}
+  N(t+d t) &= N(t)+b d t N(t) \\
+  \Rightarrow \frac{N(t+d t)-N(t)}{d t} &= b N(t) \stackrel{d t \rightarrow 0}{\longrightarrow} \frac{d N}{d t}=b N \\
+  \Rightarrow N(t) &= N(0) e^{b t}
+\end{aligned}
+$$
+
+% Formulemos el mismo problema de manera estocástica. En primer lugar, tenemos que $N \in \mathbb{N}$. En segundo lugar, cada evento de nacimiento es estocástico, con una probabilidad de que ocurra un nacimiento individual en un intervalito $d t$ que podemos escribir como $p_{b}=b d t$ (tasa por tiempo). Ahora bien, tener $N$ individuos a tiempo $t+d t$ puede ocurrir de dos maneras:
+
+Ecuación maestra caso discreto:
+$$
+  \frac{d P(N, t)}{d t}=-b N P(N, t)+b(N-1) P(N-1, t) .
+$$
+Solución, distribución binomial: 
+$$
+P(N, t)=\left(\begin{array}{c}
+N-1 \\
+N_{0}-1
+\end{array}\right) e^{-b N_{0} t}\left(1-e^{-b t}\right)^{N-N_{0}}
+$$
+donde $N_{0}=N(0)$ es la condición inicial (es decir, la condición inicial es una delta de Dirac en $N_{0}$ ).
+
+$$
+\langle N\rangle=N_{0} e^{b t}, \text { el valor medio, }
+$$
+
+$$
+\sigma^{2}=N_{0} e^{b t}\left(e^{b t}-1\right), \text { la varianza. }
+$$
+
+Parece que la varianza también creciera exponencialmente, e inclusive que $\sigma^{2} \sim\langle N\rangle^{2}$, lo cual parece decir que $N(t)$ se aleja de $\langle N\rangle$ con el paso del tiempo. Pero no es así, ya que la variación relativa es:
+$$
+\frac{\sigma}{\langle N\rangle}=\frac{\sqrt{N_{0} e^{b}\left(e^{b}-1\right)}}{N_{0} e^{b t}}=\frac{\sqrt{1-e^{- b{t} }}}{\sqrt{N_{0}}} \approx \frac{1}{\sqrt{N_{0}}}
+$$
+
+$>$ \textbf{Simulacion estocastica:}
+
+$$
+  b=\ln \left(1+p_{b}\right), p_{b}=e^{b}-1 \quad
+  ^{b \text{: Tasa de reproduccion}}
+  _{p_b \text{: Probabilidad de reproduccion}}
+$$
+
+
+$>$ \textbf{Algoritmo de Gillespie:}
+
+Es posible sortear un valor numérico con distribución uniforme. Es posible transformar esos valores en otros, con la distribución de probabilidad que uno quiera. Para distribución exponencial si $w \in[0,1)$ con probabilidad uniforme, basta hacer:
+$$
+\tau=-\frac{\ln w}{b N}
+$$
+
+Y $P(\tau)$ tiene la distribución exponencial decreciente deseada. La simulación entonces procede de la siguiente manera:
+
+\begin{enumerate}
+  \item Dar un valor inicial $N(0)=N_{0}$.
+  \item Sortear $w$ uniforme.
+  \item Obtener $\tau$.
+  \item Incrementar el tiempo: $t \rightarrow t+\tau$.
+  \item Incrementar la población: $N \rightarrow N+1$
+  \item Repetir desde 2 .
+\end{enumerate}
+
+
+
+% Cada repetición de todo el programa da una realización de la evolución. Distintas realizaciones dan evoluciones distintas, ya que son aleatorias. Pero el promedio de muchas de ellas, y su varianza, deben obedecer la evolución temporal dada por las Ecs. (4.22-4.23).
+
+
+
 \end{document}
 %
 % ****** End of file apssamp.tex ******
