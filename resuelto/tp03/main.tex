@@ -1,0 +1,190 @@
+%\documentclass[a4paper]{article}
+%% Language and font encodings
+\documentclass[twocolumn,aps,prl]{revtex4-1}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, es-tabla]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{enumitem} % enumerar
+
+\sisetup{math-micro=\text{µ},text-micro=µ}
+
+\usepackage[toc,page]{appendix}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=1.5cm,bottom=2cm,left=1.7cm,right=1.7cm,marginparwidth=1.75cm]{geometry}
+
+%% Sets caption text size(its bigger than text)
+\usepackage{caption}
+\captionsetup[figure]{font=small}
+\usepackage{subcaption}
+
+%% Useful packages
+\usepackage{svg}
+\usepackage{epstopdf}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+% \newcommand{\nstar}{n^*} 
+% \newcommand{\Nstar}{N^*} 
+
+\newcommand*\sepline{%
+  \begin{center}
+    \rule[1ex]{.5\textwidth}{.5pt}
+  \end{center}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% ██   ██ ███████  █████  ██████
+% ██   ██ ██      ██   ██ ██   ██
+% ███████ █████   ███████ ██   ██
+% ██   ██ ██      ██   ██ ██   ██
+% ██   ██ ███████ ██   ██ ██████
+
+\title{Práctico 2}
+\author{M. G. Aramayo}
+\affiliation{Matemática de sistemas biológicos, Instituto Balseiro}
+
+% \begin{abstract}
+% Mete acá las conclusiones.
+% \end{abstract}
+
+\maketitle
+
+
+% ███████╗██╗  ██╗ ██╗
+% ██╔════╝╚██╗██╔╝███║
+% █████╗   ╚███╔╝ ╚██║
+% ██╔══╝   ██╔██╗  ██║
+% ███████╗██╔╝ ██╗ ██║
+% ╚══════╝╚═╝  ╚═╝ ╚═╝
+
+\section{Resolución Ej 1:}
+
+% 
+% ███████╗██╗  ██╗    ██████╗  
+% ██╔════╝╚██╗██╔╝    ╚════██╗
+% █████╗   ╚███╔╝      █████╔╝
+% ██╔══╝   ██╔██╗     ██╔═══╝ 
+% ███████╗██╔╝ ██╗    ███████╗
+% ╚══════╝╚═╝  ╚═╝    ╚══════╝
+
+\section{Resolución Ej 2:}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\sepline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{equation}\label{eq:ecuacion}
+
+% \end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\sepline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[!ht]
+    \centering  
+    \includegraphics[width=0.5\textwidth]{figuras/evolucion_temporal.pdf}
+    \caption{Evolución en pasos temporales de la distribución de numero de habitantes.}
+    \label{fig:evolucion_temporal} 
+\end{figure}
+
+\begin{figure}[!ht]  
+    \centering  
+    \includegraphics[width=0.5\textwidth]{figuras/ultima_iteracion.pdf}
+    \caption{Comparación entre la densidad obtenida mediante la   simulación y una distribución binomial.}
+    \label{fig:ultima_iteracion}
+\end{figure}
+
+% 
+% ███████╗██╗  ██╗    ██████╗     
+% ██╔════╝╚██╗██╔╝    ╚════██╗    
+% █████╗   ╚███╔╝      █████╔╝    
+% ██╔══╝   ██╔██╗      ╚═══██╗    
+% ███████╗██╔╝ ██╗    ██████╔╝    
+% ╚══════╝╚═╝  ╚═╝    ╚═════╝     
+%                                 
+% 
+
+\section{Resolución Ej 3:}
+
+% 
+% ███████╗██╗  ██╗    ██╗  ██╗
+% ██╔════╝╚██╗██╔╝    ██║  ██║
+% █████╗   ╚███╔╝     ███████║
+% ██╔══╝   ██╔██╗     ╚════██║
+% ███████╗██╔╝ ██╗         ██║
+% ╚══════╝╚═╝  ╚═╝         ╚═╝
+%                             
+% 
+
+\section{Resolución Ej 4:}
+
+% 
+% ███████╗██╗  ██╗    ███████╗
+% ██╔════╝╚██╗██╔╝    ██╔════╝
+% █████╗   ╚███╔╝     ███████╗
+% ██╔══╝   ██╔██╗     ╚════██║
+% ███████╗██╔╝ ██╗    ███████║
+% ╚══════╝╚═╝  ╚═╝    ╚══════╝
+%                             
+% 
+
+\section{Resolución Ej 5:}
+
+
+% \bibliography{sample}
+
+\end{document}
+
+% ███    ██  ██████  ████████  █████  ███████
+% ████   ██ ██    ██    ██    ██   ██ ██
+% ██ ██  ██ ██    ██    ██    ███████ ███████
+% ██  ██ ██ ██    ██    ██    ██   ██      ██
+% ██   ████  ██████     ██    ██   ██ ███████
+
+
+% ████████ ██    ██ ██████   ██████  ███████
+%    ██     ██  ██  ██   ██ ██    ██ ██
+%    ██      ████   ██████  ██    ██ ███████
+%    ██       ██    ██      ██    ██      ██
+%    ██       ██    ██       ██████  ███████
+
+% A pesar de mis multiples y cultas intervenciones seguis escribiendo así, usa ctrl f y resolvelo.
+
+% atomico
+% volumen
+% parametro
+% mantenia
+% dielectrico
+% perdida
+% ferroelectrico
+% difractograma
+% difractometro
+% minimo
+% maximo
+% tension
+% conversion
+% aislacion
+% medicion
+% resolucion
+% funcion
+% transicion
+% correccion
+% activacion
+% correlacion
+% tipico X
+% habia  X
+% agrego X
