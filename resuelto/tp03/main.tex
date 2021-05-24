@@ -33,14 +33,15 @@
 % \newcommand{\nstar}{n^*} 
 % \newcommand{\Nstar}{N^*} 
 
+% \newcommand{\N_simulaciones_b}{5000}
+\newcommand{\nSimulacionesB}{5000}
+\newcommand{\Nsteps}{50}
+
 \newcommand*\sepline{%
   \begin{center}
     \rule[1ex]{.5\textwidth}{.5pt}
   \end{center}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -52,7 +53,7 @@
 % ██   ██ ██      ██   ██ ██   ██
 % ██   ██ ███████ ██   ██ ██████
 
-\title{Práctico 2}
+\title{Práctico 3}
 \author{M. G. Aramayo}
 \affiliation{Matemática de sistemas biológicos, Instituto Balseiro}
 
@@ -72,28 +73,6 @@
 
 \section{Resolución Ej 1:}
 
-% 
-% ███████╗██╗  ██╗    ██████╗  
-% ██╔════╝╚██╗██╔╝    ╚════██╗
-% █████╗   ╚███╔╝      █████╔╝
-% ██╔══╝   ██╔██╗     ██╔═══╝ 
-% ███████╗██╔╝ ██╗    ███████╗
-% ╚══════╝╚═╝  ╚═╝    ╚══════╝
-
-\section{Resolución Ej 2:}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\sepline
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{equation}\label{eq:ecuacion}
-
-% \end{equation}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\sepline
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{figure}[!ht]
     \centering  
     \includegraphics[width=0.5\textwidth]{figuras/evolucion_temporal.pdf}
@@ -108,83 +87,74 @@
     \label{fig:ultima_iteracion}
 \end{figure}
 
-% 
+% ███████╗██╗  ██╗    ██████╗  
+% ██╔════╝╚██╗██╔╝    ╚════██╗
+% █████╗   ╚███╔╝      █████╔╝
+% ██╔══╝   ██╔██╗     ██╔═══╝ 
+% ███████╗██╔╝ ██╗    ███████╗
+% ╚══════╝╚═╝  ╚═╝    ╚══════╝
+
+\section{Resolución Ej 2:}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \sepline
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{equation}\label{ec:map01}
+  x_{n+1} = a x_n + z_n
+\end{equation}
+
+Puede reescribirse como:
+
+\begin{equation}\label{ec:map01-r}
+  x_n = a^{n-1} x_0 + \sum_{i=0}^{n-1} a^{n-(1+i)} \ z_i
+\end{equation}
+
+\begin{figure}  
+  \centering  
+  \includegraphics[width=0.5\textwidth]{figuras/ex02-mapeo.pdf}
+  \caption{Evolución del mapeo para distintos valores medios de la generación de números aleatorios, para $\Nsteps$ pasos en $t$.}
+  \label{fig:ultima_iteracion}
+\end{figure}
+
+\begin{figure}  
+  \centering  
+  \includegraphics[width=0.5\textwidth]{figuras/ex02-histograma.pdf}
+  \caption{$P(x,t)$ densidad de probabilidad (color) de $x$ y $t$ calculada a partir de $\nSimulacionesB$ evaluaciones de $\Nsteps$ pasos en $t$.}
+  \label{fig:ultima_iteracion}
+\end{figure}
+
+\begin{equation}\label{ec:map02}
+  x_{n+1} = (a + z_n) x_n
+\end{equation}
+
+Puede reescribirse como:
+
+\begin{equation}\label{ec:map02-r}
+  x_n = x_0 \prod_{i=0}^{n-1} (a + z_i)
+\end{equation}
+
+\begin{figure}[!ht]  
+  \centering  
+  \includegraphics[width=0.5\textwidth]{figuras/ex02-mapeo-02.pdf}
+  \caption{$P(x,t)$ densidad de probabilidad (color) de $x$ y $t$ calculada a partir de $\nSimulacionesB$ evaluaciones de $\Nsteps$ pasos en $t$.}
+  \label{fig:ultima_iteracion}
+\end{figure}
+
+\begin{figure}[!ht]  
+  \centering  
+  \includegraphics[width=0.5\textwidth]{figuras/ex02-histograma-02.pdf}
+  \caption{$P(x,t)$ densidad de probabilidad (color) de $x$ y $t$ calculada a partir de $\nSimulacionesB$ evaluaciones de $\Nsteps$ pasos en $t$.}
+  \label{fig:ultima_iteracion}
+\end{figure}
+
 % ███████╗██╗  ██╗    ██████╗     
 % ██╔════╝╚██╗██╔╝    ╚════██╗    
 % █████╗   ╚███╔╝      █████╔╝    
 % ██╔══╝   ██╔██╗      ╚═══██╗    
 % ███████╗██╔╝ ██╗    ██████╔╝    
 % ╚══════╝╚═╝  ╚═╝    ╚═════╝     
-%                                 
-% 
 
-\section{Resolución Ej 3:}
-
-% 
-% ███████╗██╗  ██╗    ██╗  ██╗
-% ██╔════╝╚██╗██╔╝    ██║  ██║
-% █████╗   ╚███╔╝     ███████║
-% ██╔══╝   ██╔██╗     ╚════██║
-% ███████╗██╔╝ ██╗         ██║
-% ╚══════╝╚═╝  ╚═╝         ╚═╝
-%                             
-% 
-
-\section{Resolución Ej 4:}
-
-% 
-% ███████╗██╗  ██╗    ███████╗
-% ██╔════╝╚██╗██╔╝    ██╔════╝
-% █████╗   ╚███╔╝     ███████╗
-% ██╔══╝   ██╔██╗     ╚════██║
-% ███████╗██╔╝ ██╗    ███████║
-% ╚══════╝╚═╝  ╚═╝    ╚══════╝
-%                             
-% 
-
-\section{Resolución Ej 5:}
-
-
-% \bibliography{sample}
+% \section{Resolución Ej 3:}
 
 \end{document}
-
-% ███    ██  ██████  ████████  █████  ███████
-% ████   ██ ██    ██    ██    ██   ██ ██
-% ██ ██  ██ ██    ██    ██    ███████ ███████
-% ██  ██ ██ ██    ██    ██    ██   ██      ██
-% ██   ████  ██████     ██    ██   ██ ███████
-
-
-% ████████ ██    ██ ██████   ██████  ███████
-%    ██     ██  ██  ██   ██ ██    ██ ██
-%    ██      ████   ██████  ██    ██ ███████
-%    ██       ██    ██      ██    ██      ██
-%    ██       ██    ██       ██████  ███████
-
-% A pesar de mis multiples y cultas intervenciones seguis escribiendo así, usa ctrl f y resolvelo.
-
-% atomico
-% volumen
-% parametro
-% mantenia
-% dielectrico
-% perdida
-% ferroelectrico
-% difractograma
-% difractometro
-% minimo
-% maximo
-% tension
-% conversion
-% aislacion
-% medicion
-% resolucion
-% funcion
-% transicion
-% correccion
-% activacion
-% correlacion
-% tipico X
-% habia  X
-% agrego X

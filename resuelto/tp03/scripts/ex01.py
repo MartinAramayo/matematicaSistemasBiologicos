@@ -1,4 +1,3 @@
-#importo librerías que me van a ser útiles en hacer las simulaciones
 import numpy as np
 from copy import deepcopy
 import matplotlib.pyplot as plt
