@@ -5,7 +5,6 @@ from matplotlib import cm
 import seaborn as sns 
 import pylab
 import pandas as pd
-
 """
 Benchmark (hyperfine):
 Benchmark #1: python ex02-a.py
@@ -15,43 +14,12 @@ Benchmark #1: python ex02-a.py
 Hardware (neofetch):
 Kernel: 5.9.16-1-MANJARO
 CPU: AMD Ryzen 3 3250U with Radeon Graphics (4) @ 2.600GHz
-GPU: AMD ATI 04:00.0 Picasso
+GPU: AMD ATI 04:00.0 Picassoq
 Memory: 5434MiB / 13971MiB
 """
-
-# plt.ion()
 #%%
-## config
-# Set figure size
-SMALL_SIZE = int( 8 * 1.5)
-MEDIUM_SIZE = int(10 * 1.5)
-BIGGER_SIZE = int(12 * 1.5)
-
-plt.rc('font', size=SMALL_SIZE)          # controls default text sizes
-plt.rc('axes', titlesize=SMALL_SIZE)     # fontsize of the axes title
-plt.rc('axes', labelsize=MEDIUM_SIZE)    # fontsize of the x and y labels
-plt.rc('xtick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
-plt.rc('ytick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
-plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
-plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
-
-params = {
-    "font.family": "serif",
-    "text.usetex": True,
-    "pgf.rcfonts": False,
-}
-pylab.rcParams.update(params)
-
-#%%
-def axes_no_corner(ax):
-    ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
-    ax.get_xaxis().tick_bottom()
-    ax.get_yaxis().tick_left()
-
 def plot_household(fig, ax, filename):
     ax.legend()
-    axes_no_corner(ax)
     ax.set_ylabel("$x(t)$")
     ax.set_xlabel("$t$")
     fig.tight_layout()
@@ -62,7 +30,8 @@ def prod_mapeo(array, paso):
 
 def pot_mapeo(cte, x0, paso):
     return cte**(paso - 1) * x0
-
+#%%
+# plt.ion()
 x0 = 1
 N_steps = 50
 sigma = 0.2
@@ -77,13 +46,7 @@ for t in range(N_simulaciones:=10):
     all_maps.update({t: (map1d, z)})
 
 map_nonoise = [pot_mapeo(a, x0, n) for n in range(1, N_steps)]
-map_nonoise.insert(0,x0)
-
-# # Compute solution if the map does not have a compact form
-# x[0] = x0
-# for n in range(1, N+1): # (1,N)
-#     x[n] = a * x[n-1] 
-    
+map_nonoise.insert(0,x0)   
 ####################################################################
 # colormap
 num_iterations = N_simulaciones

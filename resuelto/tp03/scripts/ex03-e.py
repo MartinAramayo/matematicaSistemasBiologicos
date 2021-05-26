@@ -54,9 +54,11 @@ def bh_map(n0, r, K, n_steps=20):
     return t, n_t
 
 def plot_map(ax, n0, r, K, n_steps, color=None):
-    label = f'$K$ = {K:3.2f}' 
+    # label = f'$K$ = {K:3.2f}' 
+    label = f'$r$ = {r:3.2f}' 
     t, n_t = bh_map(n0, r, K, n_steps)
-    ax.scatter(t, n_t, label=label, color=color, s=20)
+    # ax.scatter(t, n_t, label=label, color=color, s=20)
+    ax.plot(t, n_t, label=label, color=color)
     return t, n_t
 #%%
 # throw a p weighted coin
@@ -64,7 +66,7 @@ def random_p_binary_choice(p):
     return np.random.choice([0,1], size=1, p=(1-p, p))[0]
 
 def simular(N, b, d):
-    return N*2 if random_p_binary_choice(b/(b+d)) else N//2
+    return N+1 if random_p_binary_choice(b/(b+d)) else N-1
 
 def tiempo(t, b, d):
     aLambda = (b + d)
@@ -72,16 +74,17 @@ def tiempo(t, b, d):
 
 def tuple_generar(t, N, b, d, N_steps):
     counter = N_steps
-    while N>0 and counter > 0 and N<1e4:
+    # while N>0 and counter > 0 and N<1e4:
+    while N>0 and counter > 0 and N<2**40:
         t = tiempo(t, b, d)
         N = simular(N, b, d)
         counter -= 1
         yield (t, N)
         
-b_nacer = 0.04
-d_morir = 0.01
-N0 = 1
-N_steps = 200
+b_nacer = 0.1
+d_morir = 0.1
+N0 = 10
+N_steps = 100
 #####################################################
 def simulation_histogram(data, n_simulacion, names, columns):
     tuple_index = list(zip(
@@ -97,7 +100,7 @@ names = ["n_simulacion", "indice"]
 columns = ["tiempo", "N"]
 
 simulaciones_df = pd.DataFrame()
-for n_simulacion in range(N_simulaciones:=10):
+for n_simulacion in range(N_simulaciones:=100):
     aux = {'b': b_nacer, 'd': d_morir, 'N_steps': N_steps}
     generador = tuple_generar(0, N0,**aux)
     
@@ -106,48 +109,71 @@ for n_simulacion in range(N_simulaciones:=10):
       
     aux_df = simulation_histogram(data, n_simulacion, names, columns)
     simulaciones_df = simulaciones_df.append(aux_df)
-#####################################################
+    
+######################################### Mapss
 # colormap
 num_iterations = N_simulaciones
 cm_subsection = np.linspace(0, 1, num_iterations) 
 colors = tuple( cm.gnuplot(x) for x in cm_subsection )    
 #########################################
-fig, ax = plt.subplots()
+fig_map, ax_map = plt.subplots()
 num_plots = 10
 iterador_plot = range(0, num_iterations, num_iterations//num_plots)
 for step in iterador_plot:    
     aux_df = simulaciones_df.loc[(step,)]
+    # aux_args = {
+    #     'color': colors[step],
+    #     # 'label': f'Media de $z$ = {z.mean():0.3f}',
+    #     'mew': 0.2,
+    #     'mec': 'k',
+    #     # 'legend': False,
+    #     'markersize': 4.0,
+    #     'marker':'o'}
     aux_args = {
         'color': colors[step],
         # 'label': f'Media de $z$ = {z.mean():0.3f}',
-        'mew': 0.2,
-        'mec': 'k',
-        # 'ax': ax,
+        # 'mew': 0.2,
+        # 'mec': 'k',
         # 'legend': False,
-        'markersize': 4.0,
-        'marker':'o'}
-    ax.plot(aux_df['tiempo'],
+        # 'markersize': 4.0,
+        # 'marker':'o'
+        }
+    ax_map.plot(aux_df['tiempo'],
             aux_df['N'],
             **aux_args)
-    # ax.plot(aux_df, **aux_args)
 
-# aux_args = {'label': "Sin ruido",
-#             'markersize': 4.0,
-#             'mew': 0.2,
-#             'mec': 'k',
-#             'marker':'o'}
-# ax.plot(map_nonoise, **aux_args)
+ax_map.set_yscale('symlog')
+ax_map.autoscale()  # auto-scale
+ax_map.legend(ncol=2)
 
-ax.set_yscale('symlog', base=2)
-ax.autoscale()  # auto-scale
-ax.legend(ncol=2)
+n_steps = int(ax_map.get_xlim()[1])
+K = ax_map.get_ylim()[1]
 
-n_steps = int(ax.get_xlim()[1])
+r_floor = 1 + (b_nacer - d_morir)
+for r in np.linspace(r_floor*(1.1), r_floor*(0.9), num=10):
+    plot_map(ax_map, N0, r, K, n_steps, color=None)
 
-# for K in np.linspace(1, 2**10, num=10):
-    # plot_map(ax, N0, 2, K, n_steps, color=None)
-    
-for r in np.linspace(1.1, 10, num=10):
-    plot_map(ax, N0, r, 2**10, n_steps, color=None)
+plot_household(fig_map, ax_map, '../figuras/ex03-e-mapeo.pdf')
+##################################################### HISTOGRAM
+fig, ax = plt.subplots()
 
-plot_household(fig, ax, '../figuras/ex03-c-mapeo.pdf')
+sns.histplot(
+    simulaciones_df, 
+    x='tiempo',
+    y='N',
+    stat='density',
+    cmap='flare',
+    discrete=(False, True), 
+    cbar=True, 
+    # bins=(xbins, ybins),
+    # symlog_scale=(True, False),
+    # log_scale=(False, True),
+    ax=ax
+)
+
+fig.tight_layout()
+ax.set_xlabel('$t$')
+ax.set_ylabel('$x(t)$')
+# ax.set_yscale('symlog')
+# ax.autoscale()  # auto-scale
+fig.savefig('../figuras/ex03-e-Stationary.pdf')

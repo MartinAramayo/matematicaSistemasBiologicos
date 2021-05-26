@@ -53,7 +53,7 @@ def tuple_generar(t, N, b, d, N_steps):
         
 b_nacer = 0.1
 d_morir = 0.4
-N0 = 1
+N0 = 4
 N_steps = 50
 #####################################################
 def simulation_histogram(data, n_simulacion, names, columns):
@@ -97,4 +97,4 @@ fig.tight_layout()
 ax.set_xlabel('$t$')
 ax.set_ylabel('$x(t)$')
 ax.set_yscale('symlog', base=2)
-fig.savefig('../figuras/ex03-histograma-(BmenorD)).pdf')
+fig.savefig('../figuras/ex03-histograma-(BmenorD)incialGrande).pdf')

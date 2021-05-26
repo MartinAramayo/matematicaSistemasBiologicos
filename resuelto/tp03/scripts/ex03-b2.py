@@ -51,10 +51,10 @@ def tuple_generar(t, N, b, d, N_steps):
         counter -= 1
         yield (t, N)
         
-b_nacer = 0.1
-d_morir = 0.4
+b_nacer = 0.4
+d_morir = 0.1
 N0 = 1
-N_steps = 50
+N_steps = 10
 #####################################################
 def simulation_histogram(data, n_simulacion, names, columns):
     tuple_index = list(zip(
@@ -71,7 +71,7 @@ names = ["n_simulacion", "indice"]
 columns = ["tiempo", "N"]
 
 simulaciones_df = pd.DataFrame()
-for n_simulacion in range(N_simulaciones:=20):
+for n_simulacion in range(N_simulaciones:=100):
     aux = {'b': b_nacer, 'd': d_morir, 'N_steps': N_steps}
     generador = tuple_generar(0, N0,**aux)
     
@@ -97,4 +97,6 @@ fig.tight_layout()
 ax.set_xlabel('$t$')
 ax.set_ylabel('$x(t)$')
 ax.set_yscale('symlog', base=2)
-fig.savefig('../figuras/ex03-histograma-(BmenorD)).pdf')
+# ax.relim()      # make sure all the data fits
+# ax.autoscale()  # auto-scale
+fig.savefig('../figuras/ex03-histograma-(DmenorB)).pdf')
