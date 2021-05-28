@@ -64,7 +64,7 @@ def random_p_binary_choice(p):
     return np.random.choice([0,1], size=1, p=(1-p, p))[0]
 
 def simular(N, b, d):
-    return N*2 if random_p_binary_choice(b/(b+d)) else N//2
+    return N+1 if random_p_binary_choice(b/(b+d)) else N-1
 
 def tiempo(t, b, d):
     aLambda = (b + d)
