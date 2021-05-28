@@ -1,0 +1,145 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+import pandas as pd
+from scipy.signal import savgol_filter
+from scipy.optimize import curve_fit
+import datetime
+
+def sech_sir(x, a, b, c):
+    y = a * ( ( np.cosh( b * x + c ) ) ** (-2) )
+    return y
+
+# plt.ion()
+aDir = '../figuras/'
+
+style = {'linewidth':0.5, 
+         'ms':1.8, 
+         'marker':'o', 
+         'subplots':True}
+
+#%% # abrir y pre procesar
+df = pd.read_csv('2021-tp05-covid19.csv', index_col='Date')
+rename_dict = {'i':'infectados',
+               'd':'fallecidos'}
+df = df.rename(columns=rename_dict)
+df.index = pd.to_datetime(df.index)
+df.index = df.index.rename('Fecha')
+
+## para plotear
+rename_plot = {'infectados':'Infectados',
+               'fallecidos':'Fallecidos',
+               'tests': 'Testeados',
+               'difIt': 'Infectados-Fallecidos',}
+plt_rename = {'columns':rename_plot}
+#%% # diferencia entre infectados y testeados
+df['difIt'] = df['infectados'].sub(df['tests'])
+axs = df.rename(**plt_rename).plot(**style)
+figs = axs[0].get_figure()
+figs.tight_layout()
+figs.savefig(aDir + 'ex02-resumen.pdf')
+#%% ## normalizado
+df_norm = df/df.max()
+df_norm['difIt'] = df['difIt']/df['difIt'].min()
+axs2 = df_norm.rename(**plt_rename).plot(**style)
+figs2 = axs2[0].get_figure()
+figs2.tight_layout()
+figs2.savefig(aDir + 'ex02-resumen-normalizado.pdf')
+
+#%% ## sin weekends
+df_weekday_2 = df[(df.index.weekday != 5) # sabado 
+                & (df.index.weekday != 6) # domingo
+                & (df.index.weekday != 4) # viernes
+                # & (df.index.weekday != 0) # lunes
+                # & (df.index.weekday != 1) # martes
+                ] 
+axs3 = df_weekday_2.rename(**plt_rename).plot(**style)
+figs3 = axs3[0].get_figure()
+figs3.tight_layout()
+figs3.savefig(aDir + 'ex02-sin-Finde.pdf')
+#%% # fecha donde termina el primer pico
+pico_1 = datetime.datetime.strptime('2020-12-15','%Y-%m-%d')
+df_pico_11 = df[df.index < pico_1]
+df_pico_11.index = (df_pico_11.index - df_pico_11.index[0]).days
+axs4 = df_pico_11.rename(**plt_rename).plot(**style)
+figs4 = axs4[0].get_figure()
+figs4.tight_layout()
+figs4.savefig(aDir + 'ex02-pico1.pdf')
+
+aux_args = {'f':sech_sir, 
+            'xdata':df_pico_11.index, 
+            'ydata':df_pico_11['infectados'],
+            'p0':(5000, 0.01, -1)}
+
+popt, pcov = curve_fit(**aux_args)
+a, b, c = popt
+
+x = df_pico_11.index.values
+y = sech_sir(x, a ,b ,c)
+
+fig_qq, ax_qq = plt.subplots()
+ax_qq.scatter(y, df_pico_11['infectados'])
+ylim = (min(y), max(y))
+ax_qq.plot(ylim, ylim, '--k')
+ax_qq.set_xlabel('Prediccion teorica')
+ax_qq.set_ylabel('Valor real')
+fig_qq.tight_layout()
+fig_qq.savefig(aDir + 'ex02-qq.pdf')
+
+fig_res, ax_res = plt.subplots()
+ax_res.scatter(x, df_pico_11['infectados'] - y)
+ax_res.set_xlabel('')
+ax_res.set_ylabel('Residuos')
+fig_res.tight_layout()
+fig_res.savefig(aDir + 'ex02-residuos.pdf')
+
+fig_fit, ax_fit = plt.subplots()
+ax_fit.scatter(x, df_pico_11['infectados'])
+ax_fit.scatter(x, y)
+ax_fit.set_xlabel('')
+ax_fit.set_ylabel('Residuos')
+fig_fit.tight_layout()
+fig_fit.savefig(aDir + 'ex02-fit.pdf')
+# %%
+pico_1 = datetime.datetime.strptime('2020-12-15','%Y-%m-%d')
+df_pico_11 = df_weekday_2[df_weekday_2.index < pico_1]
+df_pico_11.index = (df_pico_11.index - df_pico_11.index[0]).days
+axs4 = df_pico_11.rename(**plt_rename).plot(**style)
+figs4 = axs4[0].get_figure()
+figs4.tight_layout()
+figs4.savefig(aDir + 'ex02-sin-Finde-pico1.pdf')
+
+aux_args = {'f':sech_sir, 
+            'xdata':df_pico_11.index, 
+            'ydata':df_pico_11['infectados'],
+            'p0':(5000, 0.01, -1)}
+
+popt, pcov = curve_fit(**aux_args)
+a, b, c = popt
+
+x = df_pico_11.index.values
+y = sech_sir(x, a ,b ,c)
+
+fig_qq, ax_qq = plt.subplots()
+ax_qq.scatter(y, df_pico_11['infectados'])
+ylim = (min(y), max(y))
+ax_qq.plot(ylim, ylim, '--k')
+ax_qq.set_xlabel('Prediccion teorica')
+ax_qq.set_ylabel('Valor real')
+fig_qq.tight_layout()
+fig_qq.savefig(aDir + 'ex02-qq-sin-Finde.pdf')
+
+fig_res, ax_res = plt.subplots()
+ax_res.scatter(x, df_pico_11['infectados'] - y)
+ax_res.set_xlabel('')
+ax_res.set_ylabel('Residuos')
+fig_res.tight_layout()
+fig_res.savefig(aDir + 'ex02-residuos-sin-Finde.pdf')
+
+fig_fit, ax_fit = plt.subplots()
+ax_fit.scatter(x, df_pico_11['infectados'])
+ax_fit.scatter(x, y)
+ax_fit.set_xlabel('')
+ax_fit.set_ylabel('Residuos')
+fig_fit.tight_layout()
+fig_fit.savefig(aDir + 'ex02-fit-sin-Finde.pdf')
