@@ -11,6 +11,7 @@ resuelto/tp04/recursos*
 resuelto/tp05/recursos*
 resuelto/tp06/recursos*
 *recursos*
+*.ipynb
 
 ############################################## generic .gitignore
 ## Core latex/pdflatex auxiliary files:
