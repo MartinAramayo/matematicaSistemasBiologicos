@@ -26,6 +26,19 @@ df = df.rename(columns=rename_dict)
 df.index = pd.to_datetime(df.index)
 df.index = df.index.rename('Fecha')
 
+#%% ## feriados
+file1 = 'datasetFeriadosArgentina/feriadosArgentina2020.csv'
+file2 = 'datasetFeriadosArgentina/feriadosArgentina2021.csv'
+feriados = pd.read_csv(file1)
+feriados = pd.concat((feriados, pd.read_csv(file2))).reset_index()
+month, day, year = feriados['month'], feriados['day'], feriados['year']
+month, day, year = month.astype('str'), day.astype('str'), year.astype('str') 
+feriados = month + ' ' + day + ' ' + year
+feriados = pd.to_datetime(feriados, format='%B %d %Y')
+
+feriados = feriados[(feriados >= df.index[0]) 
+                    & (feriados <= df.index[-1])]
+
 ## para plotear
 rename_plot = {'infectados':'Infectados',
                'fallecidos':'Fallecidos',
@@ -49,10 +62,21 @@ figs2.savefig(aDir + 'ex02-resumen-normalizado.pdf')
 #%% ## sin weekends
 df_weekday_2 = df[(df.index.weekday != 5) # sabado 
                 & (df.index.weekday != 6) # domingo
-                & (df.index.weekday != 4) # viernes
-                # & (df.index.weekday != 0) # lunes
+                # & (df.index.weekday != 4) # viernes
+                # & (df.index.weekday != 3) # jueves
+                # & (df.index.weekday != 2) # miercoles
                 # & (df.index.weekday != 1) # martes
+                # & (df.index.weekday != 0) # lunes
                 ] 
+
+aux_df = df_weekday_2.index
+bool_index = aux_df != aux_df ## trivial case
+for aux_datetime in feriados:
+    bool_index |= (aux_df == aux_datetime)
+
+# podes comentar esto si queres tener en cuenta los feriados
+df_weekday_2 = df_weekday_2[~ bool_index] # feriados
+
 axs3 = df_weekday_2.rename(**plt_rename).plot(**style)
 figs3 = axs3[0].get_figure()
 figs3.tight_layout()
