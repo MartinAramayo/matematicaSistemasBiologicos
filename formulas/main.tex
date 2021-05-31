@@ -196,6 +196,66 @@ $$
 Ya que la perturbación decrece o crece respectivamente. Si $\lambda=0$ no podemos decir nada.
 
 
+$>$ \textbf{Analisis lineal caso bidimensional:}
+
+Flujos bidimensionales:
+
+$\lambda_{1,2}=\frac{1}{2}\left(\operatorname{Tr} \mathbf{A} 
+\pm 
+\sqrt{\operatorname{Tr} \mathbf{A}^{2}-4 \mathrm{Det} \mathbf{A}  } \right)$
+
+\begin{itemize}
+  \item Det $A<0$ 
+  
+  Dos autovalores reales de diferente signo 
+  
+  $\rightarrow$ Saddle
+  \item Det $\mathrm{A}=0$, Tr $\mathrm{A}<0$ 
+  
+  Un autovalor nulo, otro real negativo 
+  
+  $\rightarrow$ Acumulación de estables
+  \item Det $\mathrm{A}=0$, Tr $\mathrm{A}>0$ 
+  
+  Un autovalor nulo, otro real positivo 
+  
+  $\rightarrow$ Acumulación de inestables
+  \item $0<$ Det $A<(\text { Tr } A)^{2} / 4$, Tr $A<0$ 
+  
+  Dos autovalores reales negativos 
+  
+  $\rightarrow$ Nodo estable
+  \item $0<$ Det $A<(\operatorname{Tr} A)^{2} / 4$ Tr $A>0$ 
+  
+  Dos autovalores reales positivos 
+  
+  $\rightarrow$ Nodo inestable
+  \item $(\operatorname{Tr} \mathrm{A})^{2} / 4<$ Det $\mathrm{A}$, Tr $\mathrm{A}<0$ 
+  
+  Dos autovalores complejos, parte real negativa 
+  
+  $\rightarrow$ Espiral estable
+  \item $(\operatorname{Tr} A)^{2} / 4<$ Det $A$, Tr $A>0$ 
+  
+  Dos autovalores complejos, parte real posiiva 
+  
+  $\rightarrow$ Espiral inestable
+  \item Det $A>0$, $\operatorname{Tr} A=0$ 
+  
+  Dos autovalores imaginarios 
+  
+  $\rightarrow$ Centro
+  \item Det $A=(\operatorname{Tr} A)^{2} / 4$, TrA $<0$, 
+  
+  Dos autovalores iguales 
+  
+  $\rightarrow$ Nodo degenarado estable
+  \item Det $A=(\operatorname{Tr} A)^{2} / 4$, TrA $>0$, 
+  
+  Dos autovalores iguales 
+  
+  $\rightarrow$ Nodo degenarado inestable
+\end{itemize}
 
 \begin{figure}[ht!]
   \includegraphics[width = 0.28\textwidth]{estable-Inestable.pdf}
@@ -504,6 +564,111 @@ Y $P(\tau)$ tiene la distribución exponencial decreciente deseada. La simulaci�
 
 
 % Cada repetición de todo el programa da una realización de la evolución. Distintas realizaciones dan evoluciones distintas, ya que son aleatorias. Pero el promedio de muchas de ellas, y su varianza, deben obedecer la evolución temporal dada por las Ecs. (4.22-4.23).
+
+\section{Teoria de juegos}
+
+$\#$ \textbf{Juego:} $(R, A)$ donde:
+
+\begin{itemize}
+  \item[] 
+  $R=\left\{R_{1}, R_{2}, \ldots, R_{N}\right\}$ Conjunto de estrategias llamadas estrategias puras. 
+  \item[] 
+  $A=\left(a_{i j}\right)$ Matriz de pagos
+  \item[] 
+  $a_{i j}$ El pago que recibe $R_i$ cuando juega con $R_j$
+\end{itemize}
+
+$\#$ \textbf{Estrategia mixta:} Una estrategia que consiste en tomar estrategias puras $R_i$ con una probabilidad $p_i$:
+
+$$
+\boldsymbol{p}=\left(p_{1}, p_{2}, \ldots, p_{N}\right), \operatorname{con} p_{i} \geq 0 \ y \sum p_{i}=1
+$$
+
+$\sim$ La matriz de pagos está definida en términos de los payoff para estrategias puras. 
+
+$>$ \textbf{Payoff de estrategia 1 Vs. estrategia 2 (mixtas o no):}
+
+$$
+\mathbf{p}_{1} A \mathbf{p}_{2} = \sum_{i, j} p_{1,i} p_{2,j} a_{i j}
+$$
+
+$>$ \textbf{Payoff de estrategia pura Vs. mixta:}
+
+$$
+\sum a_{i j} p_{j}=(A p)_{i}
+$$
+
+$>$ \textbf{Mejor respuesta estrategia 1 Vs. estrategia 2:} 
+\begin{itemize}
+  \item[] Maximiza  $\mathbf{r}_{2} A \mathbf{r}_1$. 
+\end{itemize}
+
+$\#$ \textbf{Equilibrio de Nash:} Si todos los jugadores tienen la misma elección de estrategias, un equilibrio de Nash es una estrategia $\vec{p^{*}}$ que es la mejor respuesta a si misma
+$$
+\vec{p^{*}} \cdot U \vec{p^{*}} \geqslant \vec{q} \cdot U \vec{p^{*}}, \quad \forall \vec{q}
+$$
+Y se llama estricto si es la única mejor respuesta, es decir
+$$
+\vec{p^{*}} \cdot U \vec{p^{*}} > \vec{q} \cdot U \vec{p^{*}}, \quad \forall \vec{q}
+$$
+
+$\#$ \textbf{Dinamica del replicador:}
+
+$$ \left\lbrace
+\begin{aligned}
+  \dot{x}_{1} &= x_{1}\left[(A \vec{x})_{1}-\vec{x} \cdot A \vec{x}\right] \\
+  \dot{x}_{2} &= x_{2}\left[(A \vec{x})_{2}-\vec{x} \cdot A \vec{x}\right] \\
+  \ & \qquad \qquad \vdots \\ 
+  \dot{x}_{i} &= x_{i}\left[(A \vec{x})_{i}-\vec{x} \cdot A \vec{x}\right] \\
+  \ & \qquad \qquad \vdots \\ 
+  \dot{x}_{n} &= x_{n}\left[(A \vec{x})_{n}-\vec{x} \cdot A \vec{x}\right]
+\end{aligned}
+\right.
+$$
+
+Suposiciones:
+\begin{itemize}
+  \item Poblacion de $n$ tipos $E_{i}$, correspondiendo a cada uno una frecuencia $x_{i}$ en la población.
+  \item Cada tipo tiene una fitness $f_{i}$, función de la composición $\vec{x}$. 
+  \item La población es grande, y las generaciones se mezclan, de modo que $\vec{x}(t)$ evoluciona de manera diferenciable. Para cada tipo $E_{i}$, la tasa de crecimiento relativa $\frac{\dot{x}_{i}}{x_{i}}$
+\end{itemize}
+
+$\sim$ El simplex $S_{n}$ es invariante por la ecuación, así que podemos considerarla restringida a $S_{n}$
+
+$\sim$ La fitness del tipo $E_{i}$ es:
+$$
+f_{i}(\vec{x})=\sum_{j} a_{i j} x_{j}=\{A \vec{x}\}_{i}
+$$
+
+$\#$ \textbf{Equilibrio de nash (frecuencia):}
+
+$\vec{x^{*}} \in S_{n}$ es un equilibrio de Nash si
+$\vec{x} \cdot A \vec{x^{*}} \leqslant \vec{x^{*}} \cdot A \vec{x^{*}} \quad \forall \vec{x} \in S_{n}$
+
+$\vec{x^{*}} \in S_{n}$ es un estado (no una estrategia) evolutivamente estable si
+$\vec{x}^{3} \cdot A \vec{x}>\vec{x} \cdot A \vec{x} \quad \forall \vec{x} \neq \vec{x^{*}}$ en un entorno de $\vec{x^{*}}$.
+
+ 
+% $>$ \textbf{Teoremas}
+\textbf{Teoremas}
+
+\begin{itemize}
+  \item[$>$] Si $\vec{x}^{*}$ es un equilibrio de Nash, entonces es un equilibrio de la ecuación del replicador.
+  \item[$>$] Si $\vec{x}^{*}$ es el $\omega$ -límite de una órbita $\vec{x}(t)$ en int $S_{n}$, entonces $\vec{x}^{*}$ es un equilibrio de Nash.
+  \item[$>$] Si $\vec{x}^{*}$ es estable de Lyapunov, entonces es un equilibrio de Nash.
+  \item[$>$] Si $\vec{x}^{*} \in S_{n}$ es un estado evolutivamente estable, entonces es un equilibrio asintóticamente estable de la ecuación del replicador.
+\end{itemize}
+
+O en palabras:
+
+\begin{itemize}
+  \item[$>$] Los equilibrios de Nash son equilibrios de E.R.
+  \item[$>$] Los limites de órbitas interiores son E.N.
+  \item[$>$] Los puntos estables son E.N.
+  \item[$>$] Los Equilibrios estrictos son atractores
+\end{itemize}
+
+
 
 
 
