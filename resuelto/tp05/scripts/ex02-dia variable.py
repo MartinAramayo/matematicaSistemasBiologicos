@@ -7,7 +7,7 @@ from scipy.optimize import curve_fit
 import datetime
 from numpy import cosh
 
-def sech_sir(x, a, b, c):
+def sech_sir(x, a, b, c): # sech_sir = lambda x, a, b, c : a*( cosh( b * x + c )**(-2) )
     return a*( cosh( b * x + c )**(-2) )
 
 # plt.ion()
@@ -58,6 +58,7 @@ axs2 = df_norm.rename(**plt_rename).plot(**style)
 figs2 = axs2[0].get_figure()
 figs2.tight_layout()
 figs2.savefig(aDir + 'ex02-resumen-normalizado.pdf')
+
 #%% ## sin weekends
 df_weekday_2 = df[(df.index.weekday != 5) # sabado 
                 & (df.index.weekday != 6) # domingo
@@ -80,50 +81,6 @@ axs3 = df_weekday_2.rename(**plt_rename).plot(**style)
 figs3 = axs3[0].get_figure()
 figs3.tight_layout()
 figs3.savefig(aDir + 'ex02-sin-Finde.pdf')
-#%% # fecha donde termina el primer pico
-pico_1 = datetime.datetime.strptime('2020-12-15','%Y-%m-%d')
-df_pico_11 = df[df.index < pico_1]
-df_pico_11.index = (df_pico_11.index - df_pico_11.index[0]).days
-axs4 = df_pico_11.rename(**plt_rename).plot(**style)
-figs4 = axs4[0].get_figure()
-figs4.tight_layout()
-figs4.savefig(aDir + 'ex02-pico1.pdf')
-
-aux_args = {'f':sech_sir, 
-            'xdata':df_pico_11.index, 
-            'ydata':df_pico_11['infectados'],
-            'p0':(5000, 0.01, -1)}
-
-popt, pcov = curve_fit(**aux_args)
-a, b, c = popt
-
-x = df_pico_11.index.values
-y = sech_sir(x, a ,b ,c)
-
-fig_qq, ax_qq = plt.subplots()
-ax_qq.scatter(y, df_pico_11['infectados'], color='royalblue')
-ylim = (min(y), max(y))
-ax_qq.plot(ylim, ylim, '--k')
-ax_qq.set_xlabel('Predicción teórica')
-ax_qq.set_ylabel('Valor real')
-fig_qq.tight_layout()
-fig_qq.savefig(aDir + 'ex02-qq.pdf')
-
-fig_res, ax_res = plt.subplots()
-ax_res.scatter(x, df_pico_11['infectados'] - y, color='royalblue')
-ax_res.set_xlabel('')
-ax_res.set_ylabel('Residuos')
-ax_res.axhline(y=0, color='k', ls='dashed')
-fig_res.tight_layout()
-fig_res.savefig(aDir + 'ex02-residuos.pdf')
-
-fig_fit, ax_fit = plt.subplots()
-ax_fit.scatter(x, df_pico_11['infectados'], color='royalblue')
-ax_fit.plot(x, y, 'salmon')
-ax_fit.set_xlabel('')
-ax_fit.set_ylabel('Residuos')
-fig_fit.tight_layout()
-fig_fit.savefig(aDir + 'ex02-fit.pdf')
 # %%
 pico_1 = datetime.datetime.strptime('2020-12-15','%Y-%m-%d')
 df_pico_11 = df_weekday_2[df_weekday_2.index < pico_1]
@@ -133,38 +90,75 @@ figs4 = axs4[0].get_figure()
 figs4.tight_layout()
 figs4.savefig(aDir + 'ex02-sin-Finde-pico1.pdf')
 
-aux_args = {'f':sech_sir, 
-            'xdata':df_pico_11.index, 
-            'ydata':df_pico_11['infectados'],
-            'p0':(5000, 0.01, -1)}
+##############################################
+last_day = df.index[-1]
+ref_day = df.index[0]
+n_semanas_total = int((last_day - ref_day).days/7)
 
-popt, pcov = curve_fit(**aux_args)
-a, b, c = popt
+# pico real
+infected= df_pico_11['infectados']
+bool_index = infected == infected.max()
+real_peak_day = int(df_pico_11[bool_index].index.values[0])
+real_peak_date = ref_day + datetime.timedelta(days=real_peak_day)
 
-x = df_pico_11.index.values
-y = sech_sir(x, a ,b ,c)
+# plt.ion()
 
-fig_qq, ax_qq = plt.subplots()
-ax_qq.scatter(y, df_pico_11['infectados'], color='royalblue')
-ylim = (min(y), max(y))
-ax_qq.plot(ylim, ylim, '--k')
-ax_qq.set_xlabel('Predicción teórica')
-ax_qq.set_ylabel('Valor real')
-fig_qq.tight_layout()
-fig_qq.savefig(aDir + 'ex02-qq-sin-Finde.pdf')
+fig, ax = plt.subplots()
 
-fig_res, ax_res = plt.subplots()
-ax_res.scatter(x, df_pico_11['infectados'] - y, color='royalblue')
-ax_res.set_xlabel('')
-ax_res.set_ylabel('Residuos')
-ax_res.axhline(y=0, color='k', ls='dashed')
-fig_res.tight_layout()
-fig_res.savefig(aDir + 'ex02-residuos-sin-Finde.pdf')
+prediction = {'error':[],
+              'prediction':[],
+              'n_semanas':[]}
+for n_semanas in range(1, n_semanas_total):
+    aux_df = df_pico_11[0:n_semanas*7]
+    aux_args = {'f':sech_sir, 
+                'xdata':aux_df.index, 
+                'ydata':aux_df['infectados'],
+                'p0':(5000, 0.01, -1)}
+    try: 
+        popt, pcov = curve_fit(**aux_args)
+        a, b, c = popt
 
-fig_fit, ax_fit = plt.subplots()
-ax_fit.scatter(x, df_pico_11['infectados'], color='royalblue')
-ax_fit.plot(x, y, 'salmon')
-ax_fit.set_xlabel('')
-ax_fit.set_ylabel('Residuos')
-fig_fit.tight_layout()
-fig_fit.savefig(aDir + 'ex02-fit-sin-Finde.pdf')
+        forecast_date = ref_day + datetime.timedelta(days=int(-c/b))
+        prediction['prediction'].append(forecast_date)
+
+        dias_error = (real_peak_date - forecast_date).days
+        prediction['error'].append(dias_error)
+        
+        prediction['n_semanas'].append(n_semanas)
+    except RuntimeError:
+        pass
+
+columns = ('error', 'prediction', 'n_semanas')
+aux_args = {'data': prediction, 
+            'index': prediction['n_semanas'], 
+            'columns': columns}
+prediction_df = pd.DataFrame(**aux_args)
+
+rename_dict = {'n_semanas':'\# de semanas',
+               'prediction':'Predicción',
+               'error': 'Error en días'}
+aux_args = {'x': rename_dict['n_semanas'], 
+            'y': rename_dict['error'], 
+            'ax': ax, 
+            'color': 'royalblue'} 
+prediction_df.rename(columns=rename_dict).plot.scatter(**aux_args)
+
+ax.axhline(y=0, color='k', ls='dashed')
+    
+fig.tight_layout()
+fig.savefig(aDir + 'ex02-Error-prediccion-semanas.pdf')
+
+fig, ax = plt.subplots()
+
+aux_args = {'x': rename_dict['n_semanas'], 
+            'y': rename_dict['prediction'], 
+            'ax': ax, 
+            'color': 'royalblue'} 
+prediction_df.rename(columns=rename_dict).plot.scatter(**aux_args)
+ax.axhline(real_peak_date, color='k', ls='dashed', label='Pico Real')
+
+ax.legend()
+
+fig.tight_layout()
+fig.savefig(aDir + 'ex02-prediccion-semanas.pdf')
+

@@ -3,8 +3,6 @@ import matplotlib.pyplot as plt
 from scipy.integrate import odeint
 from matplotlib import cm
 # plt.ion()
-########################################################
-#@title 
 def discriminant(beta, tauI, tauR):
     a = ( beta * tauI - 1) / (tauI + tauR)
     b = ( a + (1 / tauR))**2
@@ -12,8 +10,6 @@ def discriminant(beta, tauI, tauR):
     disc = b - 4 * c
     return disc
 
-########################################################
-#@title 
 # ecuaciones del SIRS 
 def deriv(y, t, beta, tauI,tauR):
     S, I, R = y
@@ -22,16 +18,12 @@ def deriv(y, t, beta, tauI,tauR):
     dRdt =  I / tauI - R / tauR
     return dSdt, dIdt, dRdt
 
-########################################################
-#@title 
 #funcion que calcula el punto de equilibrio pasando los parámetros
 def eq_point(beta, tauI, tauR):
     s_eq = 1/(beta * tauI)
     i_eq = (beta * tauI - 1)/(beta * (tauI + tauR))
     return s_eq, i_eq
 
-########################################################
-#@title 
 def roots(tauI, tauR):
     a = tauR
     b = 2 - 4 * ( ( 1 + (tauR / tauI) )**2 )
@@ -43,13 +35,11 @@ def func(Y, t, beta, tauI, tauR):
     return [-beta*s*i + (1/tauR)*(1-s-i), beta*s*i - (1/tauI)*(i)]
 
 ########################################################
-#@title 
 args = beta, tauI, tauR = 0.15, 14, 120
 discriminante = discriminant(*args)
 print(f'El valor del discriminante es: {round(discriminante, 3)}')
 
 ########################################################
-#@title 
 fig, ax = plt.subplots()
 # fig = plt.figure(figsize=(12,8))
 aux_args = {'start': 0, 'stop': 1, 'num': 15}
@@ -80,19 +70,17 @@ colors = [ cm.summer(x) for x in color_slice ]
 
 #grafico algunas trayectorias del sistema en particular
 for i in range(10):
-    # Total population, N.
     N = 10000
-    # Initial number of infected and recovered individuals, I0 and R0.
     I0, R0 = (i*900+1)/N, 0
-    # Everyone else, S0, is susceptible to infection initially.
+    
+    # the rest
     S0 = 1 - I0 - R0
-    # Contact rate, beta, and mean recovery rate, gamma, (in 1/days).
-    beta, gamma = beta, 1./tauI
-    # A grid of time points (in days)
-    t = np.linspace(0, 1000, 1000)
-    # Initial conditions vector
+
     y0 = S0, I0, R0
-    # Integrate the SIR equations over the time grid, t.
+    
+    beta, gamma = beta, 1./tauI
+    t = np.linspace(0, 2000, N)
+
     ret = odeint(deriv, y0, t, args=(beta, 1/gamma, tauR))
     S, I, R = ret.T
     ax.plot(S,I, label=f'$I_0$={I0}', color=colors[i])
@@ -106,30 +94,25 @@ ax.plot(s_eq, i_eq, 'ob')
 #detalles del gráfico
 ax.set_xlabel('$s$ (suceptibles)', fontsize=16)
 ax.set_ylabel('$i$ (infectados)', fontsize=16)
-ax.set_xlim([0, 1.0])
-ax.set_ylim([0, 1.0])
+ax.set_xlim([-0.05, 1.05])
+ax.set_ylim([-0.05, 1.05])
 ax.legend()
+fig.tight_layout()
 fig.savefig('../figuras/ex01-a-vector.pdf')
 # plt.show()
 
 ########################################################
-#@title 
 #ejemplo adaptado de la guía de SciPy: https://scipython.com/book/chapter-8-scipy/additional-examples/the-sir-epidemic-model/ 
 
-# Total population, N.
 N = 10000
-# Initial number of infected and recovered individuals, I0 and R0.
 I0, R0 = 1/N, 0
-# Everyone else, S0, is susceptible to infection initially.
+
+# the rest
 S0 = 1 - I0 - R0
-# Contact rate, beta, and mean recovery rate, gamma, (in 1/days).
+y0 = S0, I0, R0
 beta, gamma = 0.15, 1./14
-# A grid of time points (in days)
 t = np.linspace(0, 1000, 1000)
 
-# Initial conditions vector
-y0 = S0, I0, R0
-# Integrate the SIR equations over the time grid, t.
 ret = odeint(deriv, y0, t, args=(beta, 1/gamma, 120))
 S, I, R = ret.T
 

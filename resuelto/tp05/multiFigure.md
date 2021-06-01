@@ -1,0 +1,189 @@
+%**********
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex01-a-sir.pdf}
+        \caption{}
+        \label{fig:figuras/ex01-a-sir}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex01-a-sir}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex01-a-vector.pdf}
+        \caption{}
+        \label{fig:figuras/ex01-a-vector}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex01-a-vector}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex01-b-sir.pdf}
+        \caption{}
+        \label{fig:figuras/ex01-b-sir}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex01-b-sir}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex01-b-vector.pdf}
+        \caption{}
+        \label{fig:figuras/ex01-b-vector}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex01-b-vector}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex01-c-sir.pdf}
+        \caption{}
+        \label{fig:figuras/ex01-c-sir}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex01-c-sir}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex01-c-vector.pdf}
+        \caption{}
+        \label{fig:figuras/ex01-c-vector}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex01-c-vector}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-fit.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-fit}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-fit}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-fit-sin-Finde.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-fit-sin-Finde}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-fit-sin-Finde}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-pico1.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-pico1}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-pico1}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-qq.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-qq}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-qq}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-qq-sin-Finde.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-qq-sin-Finde}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-qq-sin-Finde}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-residuos.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-residuos}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-residuos}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-residuos-sin-Finde.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-residuos-sin-Finde}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-residuos-sin-Finde}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-resumen-normalizado.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-resumen-normalizado}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-resumen-normalizado}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-resumen.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-resumen}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-resumen}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-sin-Finde.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-sin-Finde}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-sin-Finde}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-sin-Finde-pico1.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-sin-Finde-pico1}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-sin-Finde-pico1}
+\end{figure*}
+%**********
