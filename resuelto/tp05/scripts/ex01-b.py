@@ -34,14 +34,17 @@ def func(Y, t, beta, tauI, tauR):
     s, i = Y
     return [-beta*s*i + (1/tauR)*(1-s-i), beta*s*i - (1/tauI)*(i)]
 
-########################################################
+######################################################## Parametros
 args = beta, tauI, tauR = 0.14, 14, 4
+print(f'Los parametros (beta, tauI, tauR) son: {args}')
 discriminante = discriminant(*args)
 print(f'El valor del discriminante es: {round(discriminante, 3)}')
 
+## odeint args
+beta, gamma = beta, 1./tauI
+args_odeint = (beta, 1/gamma, tauR)
 ########################################################
 fig, ax = plt.subplots()
-# fig = plt.figure(figsize=(12,8))
 aux_args = {'start': 0, 'stop': 1, 'num': 15}
 y1, y2 = np.linspace(**aux_args), np.linspace(**aux_args)
 
@@ -54,7 +57,7 @@ for i in range(NI):
     for j in range(NJ):
         x = Y1[i, j]
         y = Y2[i, j]
-        yprime = func([x, y], t, beta, tauI, tauR)
+        yprime = func([x, y], t, *args)
         u[i,j] = yprime[0]
         v[i,j] = yprime[1]
      
@@ -77,16 +80,15 @@ for i in range(10):
     S0 = 1 - I0 - R0
     
     y0 = S0, I0, R0
-
-    beta, gamma = beta, 1./tauI
+    
     t = np.linspace(0, 2000, N)
 
-    ret = odeint(deriv, y0, t, args=(beta, 1/gamma, tauR))
+    ret = odeint(deriv, y0, t, args=args_odeint)
     S, I, R = ret.T
-    ax.plot(S,I, label=f'$I_0$={I0}', color=colors[i])
+    ax.plot(S,I, label=f'$I_0$={I0:.2E}', color=colors[i])
 
 #grafico el punto de equilibrio
-s_eq, i_eq = eq_point(beta, tauI, tauR)
+s_eq, i_eq = eq_point(*args)
 seq, ieq = round(s_eq,2), round(i_eq,2)
 print(f'El punto de equilibrio es: ({seq}, {ieq})')
 ax.plot(s_eq, i_eq, 'ob')
@@ -96,13 +98,19 @@ ax.set_xlabel('$s$ (suceptibles)', fontsize=16)
 ax.set_ylabel('$i$ (infectados)', fontsize=16)
 ax.set_xlim([-0.05, 1.05])
 ax.set_ylim([-0.05, 1.05])
-ax.legend()
+ax.legend(framealpha=1)
+
+args_str = (r'$\beta$ = '  + f'{args[0]:.2E},  ' 
+          + r'$\tau_R$ = ' + f'{args[1]:.2E},  ' 
+          + r'$\tau_I$ = ' + f'{args[2]:.2E}')
+y0_str = (r'$s_0=1-r_0-i_0$, '
+        #  + r'$i_0$ = ' + f'{I0:.2E}, '
+         + r'$r_0$ = ' + f'{R0}')
+ax.set_title(y0_str + '\n' + args_str)
+
 fig.tight_layout()
 fig.savefig('../figuras/ex01-b-vector.pdf')
-# plt.show()
-
 ########################################################
-#ejemplo adaptado de la guía de SciPy: https://scipython.com/book/chapter-8-scipy/additional-examples/the-sir-epidemic-model/ 
 
 N = 10000
 I0, R0 = 1/N, 0
@@ -111,10 +119,9 @@ I0, R0 = 1/N, 0
 S0 = 1 - I0 - R0
 y0 = S0, I0, R0
 
-beta, gamma = beta, 1./tauI
 t = np.linspace(0, 1000, 1000)
 
-ret = odeint(deriv, y0, t, args=(beta, 1/gamma, tauR))
+ret = odeint(deriv, y0, t, args=args_odeint)
 S, I, R = ret.T
 
 # Plot the data on three separate curves for S(t), I(t) and R(t)
@@ -135,5 +142,14 @@ ax2.plot(t, np.zeros(shape=t.shape)+i_eq, '--r', alpha=0.5)
 ax2.set_xlabel('Tiempo',fontsize=18)
 ax2.set_ylabel('$s,i,r$',fontsize=18)
 ax2.legend(fontsize=14)
+
+args_str = (r'$\beta$ = '  + f'{args[0]:.2E},  ' 
+          + r'$\tau_R$ = ' + f'{args[1]:.2E},  ' 
+          + r'$\tau_I$ = ' + f'{args[2]:.2E}')
+y0_str = (r'$s_0=1-r_0-i_0$, '
+         + r'$i_0$ = ' + f'{I0:.2E}, '
+         + r'$r_0$ = ' + f'{R0}')
+ax2.set_title(y0_str + '\n' + args_str)
+
+fig2.tight_layout()
 fig2.savefig('../figuras/ex01-b-sir.pdf')
-# ax2.show()

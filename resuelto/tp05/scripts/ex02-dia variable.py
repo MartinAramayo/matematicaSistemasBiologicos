@@ -134,7 +134,7 @@ aux_args = {'data': prediction,
             'columns': columns}
 prediction_df = pd.DataFrame(**aux_args)
 
-rename_dict = {'n_semanas':'\# de semanas',
+rename_dict = {'n_semanas':'\# de semanas despues de 2020-03-05 usadas en el ajuste',
                'prediction':'Predicción',
                'error': 'Error en días'}
 aux_args = {'x': rename_dict['n_semanas'], 
