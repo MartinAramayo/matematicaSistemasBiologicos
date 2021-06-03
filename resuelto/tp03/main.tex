@@ -16,7 +16,7 @@
 \usepackage[toc,page]{appendix}
 
 %% Sets page size and margins
-\usepackage[a4paper,top=1.5cm,bottom=2cm,left=1.7cm,right=1.7cm,marginparwidth=1.75cm]{geometry}
+\usepackage[a4paper,top=1.0cm,bottom=1.0cm,left=1.7cm,right=1.7cm,marginparwidth=1.75cm]{geometry}
 
 %% Sets caption text size(its bigger than text)
 \usepackage{caption}
@@ -39,7 +39,7 @@
 
 \newcommand*\sepline{%
   \begin{center}
-    \rule[1ex]{.5\textwidth}{.5pt}
+    \rule[1ex]{.5\textwidth}{.1pt}
   \end{center}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -118,9 +118,9 @@
   \label{fig:figuras/ex01-ultima_iteracion}
 \end{figure*}
 
-Se simula una población de individuos que no se reproducen y evolucionan en tiempo discreto. En cada paso de tiempo cada uno puede morir con probabilidad $d$. Si realizamos varias de estas simulaciones pueden obtenerse las distribuciones de probabilidad en la Fig. \ref{fig:figuras/ex01-evolucion_temporal}. La distribución final parece seguir la forma de una distribución binomial como puede verse en la Fig. \ref{fig:figuras/ex01-ultima_iteracion} donde se gráfica el ajuste binomial con la distribución obtenida a partir de la simulación.
+Se simula una población de individuos que no se reproducen y evolucionan en tiempo discreto. En cada paso de tiempo cada uno puede morir con probabilidad $d$. Si realizamos varias de estas simulaciones pueden obtenerse las distribuciones de probabilidad en la Fig. \ref{fig:figuras/ex01-evolucion_temporal}. La distribución final parece seguir la forma de una distribución binomial como puede verse en la Fig. \ref{fig:figuras/ex01-ultima_iteracion}.
 
-\section{Resolución Ej 2:}
+\section{Resolución Ej 2}
 % ███████╗██╗  ██╗    ██████╗  
 % ██╔════╝╚██╗██╔╝    ╚════██╗
 % █████╗   ╚███╔╝      █████╔╝
@@ -128,29 +128,23 @@ Se simula una población de individuos que no se reproducen y evolucionan en tie
 % ███████╗██╔╝ ██╗    ███████╗
 % ╚══════╝╚═╝  ╚═╝    ╚══════╝
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \sepline
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Se tiene un modelo de poblacion continua de dinamica discreta dado por:
+Se tiene un modelo de población continua de dinámica discreta dado por:
 \begin{equation}\label{ec:map01}
   x_{n+1} = a x_n + z_n
 \end{equation}
-donde $z_n$ es una variable estocastica con distribución gaussiana con media cero y desviacion estandar $\sigma$. Esta expresion recursiva no es tan rapida en algunos lenguajes de programacion. Pero puede reescribirse de manera que sea solamente una funcion de $n$ y de $z_n$.
-
-Veamos como se comporta a distintos valores de $n$:
-$$\left\vert
-\begin{aligned}
-  x_0 &=     x_0 \\
-  x_1 &= a^1 x_0 + a^0 z_0 \\
-  x_2 &= a^2 x_0 + a^1 z_0 + a^0 z_1 \\
-  x_3 &= a^3 x_0 + a^2 z_0 + a^1 z_1 + a^0 z_2\\
-      & \qquad \qquad \vdots \\
-  x_n &= a^n x_0 + a^{n-1} z_0 + \ldots + a^0 z_{n-1}\\
-\end{aligned}\right.
-$$
-
-Proponemos que puede reescribirse como:
+donde $z_n$ es una variable estocástica con distribución gaussiana con media cero y desviación estándar $\sigma$. Esta expresión recursiva no es tan rápida en algunos lenguajes de programación. Pero puede reescribirse, veamos como se comporta a distintos valores de $n$:
+\begin{equation}\label{ec:map01-evaluations}
+  x_0 = x_0 \Rightarrow
+  \left\vert\begin{aligned}
+    % x_0 &=     x_0 \\
+    x_1 &= a^1 x_0 + a^0 z_0 \\
+    x_2 &= a^2 x_0 + a^1 z_0 + a^0 z_1 \\
+    % x_3 &= a^3 x_0 + a^2 z_0 + a^1 z_1 + a^0 z_2\\
+        & \qquad \qquad \vdots \\
+    x_n &= a^n x_0 + a^{n-1} z_0 + \ldots + a^0 z_{n-1}\\
+  \end{aligned}\right. , 
+\end{equation}
+con esto proponemos que puede reescribirse como:
 \begin{equation}\label{ec:map01-r}
   x_n = a^{n} x_0 + \sum_{i=0}^{n-1} a^{n-(1+i)} \ z_i
 \end{equation}
@@ -158,15 +152,12 @@ Una rápida prueba inductiva de que esto es cierto:
 $$
 \left|
 \begin{aligned}
-  & \text{Un ejemplo de que se cumple:} \\
-  x_1 &= a^{1} x_0 + \sum_{i=0}^{1-1} a^{1-(1+i)} \ z_i = a^{1} x_0 +z_0\\
-  & \text{Asumo que se cumple para $n=k$:} \\
-  x_k &= a^{k} x_0 + \sum_{i=0}^{k-1} a^{k-(1+i)} z_i\\
-  & \text{Probar que esto implica que se cumple para $n=k+1$:} \\
-  x_{k+1} &= a x_k + z_k \\
-  x_{k+1} &= a (a^{k} x_0 + \sum_{i=0}^{k-1} a^{k-(1+i)} z_i) + z_k \\
+  & \text{Caso base: } x_1 = a^{1} x_0 + \sum_{i=0}^{1-1} a^{1-(1+i)} \ z_i = a^{1} x_0 +z_0\\
+  & \text{Asumo validez en $n=k$: } x_k = a^{k} x_0 + \sum_{i=0}^{k-1} a^{k-(1+i)} z_i\\
+  & \text{Probar que esto implica validez en $n=k+1$:} \\
+  x_{k+1} &= a x_k + z_k = a (a^{k} x_0 + \sum_{i=0}^{k-1} a^{k-(1+i)} z_i) + z_k \\
   x_{k+1} &= a^{k+1} x_0 + a\sum_{i=0}^{k-1} a^{k-(1+i)} z_i + z_k \\
-  x_{k+1} &= a^{k+1} x_0 + \sum_{i=0}^{k-1} \underbrace{a^{k+1-(1+i)} z_i}_{b_{k,i}} + z_k \\
+  % x_{k+1} &= a^{k+1} x_0 + \sum_{i=0}^{k-1} \underbrace{a^{k+1-(1+i)} z_i}_{b_{k,i}} + z_k \\
   x_{k+1} &= a^{k+1} x_0 + \sum_{i=0}^{k-1} \underbrace{a^{k+1-(1+i)} z_i}_{b_{k,i}} + \underbrace{a^0 z_k}_{b_{k,k}} \\
   x_{k+1} &= a^{k+1} x_0 + \sum_{i=0}^{k} a^{k+1-(1+i)} z_i \\
   & \text{$\therefore$ se cumple para $n=k+1$}
@@ -174,26 +165,33 @@ $$
 \right.
 $$
 
-La expresión de la Ec. \ref{ec:map01-r} se utilizo para realizar multiples simulaciones en la Fig. \ref{fig:ex02-mapeo}.
+\begin{figure*}[ht!]
+  \centering
+  \begin{subfigure}[b]{0.49\linewidth}
+      \centering
+      \includegraphics[width = 0.999\textwidth]{figuras/ex02-mapeo.pdf}
+      \caption{Evolución del mapeo para distintos valores medios de la generación de números aleatorios, para $\Nsteps$ pasos en $t$.}
+      \label{fig:figuras/ex02-mapeo}
+  \end{subfigure}
+  % \caption{}
+  %\label{fig:figuras/ex02-mapeo}
+% \end{figure*}
+% \begin{figure*}[ht!]
+%   \centering
+  \begin{subfigure}[b]{0.49\linewidth}
+      \centering
+      \includegraphics[width = 0.999\textwidth]{figuras/ex02-histograma.pdf}
+      \caption{$P(x,t)$ densidad de probabilidad (color) de $x$ y $t$ calculada a partir de $\nSimulacionesB$ evaluaciones de $\Nsteps$ pasos en $t$.}
+      \label{fig:figuras/ex02-histograma}
+  \end{subfigure}
+  % \caption{}
+  %\label{fig:figuras/ex02-histograma}
+\end{figure*}
 
-\begin{figure}  
-  \centering  
-  \includegraphics[width=0.5\textwidth]{figuras/ex02-mapeo.pdf}
-  \caption{Evolución del mapeo para distintos valores medios de la generación de números aleatorios, para $\Nsteps$ pasos en $t$.}
-  \label{fig:ultima_iteracion}
-\end{figure}
-
-\begin{figure}  
-  \centering  
-  \includegraphics[width=0.5\textwidth]{figuras/ex02-histograma.pdf}
-  \caption{$P(x,t)$ densidad de probabilidad (color) de $x$ y $t$ calculada a partir de $\nSimulacionesB$ evaluaciones de $\Nsteps$ pasos en $t$.}
-  \label{fig:ultima_iteracion}
-\end{figure}
-
+La expresión de la Ec. \ref{ec:map01-r} se utilizo para realizar multiples simulaciones en la Fig. \ref{fig:figuras/ex02-mapeo}. Para un numero mayor de simulaciones puede obtenerse la distribucion $P(x,t)$ del sistema, el resultado se puede ver en la Fig. \ref{fig:figuras/ex02-histograma}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \sepline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 Por otro lado, un segundo modelo de población continua de dinámica discreta dado por:
 \begin{equation}\label{ec:map02}
   x_{n+1} = (a + z_n) x_n
@@ -201,52 +199,63 @@ Por otro lado, un segundo modelo de población continua de dinámica discreta da
 donde $z_n$ es una variable estocastica con distribución gaussiana con media cero y desviacion estandar $\sigma$. Nuevamente, puede reescribirse de forma no recursiva.
 
 Veamos como se comporta a distintos valores de $n$:
-$$\left\vert
-\begin{aligned}
-  x_0 &=     x_0 \\
-  x_1 &= x_0 (a + z_0) \\
-  x_2 &= x_0 (a + z_0) (a + z_1)\\
-      & \qquad \qquad \vdots \\
-  x_n &= x_0 (a + z_0) (a + z_1) ... (a + z_{n-1})\\
-\end{aligned}\right.
-$$
+\begin{equation}
+  x_0 = x_0 \Rightarrow
+  \left\vert\begin{aligned}
+    % x_0 &=     x_0 \\
+    x_1 &= x_0 (a + z_0) \\
+    x_2 &= x_0 (a + z_0) (a + z_1)\\
+        & \qquad \qquad \vdots \\
+    x_n &= x_0 (a + z_0) (a + z_1) ... (a + z_{n-1})\\
+  \end{aligned}\right.
+\end{equation}
 
 Puede reescribirse como:
 \begin{equation}\label{ec:map02-r}
   x_n = x_0 \prod_{i=0}^{n-1} (a + z_i)
 \end{equation}
 Una rápida prueba inductiva de que esto es cierto:
-$$
-\left|
-\begin{aligned}
-  & \text{Un ejemplo de que se cumple:} \\
-  x_1 &= x_0 \prod_{i=0}^{1-1} (a + z_i) = x_0 (a + z_0)\\
-  & \text{Asumo que se cumple para $n=k$:} \\
-  x_k &= x_0 \prod_{i=0}^{k-1} (a + z_i)\\
-  & \text{Probar que esto implica que se cumple para $n=k+1$:} \\
-  x_{k+1} &= (a + z_k) x_k \\
-  x_{k+1} &= (a + z_k) x_0 \prod_{i=0}^{k-1} (a + z_i) \\
-  x_{k+1} &= (a + z_k) x_0 \prod_{i=0}^{k-1} (a + z_i) \\
-  x_{k+1} &= x_0 \prod_{i=0}^{k} (a + z_i) \\
-  & \text{$\therefore$ se cumple para $n=k+1$}
-\end{aligned}
-\right.
-$$
 
+\begin{equation}
+  \left|
+  \begin{aligned}
+    & \text{Un ejemplo de que se cumple:} \\
+    x_1 &= x_0 \prod_{i=0}^{1-1} (a + z_i) = x_0 (a + z_0)\\
+    & \text{Asumo que se cumple para $n=k$:} \\
+    x_k &= x_0 \prod_{i=0}^{k-1} (a + z_i)\\
+    & \text{Probar que esto implica que se cumple para $n=k+1$:} \\
+    x_{k+1} &= (a + z_k) x_k = (a + z_k) x_0 \prod_{i=0}^{k-1} (a + z_i) \\
+    x_{k+1} &= (a + z_k) x_0 \prod_{i=0}^{k-1} (a + z_i) \\
+    x_{k+1} &= x_0 \prod_{i=0}^{k} (a + z_i) \\
+    & \text{$\therefore$ se cumple para $n=k+1$}
+  \end{aligned}
+  \right.  
+\end{equation}
 
-\begin{figure}[!ht]  
-  \centering  
-  \includegraphics[width=0.5\textwidth]{figuras/ex02-mapeo-02.pdf}
-  \caption{$P(x,t)$ densidad de probabilidad (color) de $x$ y $t$ calculada a partir de $\nSimulacionesB$ evaluaciones de $\Nsteps$ pasos en $t$.}
-  \label{fig:ex02-mapeo}
-\end{figure}
+\begin{figure*}[ht!]
+  \centering
+  \begin{subfigure}[b]{0.49\linewidth}
+    \centering
+    \includegraphics[width = 0.999\textwidth]{figuras/ex02-mapeo-02.pdf}
+    \caption{Evolución del mapeo para distintos valores medios de la generación de números aleatorios, para $\Nsteps$ pasos en $t$.}
+    \label{fig:figuras/ex02-mapeo-02}
+  \end{subfigure}
+  % \caption{}
+  %\label{fig:figuras/ex02-mapeo-02}
+  % \end{figure*}
+  % \begin{figure*}[ht!]
+    %   \centering
+  \begin{subfigure}[b]{0.49\linewidth}
+    \centering
+    \includegraphics[width = 0.999\textwidth]{figuras/ex02-histograma-02.pdf}
+    \caption{$P(x,t)$ densidad de probabilidad (color) de $x$ y $t$ calculada a partir de $\nSimulacionesB$ evaluaciones de $\Nsteps$ pasos en $t$.}
+    \label{fig:figuras/ex02-histograma-02}
+  \end{subfigure}  
+  % \caption{}
+  % \label{fig:figuras/ex02-histograma-02}
+\end{figure*}
 
-\begin{figure}[!ht]  
-  \centering  
-  \includegraphics[width=0.5\textwidth]{figuras/ex02-histograma-02.pdf}
-  \caption{$P(x,t)$ densidad de probabilidad (color) de $x$ y $t$ calculada a partir de $\nSimulacionesB$ evaluaciones de $\Nsteps$ pasos en $t$.}
-  \label{fig:ex02-histograma}
-\end{figure}
+La expresión de la Ec. \ref{ec:map02-r} se utilizo para realizar múltiples simulaciones en la Fig. \ref{fig:figuras/ex02-mapeo-02}. Para un numero mayor de simulaciones puede obtenerse la distribución $P(x,t)$ del sistema, el resultado se puede ver en la Fig. \ref{fig:figuras/ex02-histograma-02}.
 
 % ███████╗██╗  ██╗    ██████╗     
 % ██╔════╝╚██╗██╔╝    ╚════██╗    
@@ -255,52 +264,6 @@ $$
 % ███████╗██╔╝ ██╗    ██████╔╝    
 % ╚══════╝╚═╝  ╚═╝    ╚═════╝     
 
-
-
-% \begin{figure*}[ht!]
-%   \centering
-%   \begin{subfigure}[b]{0.33\linewidth}
-%       \centering
-%       \includegraphics[width = 0.9\textwidth]{figuras/ex02-histograma-02.pdf}
-%       \caption{}
-%       \label{fig:figuras/ex02-histograma-02}
-%   \end{subfigure}\quad
-%   \caption{}
-%   %\label{fig:figuras/ex02-histograma-02}
-% \end{figure*}
-% \begin{figure*}[ht!]
-%   \centering
-%   \begin{subfigure}[b]{0.33\linewidth}
-%       \centering
-%       \includegraphics[width = 0.9\textwidth]{figuras/ex02-histograma.pdf}
-%       \caption{}
-%       \label{fig:figuras/ex02-histograma}
-%   \end{subfigure}\quad
-%   \caption{}
-%   %\label{fig:figuras/ex02-histograma}
-% \end{figure*}
-% \begin{figure*}[ht!]
-%   \centering
-%   \begin{subfigure}[b]{0.33\linewidth}
-%       \centering
-%       \includegraphics[width = 0.9\textwidth]{figuras/ex02-mapeo-02.pdf}
-%       \caption{}
-%       \label{fig:figuras/ex02-mapeo-02}
-%   \end{subfigure}\quad
-%   \caption{}
-%   %\label{fig:figuras/ex02-mapeo-02}
-% \end{figure*}
-% \begin{figure*}[ht!]
-%   \centering
-%   \begin{subfigure}[b]{0.33\linewidth}
-%       \centering
-%       \includegraphics[width = 0.9\textwidth]{figuras/ex02-mapeo.pdf}
-%       \caption{}
-%       \label{fig:figuras/ex02-mapeo}
-%   \end{subfigure}\quad
-%   \caption{}
-%   %\label{fig:figuras/ex02-mapeo}
-% \end{figure*}
 % \begin{figure*}[ht!]
 %   \centering
 %   \begin{subfigure}[b]{0.33\linewidth}
@@ -414,6 +377,6 @@ $$
 % %**********
 
 
-% \section{Resolución Ej 3:}
+\section{Resolución Ej 3}
 
 \end{document}
