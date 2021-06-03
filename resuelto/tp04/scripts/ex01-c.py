@@ -5,19 +5,17 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 from numpy import linspace
 
-def g_rep(x,a,b,c,h):
-    y = (a / (b + c * (x**h)) )
-    return y
+def g_rep(x, a, b, c, h):
+    return a / ( b + c * (x**h) ) 
 
 def model_goodwin(y, t, am, ae, ap, bm, be, bp, a, b, c, h):
-    m,e,p = y
+    m, e, p = y
     dmdt = am * g_rep(p,a,b,c,h) - bm * m
     dedt = ae * m - be * e
     dpdt = ap * e - bp * p
     return dmdt, dedt, dpdt
-
 #######################################################
-fig = plt.figure(figsize=(6,6))
+fig = plt.figure(figsize=(4*1.4, 3*1.4))
 gs = fig.add_gridspec(3, 1, hspace=0, wspace=0)
 ax = gs.subplots(sharex='col')
 

@@ -35,10 +35,9 @@ def nulclinas_switchgenetico(y, am, ap, bm, bp, a, b, c, h):
 
 aDir = '../figuras/'
 ######################################## nuclinas y campo vectorial
-b_list = np.linspace(1, 15, 8)
+b_list = np.asarray([1.9, 2.6, 2.8, 3, 5, 6, 7, 8])
 
 subplts = [plt.subplots() for _ in range(len(b_list))]
-
 
 ## colormap
 start, stop = 0.0, 1
@@ -67,7 +66,7 @@ for indx, b_val in np.ndenumerate(b_list):
     ax.plot(yp1, p2, color=colors[indx], label=f'$b=${b_val:4.2f}')
     ax.plot(p1, yp2, color=colors[indx])
     
-    aux_args = {'start': 0.25, 'stop': 1.75, 'num': 20}
+    aux_args = {'start': 0, 'stop': 2.8, 'num': 25}
     y1, y2 = np.linspace(**aux_args), np.linspace(**aux_args)
     Y1, Y2 = np.meshgrid(y1, y2)
     u, v = np.zeros(Y1.shape), np.zeros(Y2.shape)
@@ -82,13 +81,14 @@ for indx, b_val in np.ndenumerate(b_list):
             v[indx_i, indx_j] = yprime[1]
       
     #grafico el retrato de fase
-    Q = ax.quiver(Y1, Y2, u, v, color=colors[indx])
+    Q = ax.quiver(Y1, Y2, u, v, 
+                  color=colors[indx], 
+                  scale=20, width=0.01)
 
     ax.set_xlabel('$p_{1}$')
     ax.set_ylabel('$p_{2}$')
 
-    new_lim = 0, 2
-    new_lim = 0.25, 1.75
+    new_lim = 0, 2.8
     ax.set_xlim(new_lim)
     ax.set_ylim(new_lim)
 

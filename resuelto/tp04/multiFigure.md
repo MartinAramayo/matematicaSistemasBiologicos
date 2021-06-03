@@ -1,0 +1,255 @@
+%**********
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex01-concentracion-h-osc-kill.pdf}
+        \caption{}
+        \label{fig:figuras/ex01-concentracion-h-osc-kill}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex01-concentracion-h-osc-kill}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex01-concentracion-h-osc.pdf}
+        \caption{}
+        \label{fig:figuras/ex01-concentracion-h-osc}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex01-concentracion-h-osc}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex01-concentracion-h.pdf}
+        \caption{}
+        \label{fig:figuras/ex01-concentracion-h}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex01-concentracion-h}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa1-2.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa1-2}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa1-2}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa1.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa1}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa1}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa2-0.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa2-0}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa2-0}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa2-1.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa2-1}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa2-1}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa2-2.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa2-2}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa2-2}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa2-3.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa2-3}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa2-3}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa2-4.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa2-4}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa2-4}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa2-5.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa2-5}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa2-5}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa2-6.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa2-6}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa2-6}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa2-7.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa2-7}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa2-7}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa2.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa2}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa2}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa3-0.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa3-0}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa3-0}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa3-1.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa3-1}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa3-1}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa3-2.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa3-2}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa3-2}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa3-3.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa3-3}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa3-3}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa3-4.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa3-4}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa3-4}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa3-5.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa3-5}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa3-5}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa3-6.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa3-6}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa3-6}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa3-7.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa3-7}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa3-7}
+\end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.33\linewidth}
+        \centering
+        \includegraphics[width = 0.9\textwidth]{figuras/ex02-cosa3.pdf}
+        \caption{}
+        \label{fig:figuras/ex02-cosa3}
+    \end{subfigure}\quad
+    \caption{}
+    %\label{fig:figuras/ex02-cosa3}
+\end{figure*}
+%**********

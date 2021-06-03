@@ -9,15 +9,21 @@ def g_rep(x, a, b, c, h):
     return a / ( b + c * (x**h) ) 
 
 def model_goodwin(y, t, am, ae, ap, bm, be, bp, a, b, c, h):
-    m,e,p = y
+    m, e, p = y
     dmdt = am * g_rep(p,a,b,c,h) - bm * m
     dedt = ae * m - be * e
     dpdt = ap * e - bp * p
     return dmdt, dedt, dpdt
-
-def plot_run(time, parameters, parameter_h_array ,savefile):
+#######################################################
+def plot_run(time, 
+             parameters, 
+             parameter_h_array, 
+             savefile, 
+             y0,
+             title_size=9,
+             figsize=None):
     
-    fig = plt.figure(figsize=(6,6))
+    fig = plt.figure(figsize=figsize, tight_layout=True)
     gs = fig.add_gridspec(3, 1, hspace=0, wspace=0)
     ax = gs.subplots(sharex='col')
     
@@ -50,8 +56,20 @@ def plot_run(time, parameters, parameter_h_array ,savefile):
     ax[1].tick_params(bottom=False)
 
     for i in range(len(ax)): ax[i].legend(ncol=4, fontsize=9)
+    # for i in range(len(ax)): ax[i].legend(ncol=4)
 
-    fig.tight_layout()
+    fig.suptitle(
+                 r'$m_0 =$ '
+                 + f'{y0[0]}, \quad'
+                 + r'$e_0 = p_0 =$ '
+                 + f'{y0[1]}, \quad'
+                 + r'$\alpha_m = \alpha_e = \alpha_p =$ '
+                 + f'{parameters[0]}, \n'
+                 + r'$\beta_m = \beta_e = \beta_p =$ '
+                 + f'{parameters[3]}, \quad'
+                 + r'$a = b = c =$ '
+                 + f'{parameters[6]}', 
+                 fontsize=title_size)
     fig.savefig(savefile)
 
 aDir = "../figuras/" 
@@ -69,25 +87,48 @@ params = (am, ae, ap, bm, be, bp, a, b, c)
 # arreglo de parametros h
 all_h = np.linspace(1, 40, 4)
 
-plot_run(t, params, all_h, aDir + 'ex01-concentracion-h.pdf')
+aux_args = {'time': t, 
+            'parameters': params, 
+            'parameter_h_array': all_h, 
+            'savefile': aDir + 'ex01-concentracion-h.pdf', 
+            'y0': y0,
+            'title_size': 9,
+            'figsize': (4*1.345, 3*1.345)}
+plot_run(**aux_args)
 #############################################################
 ## Oscilaciones
 
+y0 = 0.1, 0, 0
 bm = be = bp = 0.5
 params = (am, ae, ap, bm, be, bp, a, b, c)
 
 all_h = np.linspace(10, 10, 1)
 
-plot_run(t, params, all_h, aDir + 'ex01-concentracion-h-osc.pdf')
+aux_args = {'time': t, 
+            'parameters': params, 
+            'parameter_h_array': all_h, 
+            'savefile': aDir + 'ex01-concentracion-h-osc.pdf', 
+            'y0': y0,
+            'title_size': 11,
+            'figsize': (4*1.25, 3*1.25)}
+plot_run(**aux_args)
 #############################################################
 ## Matar oscilaciones
 
+y0 = 0.1, 0, 0
 bm = be = bp = 0.8
 params = (am, ae, ap, bm, be, bp, a, b, c)
 
 all_h = np.linspace(10, 10, 1)
 
-plot_run(t, params, all_h, aDir + 'ex01-concentracion-h-osc-kill.pdf')
+aux_args = {'time': t, 
+            'parameters': params, 
+            'parameter_h_array': all_h, 
+            'savefile': aDir + 'ex01-concentracion-h-osc-kill.pdf', 
+            'y0': y0,
+            'title_size': 11,
+            'figsize': (4*1.25, 3*1.25)}
+plot_run(**aux_args)
 ####################################################################
 # x = np.linspace(0,10,100)
 # vec_h = [2,4,6,8,10]
