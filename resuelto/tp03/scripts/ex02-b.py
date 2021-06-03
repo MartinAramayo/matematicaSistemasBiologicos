@@ -50,7 +50,7 @@ for t in range(N_simulaciones:=5000):
 
 map_nonoise = [pot_mapeo(a, x0, n) for n in range(1, N_steps)]
 map_nonoise.insert(0,x0)
-####################################################################
+#########################################
 # colormap
 num_iterations = N_simulaciones
 cm_subsection = np.linspace(0, 1, num_iterations) 
