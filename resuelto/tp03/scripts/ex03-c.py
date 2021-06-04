@@ -129,14 +129,6 @@ for step in iterador_plot:
     ax.plot(aux_df['tiempo'],
             aux_df['N'],
             **aux_args)
-    # ax.plot(aux_df, **aux_args)
-
-# aux_args = {'label': "Sin ruido",
-#             'markersize': 4.0,
-#             'mew': 0.2,
-#             'mec': 'k',
-#             'marker':'o'}
-# ax.plot(map_nonoise, **aux_args)
 
 ax.set_yscale('symlog', base=2)
 ax.autoscale()  # auto-scale
@@ -144,9 +136,6 @@ ax.legend(ncol=2)
 
 n_steps = int(ax.get_xlim()[1])
 
-# for K in np.linspace(1, 2**10, num=10):
-    # plot_map(ax, N0, 2, K, n_steps, color=None)
-    
 for r in np.linspace(1.1, 10, num=10):
     plot_map(ax, N0, r, 2**10, n_steps, color=None)
 

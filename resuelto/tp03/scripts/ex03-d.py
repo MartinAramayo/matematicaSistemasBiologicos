@@ -111,27 +111,6 @@ for n_simulacion in range(N_simulaciones:=10):
     simulaciones_df = simulaciones_df.append(aux_df)
 ##################################################### HISTOGRAM
 fig, ax = plt.subplots()
-  
-# xbins = np.linspace(0, 
-#                     int(simulaciones_df['tiempo'].max()), 
-#                     int(simulaciones_df['tiempo'].max()) + 1 
-#                     )
-# ybins = 2**np.linspace(0, 
-#                        int(np.log2(simulaciones_df['N'].max())), 
-#                        int(np.log2(simulaciones_df['N'].max())) + 1
-#                        )
-
-# from matplotlib import colors
-
-# x = simulaciones_df['tiempo'].values
-# y = simulaciones_df['N'].values
-# im, x_edges, y_edges, mesh = ax.hist2d(x, y, 
-#                bins=(xbins, ybins), 
-#                norm=colors.LogNorm(), 
-#                density=True)
-
-# plt.colorbar(mesh)
-
 
 sns.histplot(
     simulaciones_df, 
@@ -164,22 +143,8 @@ num_plots = 10
 iterador_plot = range(0, num_iterations, num_iterations//num_plots)
 for step in iterador_plot:    
     aux_df = simulaciones_df.loc[(step,)]
-    # aux_args = {
-    #     'color': colors[step],
-    #     # 'label': f'Media de $z$ = {z.mean():0.3f}',
-    #     'mew': 0.2,
-    #     'mec': 'k',
-    #     # 'legend': False,
-    #     'markersize': 4.0,
-    #     'marker':'o'}
     aux_args = {
         'color': colors[step],
-        # 'label': f'Media de $z$ = {z.mean():0.3f}',
-        # 'mew': 0.2,
-        # 'mec': 'k',
-        # 'legend': False,
-        # 'markersize': 4.0,
-        # 'marker':'o'
         }
     ax_map.plot(aux_df['tiempo'],
             aux_df['N'],

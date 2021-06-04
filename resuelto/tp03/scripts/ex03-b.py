@@ -26,12 +26,6 @@ def plot_household(fig, ax, filename):
     fig.tight_layout()
     fig.savefig(filename)
 #%%
-def sum_mapeo(array, cte, paso):
-    return sum(cte**( paso - (i+1)) * array[i] for i in range(paso))
-
-def pot_mapeo(cte, x0, paso):
-    return cte**(paso - 1) * x0
-
 # throw a p weighted coin
 def random_p_binary_choice(p):
     return np.random.choice([0,1], size=1, p=(1-p, p))[0]
@@ -51,10 +45,14 @@ def tuple_generar(t, N, b, d, N_steps):
         counter -= 1
         yield (t, N)
         
-b_nacer = 0.1
-d_morir = 0.4
-N0 = 1
-N_steps = 50
+args = {'b_nacer': 0.1,
+        'd_morir': 0.1,
+        # 'd_morir': 0.09,
+        # 'd_morir': 0.001,
+        'N0': 100,
+        'N_steps': 1000,
+        'N_simulaciones': 50,
+        'savefile': '../figuras/ex03-b-histograma-01.pdf'}
 #####################################################
 def simulation_histogram(data, n_simulacion, names, columns):
     tuple_index = list(zip(
@@ -70,31 +68,29 @@ def simulation_histogram(data, n_simulacion, names, columns):
 names = ["n_simulacion", "indice"]
 columns = ["tiempo", "N"]
 
+aux = {'b': args['b_nacer'], 'd': args['d_morir'], 'N_steps': args['N_steps']}
 simulaciones_df = pd.DataFrame()
-for n_simulacion in range(N_simulaciones:=20):
-    aux = {'b': b_nacer, 'd': d_morir, 'N_steps': N_steps}
-    generador = tuple_generar(0, N0,**aux)
+for n_simulacion in range(args['N_simulaciones']):
+    generador = tuple_generar(0, args['N0'],**aux)
     
     data = list(generador)
-    data.insert(0, (0, N0)) # insert initial condition
+    data.insert(0, (0, args['N0'])) # insert initial condition
       
     aux_df = simulation_histogram(data, n_simulacion, names, columns)
     simulaciones_df = simulaciones_df.append(aux_df)
 
 fig, ax = plt.subplots()
     
-sns.histplot(
-    simulaciones_df, 
-    x='tiempo',
-    y='N',
-    stat='density',
-    discrete=(False, True), 
-    cbar=True, 
-    ax=ax
-)
+sns.histplot(simulaciones_df, 
+             x='tiempo',
+             y='N',
+             stat='density',
+             discrete=(False, True), 
+             cbar=True, 
+             ax=ax)
 
 fig.tight_layout()
 ax.set_xlabel('$t$')
 ax.set_ylabel('$x(t)$')
-ax.set_yscale('symlog', base=2)
-fig.savefig('../figuras/ex03-histograma-(BmenorD)).pdf')
+# ax.set_yscale('symlog', base=10)
+fig.savefig(args['savefile'])

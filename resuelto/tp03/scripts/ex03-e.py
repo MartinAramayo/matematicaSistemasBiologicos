@@ -121,22 +121,8 @@ num_plots = 10
 iterador_plot = range(0, num_iterations, num_iterations//num_plots)
 for step in iterador_plot:    
     aux_df = simulaciones_df.loc[(step,)]
-    # aux_args = {
-    #     'color': colors[step],
-    #     # 'label': f'Media de $z$ = {z.mean():0.3f}',
-    #     'mew': 0.2,
-    #     'mec': 'k',
-    #     # 'legend': False,
-    #     'markersize': 4.0,
-    #     'marker':'o'}
     aux_args = {
-        'color': colors[step],
-        # 'label': f'Media de $z$ = {z.mean():0.3f}',
-        # 'mew': 0.2,
-        # 'mec': 'k',
-        # 'legend': False,
-        # 'markersize': 4.0,
-        # 'marker':'o'
+        'color': colors[step]
         }
     ax_map.plot(aux_df['tiempo'],
             aux_df['N'],
@@ -165,15 +151,10 @@ sns.histplot(
     cmap='flare',
     discrete=(False, True), 
     cbar=True, 
-    # bins=(xbins, ybins),
-    # symlog_scale=(True, False),
-    # log_scale=(False, True),
     ax=ax
 )
 
 fig.tight_layout()
 ax.set_xlabel('$t$')
 ax.set_ylabel('$x(t)$')
-# ax.set_yscale('symlog')
-# ax.autoscale()  # auto-scale
 fig.savefig('../figuras/ex03-e-Stationary.pdf')

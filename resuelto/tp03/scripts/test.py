@@ -77,8 +77,8 @@ def tuple_generar(t, N, b, d, N_steps):
         
 fig, ax = plt.subplots()
 b_nacer = 0.1
-d_morir = 0.001
-N0 = 10
+d_morir = 0.1
+N0 = 100
 
 s = 2 * b_nacer 
 r = 2 * b_nacer - d_morir
@@ -98,8 +98,8 @@ def plot_map(ax, n0, r, s, n_steps, color=None):
 n_steps = 100
 
 r_floor = r
-for N0 in np.linspace(50, 500, num=10):
-# for r in np.linspace(r_floor*(1.1), r_floor*(0.9), num=10):
+# for N0 in np.linspace(50, 500, num=10):
+for r in np.linspace(r_floor*(1.1), r_floor*(0.9), num=10):
     plot_map(ax, N0, r, s, n_steps, color=None)
 
 plot_household(fig, ax, '../figuras/test.pdf')
