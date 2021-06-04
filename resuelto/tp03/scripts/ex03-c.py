@@ -1,3 +1,4 @@
+from scipy.integrate import solve_ivp
 import numpy as np
 from copy import deepcopy
 import matplotlib.pyplot as plt
@@ -5,19 +6,6 @@ from matplotlib import cm
 import seaborn as sns 
 import pylab
 import pandas as pd
-"""
-Benchmark (hyperfine):
-Benchmark #1: python ex03-a.py
-  Time (mean ± σ):      3.980 s ±  0.451 s    [User: 3.124 s, System: 0.797 s]
-  Range (min … max):    3.562 s …  4.719 s    10 runs
-  
-Hardware (neofetch):
-Kernel: 5.9.16-1-MANJARO
-CPU: AMD Ryzen 3 3250U with Radeon Graphics (4) @ 2.600GHz
-GPU: AMD ATI 04:00.0 Picasso
-Memory: 5434MiB / 13971MiB
-"""
-# plt.ion()
 #%%
 def plot_household(fig, ax, filename):
     ax.legend()
@@ -26,117 +14,144 @@ def plot_household(fig, ax, filename):
     fig.tight_layout()
     fig.savefig(filename)
 #%%
-def bh_f(n, r, K):
-    """Funcion de Bevertoh-Holt"""
-    return r * n / (1 + n * ( (r - 1) / K) )
+def aPhi(t, b, d, phi_0):
+    s = 2 * b
+    r = s - d
+    c = s - r / phi_0
+    return r / (s - c * np.exp( -r * t))
 
-class mapBH:
-    def __init__(self,n0,r,K):
-        self.current = n0
-        self.r = r
-        self.K = K
-    
-    def __iter__(self):
-        return self
+def F_1(t, b, d, phi_0):
+    return - (d - 2 * b * (1 - 2 * aPhi(t, b, d, phi_0) ) )
 
-    def __next__(self):
-        n = self.current
-        self.current = bh_f(n, self.r, self.K)
-        return n
+def F_2(t, b, d, phi_0):
+    phi_value = aPhi(t, b, d, phi_0) 
+    return phi_value * (d + 2 * b * (1 - phi_value))
 
-def bh_map(n0, r, K, n_steps=20):
-    """Mapeo de Beverton-Holt."""
-    t = np.arange(n_steps)
-    
-    map = mapBH(n0, r, K)
-    map = iter(map)
-    n_t = [next(map) for _ in range(n_steps)]
-    return t, n_t
+def fokker_planck(t, varianza, b , d, phi_0):
+    args = t, b, d, phi_0
+    return 2 * F_1(*args) * varianza + F_2(*args)
+#%%       
+def random_gillespie(N, a_0, vacio, b):
+    return (np.random.uniform(size=1)[0] * a_0 < vacio * N * b)
 
-def plot_map(ax, n0, r, K, n_steps, color=None):
-    label = f'$K$ = {K:3.2f}' 
-    t, n_t = bh_map(n0, r, K, n_steps)
-    ax.scatter(t, n_t, label=label, color=color, s=20)
-    return t, n_t
-#%%
-# throw a p weighted coin
-def random_p_binary_choice(p):
-    return np.random.choice([0,1], size=1, p=(1-p, p))[0]
+def simular(N, a_0, vacio, b):
+    return N+1 if random_gillespie(N, a_0, vacio, b) else N-1
 
-def simular(N, b, d):
-    return N+1 if random_p_binary_choice(b/(b+d)) else N-1
+def tiempo(t, a_0):
+    w = np.random.uniform(size=1)[0]
+    tau = -np.log(w) / a_0
+    return t + tau
 
-def tiempo(t, b, d):
-    aLambda = (b + d)
-    return t + np.random.exponential(scale=1/aLambda, size=1)[0]
-
-def tuple_generar(t, N, b, d, N_steps):
+def tuple_generar(t, b, d, phi_0, omega, N_steps):
     counter = N_steps
-    while N>0 and counter > 0 and N<1e4:
-        t = tiempo(t, b, d)
-        N = simular(N, b, d)
+    
+    # auxiliar variables
+    b = 2 * b / omega
+    N = int(phi_0 * omega + 0.5)
+    vacio = omega - N
+    a_0 = N * (vacio * b + d)
+    yield (t, N)  # first iteration
+    
+    while N>0 and counter > 0 and N<1e4 or a_0==0:
+        
+        vacio = omega - N
+        a_0 = N * (vacio * b + d)
+        
+        t = tiempo(t, a_0)
+        N = simular(N, a_0, vacio, b)
+        
         counter -= 1
         yield (t, N)
         
-b_nacer = 0.04
-d_morir = 0.01
-N0 = 1
-N_steps = 200
+N_simulaciones = 1000
+
+aux = {'b': 0.1,
+       'd': 0.3,
+       'phi_0': 0.2,
+       'omega': 100,
+       'N_steps': 1000}
 #####################################################
 def simulation_histogram(data, n_simulacion, names, columns):
-    tuple_index = list(zip(
-                           [n_simulacion] * len(data), 
-                           tuple(range(len(data)))
-                           )
-                       )
+    size = len(data)
+    iterator = zip([n_simulacion] * size, [*range(size)])
+    tuple_index = [*iterator]
     index = pd.MultiIndex.from_tuples(tuple_index, names=names)
     aux_df = pd.DataFrame(data, columns=columns, index=index)
     return aux_df
 #####################################################
+
 names = ["n_simulacion", "indice"]
 columns = ["tiempo", "N"]
 
 simulaciones_df = pd.DataFrame()
-for n_simulacion in range(N_simulaciones:=10):
-    aux = {'b': b_nacer, 'd': d_morir, 'N_steps': N_steps}
-    generador = tuple_generar(0, N0,**aux)
+for n_simulacion in range(N_simulaciones):
+    iterador = tuple_generar(0,**aux)
     
-    data = list(generador)
-    data.insert(0, (0, N0)) # insert initial condition
+    data = list(iterador)
       
     aux_df = simulation_histogram(data, n_simulacion, names, columns)
     simulaciones_df = simulaciones_df.append(aux_df)
-#####################################################
-# colormap
-num_iterations = N_simulaciones
-cm_subsection = np.linspace(0, 1, num_iterations) 
-colors = tuple( cm.gnuplot(x) for x in cm_subsection )    
+
 #########################################
 fig, ax = plt.subplots()
-num_plots = 10
-iterador_plot = range(0, num_iterations, num_iterations//num_plots)
-for step in iterador_plot:    
-    aux_df = simulaciones_df.loc[(step,)]
-    aux_args = {
-        'color': colors[step],
-        # 'label': f'Media de $z$ = {z.mean():0.3f}',
-        'mew': 0.2,
-        'mec': 'k',
-        # 'ax': ax,
-        # 'legend': False,
-        'markersize': 4.0,
-        'marker':'o'}
-    ax.plot(aux_df['tiempo'],
-            aux_df['N'],
-            **aux_args)
+    
+aux_args = {'data': simulaciones_df, 
+            'x': 'tiempo',
+            'y': 'N',
+            'stat': 'density',
+            'discrete': (False, True), 
+            'cbar': True, 
+            'ax': ax}    
+sns.histplot(**aux_args)
 
-ax.set_yscale('symlog', base=2)
-ax.autoscale()  # auto-scale
-ax.legend(ncol=2)
+fig.tight_layout()
+ax.set_xlabel('$t$')
+ax.set_ylabel('$x(t)$')
 
-n_steps = int(ax.get_xlim()[1])
+######################################### plot theorical thing
+*args, omega, N_steps = aux.values()
+t_max = simulaciones_df.tiempo.max() * 0.85
+t = np.linspace(0, t_max, N_steps)
 
-for r in np.linspace(1.1, 10, num=10):
-    plot_map(ax, N0, r, 2**10, n_steps, color=None)
+simulation = solve_ivp(fun=fokker_planck,
+                       t_span=[0, t_max],
+                       y0=[0],
+                       args=args,
+                       method="RK45",
+                       dense_output=True)
+varianza = simulation.sol(t)[0]
+macro = omega * aPhi(t, *args)
+fluct = np.sqrt(omega * varianza)
+asint = np.full_like(fluct, fluct[-1])
 
-plot_household(fig, ax, '../figuras/ex03-c-mapeo.pdf')
+aux_str = r"Ley macro $\Omega \phi (t)$"
+ax.plot(t, macro, c="k", label=aux_str)
+
+aux_str = r"Fluctuaciones $\sqrt{\Omega \langle \xi^2 \rangle_t}$"
+fluctuaciones = np.transpose([macro - fluct, macro + fluct])
+ax.plot(t, fluctuaciones,
+        c="k", ls=":", label=aux_str)
+
+# aux_str = r"Fluct. Asint. $\sqrt{\Omega \langle \xi^2 \rangle_{t \to \infty}}$"
+# ax.plot(t, np.transpose([macro - asint, macro + asint]),
+#         c="k", 
+#         ls="dashed", 
+#         alpha=0.7, 
+#         label=aux_str
+# )
+
+handles, labels = ax.get_legend_handles_labels()
+labels, ids = np.unique(labels, return_index=True)
+handles = [handles[i] for i in ids]
+ax.legend(handles[::-1], labels[::-1], loc='best')
+ax.set_xlabel(r"Tiempo $t$")
+ax.set_ylabel("Población")
+ax.set_title(rf"{N_steps} simulaciones, $r>0$")
+b, d, phi_0 = args
+ax.set_title(rf"{N_steps} simulaciones, " 
+             + rf"$b= $ {b}, " 
+             + rf"$d= $ {d}, "
+             + rf"$\phi_0= $ {phi_0}, "
+             + rf"$\Omega= $ {omega}")
+fig.tight_layout()
+fig.savefig('../figuras/ex03-c.pdf')

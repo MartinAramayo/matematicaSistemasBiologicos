@@ -102,99 +102,44 @@
     \centering
     \begin{subfigure}[b]{0.33\linewidth}
         \centering
-        \includegraphics[width = 0.9\textwidth]{figuras/ex03-c-mapeo.pdf}
+        \includegraphics[width = 0.9\textwidth]{figuras/ex03-b.pdf}
         \caption{}
-        \label{fig:figuras/ex03-c-mapeo}
+        \label{fig:figuras/ex03-b}
     \end{subfigure}\quad
     \caption{}
-    %\label{fig:figuras/ex03-c-mapeo}
+    %\label{fig:figuras/ex03-b}
 \end{figure*}
 \begin{figure*}[ht!]
     \centering
     \begin{subfigure}[b]{0.33\linewidth}
         \centering
-        \includegraphics[width = 0.9\textwidth]{figuras/ex03-d-mapeo.pdf}
+        \includegraphics[width = 0.9\textwidth]{figuras/ex03-c.pdf}
         \caption{}
-        \label{fig:figuras/ex03-d-mapeo}
+        \label{fig:figuras/ex03-c}
     \end{subfigure}\quad
     \caption{}
-    %\label{fig:figuras/ex03-d-mapeo}
+    %\label{fig:figuras/ex03-c}
 \end{figure*}
 \begin{figure*}[ht!]
     \centering
     \begin{subfigure}[b]{0.33\linewidth}
         \centering
-        \includegraphics[width = 0.9\textwidth]{figuras/ex03-d-Stationary.pdf}
+        \includegraphics[width = 0.9\textwidth]{figuras/ex03-d.pdf}
         \caption{}
-        \label{fig:figuras/ex03-d-Stationary}
+        \label{fig:figuras/ex03-d}
     \end{subfigure}\quad
     \caption{}
-    %\label{fig:figuras/ex03-d-Stationary}
+    %\label{fig:figuras/ex03-d}
 \end{figure*}
 \begin{figure*}[ht!]
     \centering
     \begin{subfigure}[b]{0.33\linewidth}
         \centering
-        \includegraphics[width = 0.9\textwidth]{figuras/ex03-e-mapeo.pdf}
+        \includegraphics[width = 0.9\textwidth]{figuras/ex03-e.pdf}
         \caption{}
-        \label{fig:figuras/ex03-e-mapeo}
+        \label{fig:figuras/ex03-e}
     \end{subfigure}\quad
     \caption{}
-    %\label{fig:figuras/ex03-e-mapeo}
-\end{figure*}
-\begin{figure*}[ht!]
-    \centering
-    \begin{subfigure}[b]{0.33\linewidth}
-        \centering
-        \includegraphics[width = 0.9\textwidth]{figuras/ex03-e-Stationary.pdf}
-        \caption{}
-        \label{fig:figuras/ex03-e-Stationary}
-    \end{subfigure}\quad
-    \caption{}
-    %\label{fig:figuras/ex03-e-Stationary}
-\end{figure*}
-\begin{figure*}[ht!]
-    \centering
-    \begin{subfigure}[b]{0.33\linewidth}
-        \centering
-        \includegraphics[width = 0.9\textwidth]{figuras/ex03-histograma-(BmenorD)incialGrande).pdf}
-        \caption{}
-        \label{fig:figuras/ex03-histograma-(BmenorD)incialGrande)}
-    \end{subfigure}\quad
-    \caption{}
-    %\label{fig:figuras/ex03-histograma-(BmenorD)incialGrande)}
-\end{figure*}
-\begin{figure*}[ht!]
-    \centering
-    \begin{subfigure}[b]{0.33\linewidth}
-        \centering
-        \includegraphics[width = 0.9\textwidth]{figuras/ex03-histograma-(BmenorD)).pdf}
-        \caption{}
-        \label{fig:figuras/ex03-histograma-(BmenorD))}
-    \end{subfigure}\quad
-    \caption{}
-    %\label{fig:figuras/ex03-histograma-(BmenorD))}
-\end{figure*}
-\begin{figure*}[ht!]
-    \centering
-    \begin{subfigure}[b]{0.33\linewidth}
-        \centering
-        \includegraphics[width = 0.9\textwidth]{figuras/ex03-histograma-(DmenorB)).pdf}
-        \caption{}
-        \label{fig:figuras/ex03-histograma-(DmenorB))}
-    \end{subfigure}\quad
-    \caption{}
-    %\label{fig:figuras/ex03-histograma-(DmenorB))}
-\end{figure*}
-\begin{figure*}[ht!]
-    \centering
-    \begin{subfigure}[b]{0.33\linewidth}
-        \centering
-        \includegraphics[width = 0.9\textwidth]{figuras/test.pdf}
-        \caption{}
-        \label{fig:figuras/test}
-    \end{subfigure}\quad
-    \caption{}
-    %\label{fig:figuras/test}
+    %\label{fig:figuras/ex03-e}
 \end{figure*}
 %**********

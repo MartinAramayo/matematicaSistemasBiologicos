@@ -257,6 +257,8 @@ Una rápida prueba inductiva de que esto es cierto:
 
 La expresión de la Ec. \ref{ec:map02-r} se utilizo para realizar múltiples simulaciones en la Fig. \ref{fig:figuras/ex02-mapeo-02}. Para un numero mayor de simulaciones puede obtenerse la distribución $P(x,t)$ del sistema, el resultado se puede ver en la Fig. \ref{fig:figuras/ex02-histograma-02}.
 
+\section{Resolución Ej 3}
+
 % ███████╗██╗  ██╗    ██████╗     
 % ██╔════╝╚██╗██╔╝    ╚════██╗    
 % █████╗   ╚███╔╝      █████╔╝    
@@ -264,123 +266,77 @@ La expresión de la Ec. \ref{ec:map02-r} se utilizo para realizar múltiples sim
 % ███████╗██╔╝ ██╗    ██████╔╝    
 % ╚══════╝╚═╝  ╚═╝    ╚═════╝     
 
-Para una elección de $b$ y $d$ que permita un estado estacionario positivo (por ejemplo, $b=0.1, d=0.001$ da un valor medio estacionario $\langle x\rangle=100$ ), use múltiples realizaciones para calcular la distribución estacionaria $P(x)$
 
-Para una elección de $b$ y $d$ que produzca extinciones por fluctuaciones $(b=0.1, d=0.02, n(0)=10)$, use múltiples realizaciones para cal cular la distribución del tiempo de extinción.
+\begin{figure*}[ht!]
+  \centering
+  \begin{subfigure}[b]{0.49\linewidth}
+      \centering
+      \includegraphics[width = 0.999\textwidth]{figuras/ex03-a.pdf}
+      \caption{Distribución $P(N_A,t)$ (en color) calculada numéricamente.}
+      \label{fig:figuras/ex03-a}
+  \end{subfigure}\quad
+%   \caption{}
+%   \label{fig:figuras/ex03-a}
+% \end{figure*}
+% \begin{figure*}[ht!]
+%   \centering
+  \begin{subfigure}[b]{0.49\linewidth}
+      \centering
+      \includegraphics[width = 0.999\textwidth]{figuras/ex03-b.pdf}
+      \caption{Distribución de poblaciones en el estado estacionario. Las barras indican las predicciones teóricas y predichas mediante múltiples simulaciones.}
+      \label{fig:figuras/ex03-b}
+  \end{subfigure}\quad
+  \caption{Simulación con población media estacionaria no nula.}
+  \label{fig:figuras/ex03-stat}
+\end{figure*}
 
-% \begin{figure*}[ht!]
-%   \centering
-%   \begin{subfigure}[b]{0.33\linewidth}
-%       \centering
-%       \includegraphics[width = 0.9\textwidth]{figuras/ex03-a.pdf}
-%       \caption{}
-%       \label{fig:figuras/ex03-a}
-%   \end{subfigure}\quad
-%   \caption{}
-%   %\label{fig:figuras/ex03-a}
-% \end{figure*}
-% \begin{figure*}[ht!]
-%   \centering
-%   \begin{subfigure}[b]{0.33\linewidth}
-%       \centering
-%       \includegraphics[width = 0.9\textwidth]{figuras/ex03-c-mapeo.pdf}
-%       \caption{}
-%       \label{fig:figuras/ex03-c-mapeo}
-%   \end{subfigure}\quad
-%   \caption{}
-%   %\label{fig:figuras/ex03-c-mapeo}
-% \end{figure*}
-% \begin{figure*}[ht!]
-%   \centering
-%   \begin{subfigure}[b]{0.33\linewidth}
-%       \centering
-%       \includegraphics[width = 0.9\textwidth]{figuras/ex03-d-mapeo.pdf}
-%       \caption{}
-%       \label{fig:figuras/ex03-d-mapeo}
-%   \end{subfigure}\quad
-%   \caption{}
-%   %\label{fig:figuras/ex03-d-mapeo}
-% \end{figure*}
-% \begin{figure*}[ht!]
-%   \centering
-%   \begin{subfigure}[b]{0.33\linewidth}
-%       \centering
-%       \includegraphics[width = 0.9\textwidth]{figuras/ex03-d-Stationary.pdf}
-%       \caption{}
-%       \label{fig:figuras/ex03-d-Stationary}
-%   \end{subfigure}\quad
-%   \caption{}
-%   %\label{fig:figuras/ex03-d-Stationary}
-% \end{figure*}
-% \begin{figure*}[ht!]
-%   \centering
-%   \begin{subfigure}[b]{0.33\linewidth}
-%       \centering
-%       \includegraphics[width = 0.9\textwidth]{figuras/ex03-e-mapeo.pdf}
-%       \caption{}
-%       \label{fig:figuras/ex03-e-mapeo}
-%   \end{subfigure}\quad
-%   \caption{}
-%   %\label{fig:figuras/ex03-e-mapeo}
-% \end{figure*}
-% \begin{figure*}[ht!]
-%   \centering
-%   \begin{subfigure}[b]{0.33\linewidth}
-%       \centering
-%       \includegraphics[width = 0.9\textwidth]{figuras/ex03-e-Stationary.pdf}
-%       \caption{}
-%       \label{fig:figuras/ex03-e-Stationary}
-%   \end{subfigure}\quad
-%   \caption{}
-%   %\label{fig:figuras/ex03-e-Stationary}
-% \end{figure*}
-% \begin{figure*}[ht!]
-%   \centering
-%   \begin{subfigure}[b]{0.33\linewidth}
-%       \centering
-%       \includegraphics[width = 0.9\textwidth]{figuras/ex03-histograma-(BmenorD)incialGrande).pdf}
-%       \caption{}
-%       \label{fig:figuras/ex03-histograma-(BmenorD)incialGrande)}
-%   \end{subfigure}\quad
-%   \caption{}
-%   %\label{fig:figuras/ex03-histograma-(BmenorD)incialGrande)}
-% \end{figure*}
-% \begin{figure*}[ht!]
-%   \centering
-%   \begin{subfigure}[b]{0.33\linewidth}
-%       \centering
-%       \includegraphics[width = 0.9\textwidth]{figuras/ex03-histograma-(BmenorD)).pdf}
-%       \caption{}
-%       \label{fig:figuras/ex03-histograma-(BmenorD))}
-%   \end{subfigure}\quad
-%   \caption{}
-%   %\label{fig:figuras/ex03-histograma-(BmenorD))}
-% \end{figure*}
-% \begin{figure*}[ht!]
-%   \centering
-%   \begin{subfigure}[b]{0.33\linewidth}
-%       \centering
-%       \includegraphics[width = 0.9\textwidth]{figuras/ex03-histograma-(DmenorB)).pdf}
-%       \caption{}
-%       \label{fig:figuras/ex03-histograma-(DmenorB))}
-%   \end{subfigure}\quad
-%   \caption{}
-%   %\label{fig:figuras/ex03-histograma-(DmenorB))}
-% \end{figure*}
-% \begin{figure*}[ht!]
-%   \centering
-%   \begin{subfigure}[b]{0.33\linewidth}
-%       \centering
-%       \includegraphics[width = 0.9\textwidth]{figuras/test.pdf}
-%       \caption{}
-%       \label{fig:figuras/test}
-%   \end{subfigure}\quad
-%   \caption{}
-%   %\label{fig:figuras/test}
-% \end{figure*}
-% %**********
+Luego se utilizo el algoritmo de Gillespie para simular una población mediante un modelo de reproducción y competencia intraespecifica con tasas $b$ y $d$ de los procesos:
+$$
+\begin{aligned}
+A & \stackrel{b}{\rightarrow} A+A \\
+A+A & \stackrel{d}{\rightarrow} A
+\end{aligned}
+$$
+
+Se encontraron parametros que permiten un valor medio de población estacionario no nulo que puede verse en la Fig. \ref{fig:figuras/ex03-stat}.
 
 
-\section{Resolución Ej 3}
+\begin{figure*}[ht!]
+  \centering
+  \begin{subfigure}[b]{0.49\linewidth}
+      \centering
+      \includegraphics[width = 0.999\textwidth]{figuras/ex03-c.pdf}
+      \caption{Distribución $P(N_A,t)$ (en color) calculada numéricamente.}
+      \label{fig:figuras/ex03-c}
+  \end{subfigure}\quad
+%   \caption{}
+%   \label{fig:figuras/ex03-c}
+% \end{figure*}
+% \begin{figure*}[ht!]
+%   \centering
+  \begin{subfigure}[b]{0.49\linewidth}
+      \centering
+      \includegraphics[width = 0.999\textwidth]{figuras/ex03-e.pdf}
+      \caption{Distribución de tiempos de extinción.}
+      \label{fig:figuras/ex03-e}
+  \end{subfigure}\quad
+  \caption{Simulación con extinción.}
+  \label{fig:figuras/ex03-kill}
+\end{figure*}
+%**********
+
+Se obtuvo un conjunto de parámetros que producen una extinción, resultados asociados a esta simulación pueden verse en la Fig. \ref{fig:figuras/ex03-kill}.
+
+% \begin{figure*}[ht!]
+%   \centering
+%   \begin{subfigure}[b]{0.33\linewidth}
+%       \centering
+%       \includegraphics[width = 0.9\textwidth]{figuras/ex03-d.pdf}
+%       \caption{}
+%       \label{fig:figuras/ex03-d}
+%   \end{subfigure}\quad
+%   \caption{}
+%   %\label{fig:figuras/ex03-d}
+% \end{figure*}
 
 \end{document}
