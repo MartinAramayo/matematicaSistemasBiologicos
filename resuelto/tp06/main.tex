@@ -26,7 +26,6 @@
 %% Useful packages
 \usepackage{svg}
 \usepackage{epstopdf}
-\usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 
@@ -62,7 +61,7 @@
 
 \maketitle
 
-
+\section{Resolución Ej 1:}
 % ███████╗██╗  ██╗ ██╗
 % ██╔════╝╚██╗██╔╝███║
 % █████╗   ╚███╔╝ ╚██║
@@ -70,22 +69,25 @@
 % ███████╗██╔╝ ██╗ ██║
 % ╚══════╝╚═╝  ╚═╝ ╚═╝
 
-\section{Resolución Ej 1:}
-
-% \begin{figure}
-%     \centering
-%     \includegraphics[width=0.5\textwidth]{figuras/equilibrio.pdf}
-%     \caption{a.}
-%     \label{fig:mosquitos}
-% \end{figure}
-
-
 % ███████╗ ██████╗ ██╗
 % ██╔════╝██╔════╝███║
 % █████╗  ██║     ╚██║
 % ██╔══╝  ██║      ██║
 % ███████╗╚██████╗ ██║
 % ╚══════╝ ╚═════╝ ╚═╝
+
+\begin{figure*}[ht!]
+    \centering
+    % \begin{subfigure}[b]{0.33\linewidth}
+        % \centering
+        \includegraphics[width = 0.7\textwidth]{figuras/ex01-a.pdf}
+        % \caption{}
+        % \label{fig:figuras/ex01-a}
+    % \end{subfigure}\quad
+    \caption{Órbitas en el simplex para el sistema de Halcones, Palomas y Bravucones}
+    \label{fig:figuras/ex01-a}
+\end{figure*}
+
 
 Analizando la dinámica del sistema:
 
@@ -370,6 +372,20 @@ $$
 
 \sepline
 
+%**********
+\begin{figure*}[ht!]
+    \centering
+    % \begin{subfigure}[b]{0.33\linewidth}
+        % \centering
+        \includegraphics[width = 0.7\textwidth]{figuras/ex01-b.pdf}
+        % \caption{}
+        % \label{fig:figuras/ex01-b}
+    % \end{subfigure}\quad
+    \caption{Órbitas en el simplex para el sistema de Halcones, Palomas y vengativos}
+    \label{fig:figuras/ex01-b}
+\end{figure*}
+%**********
+
 Para el segundo sistema
 
 $$
@@ -516,6 +532,7 @@ $$ J_4 =
 \Rightarrow \text{Equilibrio }  ^{\text{Estables si } g<c}_{\text{Inestables si } g>c}
 $$
 
+\section{Resolución Ej 2:}
 % ███████╗██╗  ██╗    ██████╗  
 % ██╔════╝╚██╗██╔╝    ╚════██╗
 % █████╗   ╚███╔╝      █████╔╝
@@ -523,61 +540,74 @@ $$
 % ███████╗██╔╝ ██╗    ███████╗
 % ╚══════╝╚═╝  ╚═╝    ╚══════╝
 
-\section{Resolución Ej 2:}
+
+\begin{table}[!ht]
+    \begin{tabular}{c|ccccc}
+    Jugadores & 0       & 1       & 2       & $\cdots$ & $n-1$     \\ \hline
+    $C$       & $C_{0}$ & $C_{1}$ & $C_{2}$ & $\cdots$ & $C_{n-1}$ \\ \hline
+    $D$       & $D_{0}$ & $D_{1}$ & $D_{2}$ & $\cdots$ & $D_{n-1}$
+    \end{tabular}
+    \caption{Payoff de las estrategias $C$ y $D$ cuando compiten con $m$ cooperadores y $n-m$ defectores, para un total de $n$ jugadores.}
+    \label{tab:my-table}
+\end{table}
+
+Interpretación:
+
+\begin{itemize}
+    \item $C_i$: cooperan $i$ jugadores
+    \item $D_i$: defraudan $i$ jugadores
+\end{itemize}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\sepline
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Entonces, $C_0$ significa que no coopera nadie o que todos defraudan y $D_0$ significa el recíproco.
 
+Esto significa que podríamos escribir
+$$
+\begin{aligned}
+    C_0 &= C_n \\
+    D_0 &= D_n
+\end{aligned}
+$$
 
-% ███████╗██╗  ██╗    ██████╗     
-% ██╔════╝╚██╗██╔╝    ╚════██╗    
-% █████╗   ╚███╔╝      █████╔╝    
-% ██╔══╝   ██╔██╗      ╚═══██╗    
-% ███████╗██╔╝ ██╗    ██████╔╝    
-% ╚══════╝╚═╝  ╚═╝    ╚═════╝     
+\subsection{Dilema del prisionero multijugador}
 
-\section{Resolución Ej 3:}
+Para que ocurra el dilema con 2 jugadores, debe satisfacerse que
+$$
+C_1 > D_0 > C_0 > D_1.
+$$
+
+En clase llamamos
+
+$$
+\begin{aligned}
+    T &= C_1 \text{ Tentación para defraudar}\\
+    R &= D_0 \text{ Recompensa por cooperar}\\
+    P &= C_0 \text{ Penalidad por defraudar mutuamente}\\
+    S &= D_1 \text{ Sucker's payoff},
+\end{aligned}
+$$
+
+resultando
+
+$$
+T > R > P > S
+$$
+
+En el caso de $n$ jugadores, queremos que la tentación por defraudar siga siendo el mayor de todos los payoffs. Y esta tentación debería ser mayor cuanto menor sea el número de jugadores cooperando. Es decir
+$$
+C_1 > C_2 > \cdots > C_{n-1}.
+$$
+
+Por su parte, seguiremos teniendo una recompensa cuando todos los jugadores cooperan ($D_0$), que será menor que las tentaciones, pero mayor que la penalidad cuando nadie coopera ($C_0$). Esto es
+$$
+C_1 > C_2 > \cdots > C_{n-1} > D_0 > C_0.
+$$
+
+Finalmente, los sucker's payoff deben ser menores que la penalidad por no cooperar. Además, el sucker's payoff es menor cuanto menor sea el número de jugadores que defraudan, resultando
+$$
+\underbrace{C_1 > C_2 > \cdots > C_{n-1}}_{\text{tentaciones } T} > \underbrace{D_0}_{R} > \underbrace{C_0}_{P} > \underbrace{D_{n-1} > \cdots > D_2 > D_1}_{\text{sucker's payoff } S}.
+$$
 
 % \bibliography{sample}
 
 \end{document}
-
-% ███    ██  ██████  ████████  █████  ███████
-% ████   ██ ██    ██    ██    ██   ██ ██
-% ██ ██  ██ ██    ██    ██    ███████ ███████
-% ██  ██ ██ ██    ██    ██    ██   ██      ██
-% ██   ████  ██████     ██    ██   ██ ███████
-
-
-% ████████ ██    ██ ██████   ██████  ███████
-%    ██     ██  ██  ██   ██ ██    ██ ██
-%    ██      ████   ██████  ██    ██ ███████
-%    ██       ██    ██      ██    ██      ██
-%    ██       ██    ██       ██████  ███████
-
-% atomico
-% volumen
-% parametro
-% mantenia
-% dielectrico
-% perdida
-% ferroelectrico
-% difractograma
-% difractometro
-% minimo
-% maximo
-% tension
-% conversion
-% aislacion
-% medicion
-% resolucion
-% funcion
-% transicion
-% correccion
-% activacion
-% correlacion
-% tipico X
-% habia  X
-% agrego X
