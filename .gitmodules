@@ -1,3 +1,6 @@
 [submodule "resuelto/tp05/scripts/datasetFeriadosArgentina"]
 	path = resuelto/tp05/scripts/datasetFeriadosArgentina
 	url = https://github.com/MartinAramayo/datasetFeriadosArgentina
+[submodule "resuelto/tp06/scripts/egtsimplex"]
+	path = resuelto/tp06/scripts/egtsimplex
+	url = https://github.com/marvinboe/egtsimplex.git
