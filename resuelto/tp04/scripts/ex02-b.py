@@ -63,8 +63,8 @@ for indx, b_val in np.ndenumerate(b_list):
     z_tuple = p1, p2
     yp1, yp2 = nulclinas_switchgenetico(z_tuple, *parameters)
     
-    ax.plot(yp1, p2, color=colors[indx], label=f'$b=${b_val:4.2f}')
-    ax.plot(p1, yp2, color=colors[indx])
+    ax.plot(yp1, p2, color=colors[-1], label=f'$b=${b_val:4.2f}')
+    ax.plot(p1, yp2, color=colors[-1])
     
     aux_args = {'start': 0, 'stop': 2.8, 'num': 25}
     y1, y2 = np.linspace(**aux_args), np.linspace(**aux_args)
@@ -80,10 +80,17 @@ for indx, b_val in np.ndenumerate(b_list):
             u[indx_i, indx_j] = yprime[0]
             v[indx_i, indx_j] = yprime[1]
       
-    #grafico el retrato de fase
-    Q = ax.quiver(Y1, Y2, u, v, 
-                  color=colors[indx], 
-                  scale=20, width=0.01)
+    # #grafico el retrato de fase   
+    norm = np.sqrt(u*u + v*v)
+    
+    # modulo en color
+    s = ax.pcolor(Y1, Y2, norm, cmap='summer', shading='nearest', rasterized=True)
+    fig.colorbar(s, ax=ax)
+    
+    # direccion 
+    Q = ax.quiver(Y1, Y2, u/norm, v/norm, 
+                color=colors[-1], 
+                scale=30, width=0.005)
 
     ax.set_xlabel('$p_{1}$')
     ax.set_ylabel('$p_{2}$')
