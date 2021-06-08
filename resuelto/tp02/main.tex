@@ -291,7 +291,7 @@ Con esto puede verse que bajo este modelo $n > n_c$ es una condición suficiente
 
 Con Ec. \ref{eq:esteril1} en cuenta puede plantearse un sistema en el que se suelte una única vez a los mosquitos estériles.
 
-\begin{equation}
+\begin{equation} \label{eq:unaLiberacion}
     \left\lbrace
     \begin{aligned}
         \frac{d n}{d t}&=  -b n - k (N+n) n \\
@@ -299,6 +299,31 @@ Con Ec. \ref{eq:esteril1} en cuenta puede plantearse un sistema en el que se sue
     \end{aligned}
     \right. ,
 \end{equation}
+
+% \begin{equation}
+%     \left\lbrace
+%     \begin{aligned}
+%         \frac{\partial }{\partial \:x}  -b x - c * (y+x) x \quad 
+%         & \frac{\partial }{\partial \:y} \frac{d}{dy}  -b x - c * (y+x) x \\
+%         \frac{\partial }{\partial \:x} \left[\frac{a y}{y+x}-b\right] y- c * y(y+x) \quad 
+%         & frac{\partial }{\partial \:y} \left[\frac{a N}{N+n}-b\right] N- c * N(N+n)
+%     \end{aligned}
+%     \right. ,
+% \end{equation}
+
+% \begin{equation}
+%     \left\lbrace
+%     \begin{aligned}
+%         -b-c\left(2x+y\right) \quad 
+%         & -xc \\
+%         -\frac{ay^2}{\left(x+y\right)^2}-yc \quad 
+%         & \frac{\partial }{\partial y} \left[\frac{a y}{y+x}-b\right] y- c * y(y+x) 
+%     \end{aligned}
+%     \right. ,
+% \end{equation}
+
+
+
 
 Son 3 puntos de equilibrios $P_j = (\nstar_{j},\Nstar_{j}), j= 1, 2, 3$. Para el caso de $P_2$ se analiza mediante una matriz Jacobiana.
 
@@ -316,11 +341,11 @@ Son 3 puntos de equilibrios $P_j = (\nstar_{j},\Nstar_{j}), j= 1, 2, 3$. Para el
 % \end{aligned}
 % $$
 
-$$
-\begin{aligned}
-    P_1 = (0, 0), \quad P_3 = \left(- \frac{b}{k}, 0 \right) \left(^\text{Población}_\text{Negativa} \right)
-\end{aligned}
-$$
+% $$
+% \begin{aligned}
+%     P_1 = (0, 0), \quad P_3 = \left(- \frac{b}{k}, 0 \right) \left(^\text{Población}_\text{Negativa} \right)
+% \end{aligned}
+% $$
 
 % $$
 % J = 
@@ -330,15 +355,7 @@ $$
 % \end{bmatrix}
 % $$
 
-$$
-P_1 = (0, 0)
-\Rightarrow
-J_1 = 
-\begin{bmatrix}
-    -b & 0 \\
-    0 & 0
-\end{bmatrix} \Rightarrow (^\text{Acumulacion}_\text{de inestables})
-$$
+
 
 $$
 P_2 = \left( 0, \frac{a-b}{k} \right)  \Rightarrow  
@@ -350,7 +367,22 @@ J_2 =
 \Rightarrow  P_2 \ \text{Estable}
 $$
 
-El punto $P_3$ no forma parte de la dinámica (No hay poblaciones negativas). Por otro lado, se tiene que el origen no es un punto estable. Esto implica la extinción no es inevitable en este caso y una única liberación no es suficiente. En la Fig. \ref{fig:cosa} se tiene un análisis gráfico.
+El punto $P_3$ no forma parte de la dinámica (No hay poblaciones negativas). 
+El origen ($P_1$) no esta correctamente definido en el sistema de ecuaciones, sin embargo es un posible valor para asignarle al limite. El Jacobiano no esta correctamente definido tampoco, por lo que se realiza un análisis gráfico de los gradientes $(\frac{dn}{dt}, \frac{dN}{dt})$ que puede verse en la Fig. \ref{fig:cosa}. Los signos de las derivadas temporales indican la dirección del gradiente que permite inferir las posibles trayectorias, los distintos valores de los parámetros no cambian los signos de las componentes de los gradientes. Las posibles trayectorias no son consistentes con un nodo estable, por lo que se descarta ese caso.
+
+La ausencia de nodos estables con $N=0$ para una única liberación implica que la extinción no es inevitable en este caso. Por lo que este método de liberación no permite eliminar a los mosquitos fértiles. 
+
+% $$
+% P_1 = (0, 0)
+% \Rightarrow
+% J_1 = 
+% \begin{bmatrix}
+%     -b & 0 \\
+%     0 & 0
+% \end{bmatrix} \Rightarrow (^\text{Acumulacion}_\text{de inestables})
+% $$
+
+% En la Fig. \ref{fig:cosa} se tiene un análisis gráfico.
 
 \begin{figure}[!ht]
     \centering  
@@ -358,6 +390,46 @@ El punto $P_3$ no forma parte de la dinámica (No hay poblaciones negativas). Po
     \caption{Análisis gráfico de estabilidad de los puntos $P_1$ y $P_2$.}
     \label{fig:cosa}
 \end{figure}
+
+Un ejemplo de resolución numérica puede verse en la Fig. \ref{fig:figuras/campo}. Un acercamiento a los puntos $P_1, P_2$ puede verse en la Fig. \ref{fig:figuras/campo-P}
+
+\begin{figure}[ht!]
+    \centering
+    % \begin{subfigure}[b]{0.33\linewidth}
+        % \centering
+        \includegraphics[width = 0.5\textwidth]{figuras/campo.pdf}
+        \caption{Gráfico del espacio de fases, el color indica el modulo del vector $(\frac{dn}{dt}, \frac{dN}{dt})$, la flecha indica la dirección del vector. $P_1, P_2$ se muestran como puntos amarillos. Los ejes cartesianos son las rectas blancas.}
+        \label{fig:figuras/campo}
+    % \end{subfigure}\quad
+    % \caption{}
+    %\label{fig:figuras/campo}
+\end{figure}
+
+%**********
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width = 0.999\textwidth]{figuras/campo-P1.pdf}
+        \caption{Pseudo equilibrio $P_1$ de la Ec. \ref{eq:unaLiberacion}.}
+        \label{fig:figuras/campo-P1}
+    \end{subfigure}\quad
+    % \caption{}
+    %\label{fig:figuras/campo-P1}
+% \end{figure*}
+% \begin{figure*}[ht!]
+%     \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width = 0.999\textwidth]{figuras/campo-P2.pdf}
+        \caption{Equilibrio $P_2$ de la Ec. \ref{eq:unaLiberacion}.}
+        \label{fig:figuras/campo-P2}
+    \end{subfigure}\quad
+    \caption{}
+    \label{fig:figuras/campo-P}
+\end{figure*}
+
+
 
 % $$
 % J_3 = 
