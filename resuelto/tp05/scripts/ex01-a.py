@@ -43,9 +43,16 @@ print(f'El valor del discriminante es: {round(discriminante, 3)}')
 ## odeint args
 beta, gamma = beta, 1./tauI
 args_odeint = (beta, 1/gamma, tauR)
+
+## colormap
+start, stop = 0.0, 1
+number_of_lines = 10
+color_slice = np.linspace(start, stop, number_of_lines+1) 
+
+colors = [ cm.summer(x) for x in color_slice ]
 ########################################################
 fig, ax = plt.subplots()
-aux_args = {'start': 0, 'stop': 1, 'num': 15}
+aux_args = {'start': 0, 'stop': 1, 'num': 30}
 y1, y2 = np.linspace(**aux_args), np.linspace(**aux_args)
 
 t = 0
@@ -61,18 +68,19 @@ for i in range(NI):
         u[i,j] = yprime[0]
         v[i,j] = yprime[1]
      
-#grafico el retrato de fase
-Q = ax.quiver(Y1, Y2, u, v, color='g')
+# Campo vectorial
+speed = np.sqrt(u*u + v*v)
 
-## colormap
-start, stop = 0.0, 1
-number_of_lines = 10
-color_slice = np.linspace(start, stop, number_of_lines+1) 
+# Varying color along a streamline
+s = ax.pcolor(Y1, Y2, speed, shading='nearest', rasterized=True)
+fig.colorbar(s, ax=ax)
 
-colors = [ cm.summer(x) for x in color_slice ]
+Q = ax.quiver(Y1, Y2, u/speed, v/speed, 
+              angles="xy", 
+              color=colors[-1])
 
 #grafico algunas trayectorias del sistema en particular
-for i in range(10):
+for i in range(number_of_lines):
     N = 10000
     I0, R0 = (i*900+1)/N, 0
     
@@ -96,8 +104,8 @@ ax.plot(s_eq, i_eq, 'ob')
 #detalles del gráfico
 ax.set_xlabel('$s$ (suceptibles)', fontsize=16)
 ax.set_ylabel('$i$ (infectados)', fontsize=16)
-ax.set_xlim([-0.05, 1.05])
-ax.set_ylim([-0.05, 1.05])
+# ax.set_xlim([-0.05, 1.05])
+# ax.set_ylim([-0.05, 1.05])
 ax.legend(framealpha=1)
 
 args_str = (r'$\beta$ = '  + f'{args[0]:.2E},  ' 
