@@ -100,6 +100,7 @@ aux_args = {'data': simulaciones_df,
             'y': 'N',
             'stat': 'density',
             'discrete': (False, True), 
+            'rasterized': True,
             'cbar': True, 
             'ax': ax}    
 sns.histplot(**aux_args)

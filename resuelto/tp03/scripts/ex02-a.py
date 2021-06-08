@@ -29,7 +29,7 @@ def sum_mapeo(array, cte, paso):
     return sum(cte**( paso - (i+1)) * array[i] for i in range(paso))
 
 def pot_mapeo(cte, x0, paso):
-    return cte**(paso - 1) * x0
+    return cte**(paso) * x0
 
 def func_mapeo(array, cte, x0, paso):
     return sum_mapeo(array, cte, paso) + pot_mapeo(cte, x0, paso)

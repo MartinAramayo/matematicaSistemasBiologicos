@@ -1,6 +1,7 @@
 import numpy as np
 from copy import deepcopy
 import matplotlib.pyplot as plt
+plt.rcParams["axes.grid"] = False
 from matplotlib import cm
 import seaborn as sns 
 import pylab
@@ -29,7 +30,7 @@ def sum_mapeo(array, cte, paso):
     return sum(cte**( paso - (i+1)) * array[i] for i in range(paso))
 
 def pot_mapeo(cte, x0, paso):
-    return cte**(paso - 1) * x0
+    return cte**(paso) * x0
 
 def func_mapeo(array, cte, x0, paso):
     return sum_mapeo(array, cte, paso) + pot_mapeo(cte, x0, paso)
@@ -75,7 +76,7 @@ sns.histplot(
     x='t',
     y='x',
     stat='density',
-    # bins=100, 
+    rasterized=True,
     discrete=(True, False), 
     cbar=True, 
     ax=ax

@@ -29,7 +29,7 @@ def prod_mapeo(array, paso):
     return np.prod( tuple( array[i] for i in range(paso) ) )
 
 def pot_mapeo(cte, x0, paso):
-    return cte**(paso - 1) * x0
+    return cte**(paso) * x0
 #%%
 # plt.ion()
 ## parametros
@@ -73,7 +73,7 @@ sns.histplot(
     x='t',
     y='x',
     stat='density',
-    # bins=100, 
+    rasterized=True,
     discrete=(True, False), 
     cbar=True, 
     ax=ax
