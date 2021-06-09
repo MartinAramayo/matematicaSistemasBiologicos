@@ -91,7 +91,7 @@
       % \caption{Evolución en pasos temporales de la distribución de numero de habitantes.}
       \label{fig:figuras/ex01-b-evolucion_temporal}
   \end{subfigure}
-  \caption{Evolución en pasos temporales de la distribución de numero de habitantes. Para $d=0.01$ y $d=0.001$. }
+  \caption{Evolución en pasos temporales de la distribución de número de habitantes. Para $d=0.01$ y $d=0.001$. }
   \label{fig:figuras/ex01-evolucion_temporal}
 \end{figure*}
 
@@ -114,7 +114,7 @@
       % \caption{Comparación entre la densidad obtenida mediante la   simulación y una distribución binomial.}
       \label{fig:figuras/ex01-b-ultima_iteracion}
   \end{subfigure}
-  \caption{Comparación entre la densidad obtenida mediante la   simulación y una distribución binomial. Para $d=0.01$ y $d=0.001$.}
+  \caption{Comparación entre la densidad obtenida mediante la simulación y una distribución binomial. Para $d=0.01$ y $d=0.001$.}
   \label{fig:figuras/ex01-ultima_iteracion}
 \end{figure*}
 
@@ -184,11 +184,11 @@ $$
       \caption{$P(x,t)$ densidad de probabilidad (color) de $x$ y $t$ calculada a partir de $\nSimulacionesB$ evaluaciones de $\Nsteps$ pasos en $t$.}
       \label{fig:figuras/ex02-histograma}
   \end{subfigure}
-  % \caption{}
-  %\label{fig:figuras/ex02-histograma}
+  \caption{Mapeo de la Ec. \ref{ec:map01-r}}
+  \label{fig:figuras/ex02-0}
 \end{figure*}
 
-La expresión de la Ec. \ref{ec:map01-r} se utilizo para realizar multiples simulaciones en la Fig. \ref{fig:figuras/ex02-mapeo}. Para un numero mayor de simulaciones puede obtenerse la distribucion $P(x,t)$ del sistema, el resultado se puede ver en la Fig. \ref{fig:figuras/ex02-histograma}.
+La expresión de la Ec. \ref{ec:map01-r} se utilizó para realizar múltiples simulaciones en la Fig. \ref{fig:figuras/ex02-mapeo}. Para un número mayor de simulaciones puede obtenerse la distribución $P(x,t)$ del sistema, el resultado se puede ver en la Fig. \ref{fig:figuras/ex02-histograma}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \sepline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -196,7 +196,7 @@ Por otro lado, un segundo modelo de población continua de dinámica discreta da
 \begin{equation}\label{ec:map02}
   x_{n+1} = (a + z_n) x_n
 \end{equation}
-donde $z_n$ es una variable estocastica con distribución gaussiana con media cero y desviacion estandar $\sigma$. Nuevamente, puede reescribirse de forma no recursiva.
+donde $z_n$ es una variable estocástica con distribución gaussiana con media cero y desviación estándar $\sigma$. Nuevamente, puede reescribirse de forma no recursiva.
 
 Veamos como se comporta a distintos valores de $n$:
 \begin{equation}
@@ -251,11 +251,11 @@ Una rápida prueba inductiva de que esto es cierto:
     \caption{$P(x,t)$ densidad de probabilidad (color) de $x$ y $t$ calculada a partir de $\nSimulacionesB$ evaluaciones de $\Nsteps$ pasos en $t$.}
     \label{fig:figuras/ex02-histograma-02}
   \end{subfigure}  
-  % \caption{}
-  % \label{fig:figuras/ex02-histograma-02}
+  \caption{Mapeo de la Ec. \ref{ec:map02-r}.}
+  \label{fig:figuras/ex02-02}
 \end{figure*}
 
-La expresión de la Ec. \ref{ec:map02-r} se utilizo para realizar múltiples simulaciones en la Fig. \ref{fig:figuras/ex02-mapeo-02}. Para un numero mayor de simulaciones puede obtenerse la distribución $P(x,t)$ del sistema, el resultado se puede ver en la Fig. \ref{fig:figuras/ex02-histograma-02}.
+La expresión de la Ec. \ref{ec:map02-r} se utilizó para realizar múltiples simulaciones en la Fig. \ref{fig:figuras/ex02-mapeo-02}. Para un número mayor de simulaciones puede obtenerse la distribución $P(x,t)$ del sistema, el resultado se puede ver en la Fig. \ref{fig:figuras/ex02-histograma-02}.
 
 \section{Resolución Ej 3}
 
@@ -266,48 +266,71 @@ La expresión de la Ec. \ref{ec:map02-r} se utilizo para realizar múltiples sim
 % ███████╗██╔╝ ██╗    ██████╔╝    
 % ╚══════╝╚═╝  ╚═╝    ╚═════╝     
 
-
 \begin{figure*}[ht!]
   \centering
   \begin{subfigure}[b]{0.49\linewidth}
       \centering
-      \includegraphics[width = 0.999\textwidth]{figuras/ex03-a.pdf}
+      \includegraphics[width = 0.999\textwidth]{figuras/ex03-a-SinCota.pdf}
       \caption{Distribución $P(N_A,t)$ (en color) calculada numéricamente.}
-      \label{fig:figuras/ex03-a}
+      \label{fig:figuras/ex03-a-SinCota}
   \end{subfigure}\quad
 %   \caption{}
-%   \label{fig:figuras/ex03-a}
+%   \label{fig:figuras/ex03-a-SinCota}
 % \end{figure*}
 % \begin{figure*}[ht!]
 %   \centering
   \begin{subfigure}[b]{0.49\linewidth}
       \centering
-      \includegraphics[width = 0.999\textwidth]{figuras/ex03-b.pdf}
+      \includegraphics[width = 0.999\textwidth]{figuras/ex03-b-SinCota.pdf}
       \caption{Distribución de poblaciones en el estado estacionario. Las barras indican las predicciones teóricas y predichas mediante múltiples simulaciones.}
-      \label{fig:figuras/ex03-b}
+      \label{fig:figuras/ex03-b-SinCota}
   \end{subfigure}\quad
-  \caption{Simulación con población media estacionaria no nula.}
+  \caption{Simulación de Ec. \ref{ec:gillespie} con población media estacionaria no nula.}
   \label{fig:figuras/ex03-stat}
 \end{figure*}
 
-Luego se utilizo el algoritmo de Gillespie para simular una población mediante un modelo de reproducción y competencia intraespecifica con tasas $b$ y $d$ de los procesos:
-$$
-\begin{aligned}
-A & \stackrel{b}{\rightarrow} A+A \\
-A+A & \stackrel{d}{\rightarrow} A
-\end{aligned}
-$$
+Se utilizó el algoritmo de Gillespie para simular una población mediante un modelo de reproducción y competencia intraespecífica con tasas $b$ y $d$ de los procesos:
+\begin{equation}\label{ec:gillespie}
+  \begin{aligned}
+    A & \stackrel{b}{\rightarrow} A+A \\
+    A+A & \stackrel{d}{\rightarrow} A
+  \end{aligned}
+\end{equation}
 
-Se encontraron parametros que permiten un valor medio de población estacionario no nulo que puede verse en la Fig. \ref{fig:figuras/ex03-stat}.
+Es posible obtener una ecuación diferencial que modele este sistema a partir de las tasas de transición son:
+\begin{equation}
+  \begin{aligned}
+    T(A-1 \mid A) &= d \frac{A}{N} \frac{A}{N} 
+    = d\frac{A^2}{N^2} \\
+    T(A+1 \mid A) &= b \frac{A}{N}
+  \end{aligned}
+\end{equation}
 
+Si se tiene $A=\phi N$ con $0<\phi<1$:
+\begin{equation}
+  \begin{aligned}
+    T(A-1 \mid A) &= d \phi^{2} \\
+    T(A+1 \mid A) &= b \phi
+  \end{aligned}
+\end{equation}
+Con esto en cuenta la propuesta de ecuación es:
+  $\dot{\phi}=b \phi-d \phi^{2}$
+con lo que $r=b, s=d$ son parámetro de la función logística:
+\begin{equation}
+  \phi(t)=\frac{r}{s-c e^{-r t}}, c=s-\frac{r}{\phi_{0}}
+\end{equation}
+
+Esta ecuación, escalada al tamaño macroscópico, permite modelar el tamaño de $A$ luego de sus transiciones.
+
+Con esto en cuenta, se encontraron parámetros que permiten un valor medio de población estacionario no nulo que puede verse en la Fig. \ref{fig:figuras/ex03-stat}. Se grafica junto con su modelo macroscópico.
 
 \begin{figure*}[ht!]
   \centering
   \begin{subfigure}[b]{0.49\linewidth}
       \centering
-      \includegraphics[width = 0.999\textwidth]{figuras/ex03-c.pdf}
+      \includegraphics[width = 0.999\textwidth]{figuras/ex03-c-SinCota.pdf}
       \caption{Distribución $P(N_A,t)$ (en color) calculada numéricamente.}
-      \label{fig:figuras/ex03-c}
+      \label{fig:figuras/ex03-c-SinCota}
   \end{subfigure}\quad
 %   \caption{}
 %   \label{fig:figuras/ex03-c}
@@ -316,11 +339,11 @@ Se encontraron parametros que permiten un valor medio de población estacionario
 %   \centering
   \begin{subfigure}[b]{0.49\linewidth}
       \centering
-      \includegraphics[width = 0.999\textwidth]{figuras/ex03-e.pdf}
+      \includegraphics[width = 0.999\textwidth]{figuras/ex03-e-SinCota.pdf}
       \caption{Distribución de tiempos de extinción.}
-      \label{fig:figuras/ex03-e}
+      \label{fig:figuras/ex03-e-SinCota}
   \end{subfigure}\quad
-  \caption{Simulación con extinción.}
+  \caption{Simulación de Ec. \ref{ec:gillespie} con extinción.}
   \label{fig:figuras/ex03-kill}
 \end{figure*}
 %**********

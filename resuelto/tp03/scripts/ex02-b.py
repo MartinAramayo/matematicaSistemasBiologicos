@@ -43,7 +43,7 @@ sigma = 0.2
 a = 1.05
 
 all_maps = {}
-for t in range(N_simulaciones:=5000):
+for t in range(N_simulaciones:=8000):
     z = np.random.normal(loc=0, scale=sigma, size=N_steps)
     map1d = [func_mapeo(z, a, x0, n) for n in range(1,N_steps)]
     map1d.insert(0,x0)
