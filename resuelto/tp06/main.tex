@@ -51,7 +51,7 @@
 % ██   ██ ██      ██   ██ ██   ██
 % ██   ██ ███████ ██   ██ ██████
 
-\title{Práctico 2}
+\title{Práctico 6}
 \author{M. G. Aramayo}
 \affiliation{Matemática de sistemas biológicos, Instituto Balseiro}
 
@@ -61,7 +61,7 @@
 
 \maketitle
 
-\section{Resolución Ej 1:}
+\section{Resolución Ej 1}
 % ███████╗██╗  ██╗ ██╗
 % ██╔════╝╚██╗██╔╝███║
 % █████╗   ╚███╔╝ ╚██║
@@ -302,7 +302,7 @@ $$J_3 =
     &
     0
 \end{pmatrix}
-\Rightarrow Saddle ??????
+\Rightarrow \text{Inconcluso}
 $$
 
 
@@ -361,6 +361,8 @@ $$
 $$
 \Rightarrow \text{Equilibrio }  ^{\text{Estables si } g<c}_{\text{Inestables si } g>c}
 $$
+
+En la Fig. \ref{fig:figuras/ex01-a} se tiene una resolución numérica con $G=1, C=2$.
 
 
 % ███████╗ ██████╗    ██████╗ 
@@ -532,7 +534,9 @@ $$ J_4 =
 \Rightarrow \text{Equilibrio }  ^{\text{Estables si } g<c}_{\text{Inestables si } g>c}
 $$
 
-\section{Resolución Ej 2:}
+En la Fig. \ref{fig:figuras/ex01-b} se tiene una resolución numérica con $G=1, C=2$.
+
+\section{Resolución Ej 2}
 % ███████╗██╗  ██╗    ██████╗  
 % ██╔════╝╚██╗██╔╝    ╚════██╗
 % █████╗   ╚███╔╝      █████╔╝
@@ -540,50 +544,51 @@ $$
 % ███████╗██╔╝ ██╗    ███████╗
 % ╚══════╝╚═╝  ╚═╝    ╚══════╝
 
+\textbf{Dilema del prisionero un jugador:}
 
-\begin{table}[!ht]
-    \begin{tabular}{c|ccccc}
-    Jugadores & 0       & 1       & 2       & $\cdots$ & $n-1$     \\ \hline
-    $C$       & $C_{0}$ & $C_{1}$ & $C_{2}$ & $\cdots$ & $C_{n-1}$ \\ \hline
-    $D$       & $D_{0}$ & $D_{1}$ & $D_{2}$ & $\cdots$ & $D_{n-1}$
-    \end{tabular}
-    \caption{Payoff de las estrategias $C$ y $D$ cuando compiten con $m$ cooperadores y $n-m$ defectores, para un total de $n$ jugadores.}
+% \begin{table}[!ht]
+%     \begin{tabular}{c|ccccc}
+%     Jugadores & 0       & 1        \\ \hline
+%     $C$       & $C_{0}$ & $C_{1}$  \\ \hline
+%     $D$       & $D_{0}$ & $D_{1}$ 
+%     \end{tabular}
+%     \caption{Payoff de las estrategias $C$ y $D$ cuando compiten con $m$ cooperadores y $n-m$ defectores, para un total de $n$ jugadores.}
+%     \label{tab:my-table}
+% \end{table}
+
+\begin{table}[!htb]
+    \begin{subtable}{.5\linewidth}
+      \centering
+        \caption{}
+        \begin{tabular}{c|ccccc}
+            Jugadores & 0       & 1        \\ \hline
+            $C$       & $C_{0}$ & $C_{1}$  \\ \hline
+            $D$       & $D_{0}$ & $D_{1}$ 
+            \end{tabular}
+            % \caption{Payoff de las estrategias $C$ y $D$ cuando compiten con $m$ cooperadores y $n-m$ defectores, para un total de $n$ jugadores.}
+            \label{tab:my-table}
+    \end{subtable}%
+    \begin{subtable}{.5\linewidth}
+      \centering
+        \caption{}
+        \begin{tabular}{c|ccccc}
+            Jugadores & 0       & 1        \\ \hline
+            $C$       & $S$ & $R$  \\ \hline
+            $D$       & $P$ & $T$ 
+            \end{tabular}
+        \end{subtable} 
+    \caption{Payoff de las estrategias $C$ y $D$ cuando compiten dos jugadores.}
     \label{tab:my-table}
 \end{table}
 
-Interpretación:
-
-\begin{itemize}
-    \item $C_i$: cooperan $i$ jugadores
-    \item $D_i$: defraudan $i$ jugadores
-\end{itemize}
-
-
-Entonces, $C_0$ significa que no coopera nadie o que todos defraudan y $D_0$ significa el recíproco.
-
-Esto significa que podríamos escribir
-$$
-\begin{aligned}
-    C_0 &= C_n \\
-    D_0 &= D_n
-\end{aligned}
-$$
-
-\subsection{Dilema del prisionero multijugador}
-
-Para que ocurra el dilema con 2 jugadores, debe satisfacerse que
-$$
-C_1 > D_0 > C_0 > D_1.
-$$
-
-En clase llamamos
+El dilema de dos jugadores viene dado por:
 
 $$
 \begin{aligned}
-    T &= C_1 \text{ Tentación para defraudar}\\
-    R &= D_0 \text{ Recompensa por cooperar}\\
-    P &= C_0 \text{ Penalidad por defraudar mutuamente}\\
-    S &= D_1 \text{ Sucker's payoff},
+    T &= \text{ Tentación para defraudar}\\
+    R &= \text{ Recompensa por cooperar}\\
+    P &= \text{ Penalidad por defraudar mutuamente}\\
+    S &= \text{ Sucker's payoff},
 \end{aligned}
 $$
 
@@ -593,20 +598,59 @@ $$
 T > R > P > S
 $$
 
-En el caso de $n$ jugadores, queremos que la tentación por defraudar siga siendo el mayor de todos los payoffs. Y esta tentación debería ser mayor cuanto menor sea el número de jugadores cooperando. Es decir
+Para 2 jugadores:
+
+\begin{itemize}
+    \item Defraudar cuando uno coopera ofrece el mayor payoff $T$.
+    \item Cooperar cuando uno coopera ofrece el segundo mejor payoff $R$.
+    \item Defraudar cuando nadie coopera ofrece el segundo peor payoff $P$.
+    \item Cooperar cuando nadie coopera ofrece el peor payoff $S$.
+\end{itemize}
+
+\textbf{Dilema del prisionero multijugador:}
+
+Para el caso multijugador se considera:
+
+\begin{itemize}
+    \item $C_i$: Payoff si cooperan $i$ jugadores y coopero.
+    \item $D_i$: Payoff si cooperan $i$ jugadores y defraudo.
+\end{itemize}
+
+Con esto en cuenta para $n=2$ jugadores se tiene:
+
 $$
-C_1 > C_2 > \cdots > C_{n-1}.
+D_1 > C_1 > D_0 > C_0
 $$
 
-Por su parte, seguiremos teniendo una recompensa cuando todos los jugadores cooperan ($D_0$), que será menor que las tentaciones, pero mayor que la penalidad cuando nadie coopera ($C_0$). Esto es
+Extendiendo esto para mas jugadores:
+
+\begin{itemize}
+    \item Defraudar cuando todos cooperan ofrece el mayor payoff $T$.
+    \item Cooperar cuando uno coopera ofrece el segundo mejor payoff $R$.
+    \item Defraudar cuando nadie coopera ofrece el segundo peor payoff $P$.
+    \item Cooperar cuando nadie cooperan ofrece el peor payoff $S$.
+\end{itemize}
+
 $$
-C_1 > C_2 > \cdots > C_{n-1} > D_0 > C_0.
+  \underbrace{D_{n-1 }}_{T} 
+> \underbrace{C_{n-1 }}_{R} 
+> \underbrace{\ldots}_{\text{El resto de payoffs}} 
+> \underbrace{D_{0 }}_{P}
+> \underbrace{C_{0 }}_{S}
 $$
 
-Finalmente, los sucker's payoff deben ser menores que la penalidad por no cooperar. Además, el sucker's payoff es menor cuanto menor sea el número de jugadores que defraudan, resultando
+Uno podría detenerse en este punto, con el resto de payoffs en un orden arbitrario. Pero, si deseo que cada subconjunto de jugadores tengan un dilema del prisionero con reglas similares uno podría tomar caso de $n$ jugadores como una extensión del caso $n-1$ jugadores, arrancando desde dos jugadores. Algo como:
+
 $$
-\underbrace{C_1 > C_2 > \cdots > C_{n-1}}_{\text{tentaciones } T} > \underbrace{D_0}_{R} > \underbrace{C_0}_{P} > \underbrace{D_{n-1} > \cdots > D_2 > D_1}_{\text{sucker's payoff } S}.
+\begin{aligned}
+  D_{1 }   > C_{1 }   > D_{0 }   &> C_{0 }    \\
+  D_{2 }   > C_{2 }   > D_{1 }   > C_{1 }   > D_{0 } &> C_{0 }  \\
+  D_{3 }   > C_{3 }   > D_{2 }   > C_{2 }   > D_{1 } > C_{1 } > D_{0 } &> C_{0 }  \\
+  D_{n-1 } > C_{n-1 } > D_{n-2 } > C_{n-2 } > \ldots > D_{1 } > C_{1 } > D_{0 } &> C_{0 }\\
+\end{aligned}
 $$
+
+Es decir $D_i > C_i, \forall i = 1, 2, ..., n-1$. 
 
 % \bibliography{sample}
 

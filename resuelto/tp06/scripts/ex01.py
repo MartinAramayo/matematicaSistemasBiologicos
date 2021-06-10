@@ -31,7 +31,6 @@ A_bravucones = np.array([
 bravucones = DinamicaReplicador(A_bravucones)
 dynamics = cosa.simplex_dynamics(bravucones)
 
-# sns.set_context("paper", font_scale=1.5)
 fig, ax = plt.subplots()
 dynamics.plot_simplex(ax, typelabels=["Halcones","Palomas","Bravucones"])
 nullclinas_bravucones(dynamics, G, C, ax)
