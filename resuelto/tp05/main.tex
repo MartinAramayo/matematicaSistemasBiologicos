@@ -60,7 +60,7 @@
 \maketitle
 
 
-\section{Resolución Ej 1:}
+\section{Resolución Ej 1}
 % ███████╗██╗  ██╗ ██╗
 % ██╔════╝╚██╗██╔╝███║
 % █████╗   ╚███╔╝ ╚██║
@@ -83,9 +83,9 @@
       \caption{}
       \label{fig:ex01-a-vector}
   \end{subfigure}\quad
-% \end{figure*}
+  % \end{figure*}
 
-% \begin{figure*}[ht!]
+  % \begin{figure*}[ht!]
   \begin{subfigure}[b]{0.49\linewidth}
       \centering
       \includegraphics[width = 1.05\textwidth]{figuras/ex01-b-sir.pdf}
@@ -98,9 +98,9 @@
       \caption{}
       \label{fig:ex01-b-vector}
   \end{subfigure}\quad
-% \end{figure*}
+  % \end{figure*}
 
-% \begin{figure*}[ht!]
+  % \begin{figure*}[ht!]
   \begin{subfigure}[b]{0.49\linewidth}
       \centering
       \includegraphics[width = 1.05\textwidth]{figuras/ex01-c-sir.pdf}
@@ -163,14 +163,14 @@ $$
 i^{*} \quad=\frac{\beta \tau_{I}-1}{\beta\left(\tau_{l}+\tau_{R}\right)}
 $$
 
-No se pierde mucho descartando $i^{*}=0$, ese equilibrio no tiene dinámica.
+% No se pierde mucho descartando $i^{*}=0$, ese equilibrio no tiene dinámica.
 
-Los equilibrios son:
+El equilibrio queda:
 
 $$
 \left\lvert 
 \begin{aligned}
-    P_1 &= (1, 0, 0) \\ 
+      % P_1 &= (1, 0, 0) \\ 
     P_2 &= 
     ( \frac{1}{\tau_{I} \beta}  
     , \frac{\beta \tau_{I}-1}{\beta\left(\tau_{l}+\tau_{R}\right)}
@@ -185,7 +185,7 @@ Mediante un análisis lineal es posible demostrar que el sistema presenta oscila
 Con la condición de población constante es posible reducir el sistema a uno bidimesional:
 $$ \left\lbrace
 \begin{aligned}
-\frac{d s}{d t} &= f_1(s, i) = -\beta s i+\frac{(1-s-i)}{\tau_{R}} r , \\
+\frac{d s}{d t} &= f_1(s, i) = \beta s i - \frac{1}{\tau_{R}} (s+i) +  \frac{1}{\tau_{R}}   , \\
 \frac{d i}{d t} &= f_2(s, i) = \beta s i-\frac{1}{\tau_{I}} i  
 \end{aligned}
 \right.
@@ -202,6 +202,25 @@ J (s, i) =
 $$
 el análisis lineal requiere obtener los autovalores $\lambda_{1,2}$ de la matriz Jacobiana del sistema, la ecuación característica resulta:
 
+% \sepline
+
+% $$
+% J_2 = 
+% \left(
+%   \begin{array}{cc}
+%     \frac{-\beta\tau_{I}\tau_{R}-\tau_{I}}{\tau_{R}\left( \tau_{I}+\tau_{R} \right)} & -\frac{1}{\tau_I}-\frac{1}{\tau_R} \\
+%     \frac{\beta \tau_I-1}{\tau_I + \tau_R}              &   0
+%   \end{array}
+% \right)
+% $$
+
+% $bd = -\frac{\beta \tau_I -1}{ \tau_I \tau_R}$
+
+
+
+% \sepline
+
+
 $$
 \begin{aligned}
   0 & = \lambda^{2} \\
@@ -210,21 +229,7 @@ $$
 \end{aligned}
 $$
 
-Para seguir, utilizamos las expresiones del punto de equilibrio $\left(s^{*}, i^{*}\right)$ en función de los parámetros del sistema. Estas expresiones las encontramos en el apartado anterior. De esta manera, con un poco de álgebra, la ecuación (18) se torna en la ecuación (19):
-
-\sepline
-$$
-J_1 = 
-\left(
-  \begin{array}{cc}
- - \frac{1}{\tau_{R}} & -\beta - \frac{1}{\tau_{R}} \\
- 0                    &  \beta - \frac{1}{\tau_{I}}
-  \end{array}
-\right)
-$$
-\sepline
-
-anterior. Para el punto $P_2$, la ecuación característica es
+Para el punto $P_2$, la ecuación característica es
 $$
 \lambda^{2}+\lambda\left(\frac{\beta \tau_{I}-1}{\tau_{l}+\tau_{R}}+\frac{1}{\tau_{R}}\right)+\left(\frac{\beta \tau_{l}-1}{\tau_{l} \tau_{R}}\right) \quad=0, 
 $$
@@ -232,24 +237,50 @@ y las soluciones, $\lambda_{1, 2}$ son:
 $$
 \begin{aligned}
   \lambda_{1,2} =
-  & -\frac{1}{2}\left(\frac{\beta \tau_{l}-1}{\tau_{I}+\tau_{R}}+\frac{1}{\tau_{R}}\right) \\
-  &\pm \sqrt{\left(\frac{\beta \tau_{I}-1}{\tau_{I}+\tau_{R}}+\frac{1}{\tau_{R}}\right)^{2}-4\left(\frac{\beta \tau_{I}-1}{\tau_{I} \tau_{R}}\right)} 
+  & \frac{1}{2} \left[-
+  \left(\frac{\beta \tau_{l}-1}{\tau_{I}+\tau_{R}}+\frac{1}{\tau_{R}}\right)  \right.\\
+  &
+  \left.
+  \pm \sqrt{\left(\frac{\beta \tau_{I}-1}{\tau_{I}+\tau_{R}}+\frac{1}{\tau_{R}}\right)^{2}-4\left(\frac{\beta \tau_{I}-1}{\tau_{I} \tau_{R}}\right)} \right]
 \end{aligned}
 $$
+% y corresponden a los dos autovalores que buscamos. El término fuera de la raíz es negativo, dado que:
+% $$
+% \left(\frac{\beta \tau_{I}-1}{\tau_{I}+\tau_{R}}+\frac{1}{\tau_{R}}\right) \quad>0
+% $$
+% Tras un poco de álgebra, se desprende que esta condición se cumple si y sólo si:
+% $\beta \tau_{R} \quad>-1$
+% esto siempre es cierto porque $\beta$ y $\tau_{R}$ son números reales del mismo signo.
+
+% No podemos afirmar a que para cualquier valores de los parámetros estos autovalores son imaginarios o reales. Si son imaginarios, tendremos dos autovalores complejos conjugados de parte real negativo, lo cual corresponde a una espiral estable en el espacio de fases. En cambio, si el discriminante es cero, tendremos un único autovalor negativo, lo cual implica la existencia de un nodo degenerado estable. Finalmente, si el discriminante es mayor a cero, tendremos dos autovalores reales de distinto signo, con lo cual habrá un saddle.
+
+% A continuación, mostramos un valor de parámetros que cumple cada una de estas condiciones y el valor correspondiente del determinante con su signo. Primero, graficaremos el diagrama de fases en torno al punto de equilibrio, como una manera de constatar computacionalmente que el resultado del análisis lineal es correcto. Allí, dibujaremos también algunas trayectorias del sistema para diferentes condiciones iniciales arbitrarias. Adicionalmente, señalamos el punto de equilibrio correspondiente con un punto azul.
+
 y corresponden a los dos autovalores que buscamos. El término fuera de la raíz es negativo, dado que:
 $$
-\left(\frac{\beta \tau_{I}-1}{\tau_{I}+\tau_{R}}+\frac{1}{\tau_{R}}\right) \quad>0
+\left(\frac{\beta \tau_{l}-1}{\tau_{I}+\tau_{R}}+\frac{1}{\tau_{R}}\right) 
+% \quad> 
+\stackrel{>}{<} 0
 $$
-Tras un poco de álgebra, se desprende que esta condición se cumple si y sólo si:
-$\beta \tau_{R} \quad>-1$
-esto siempre es cierto porque $\beta$ y $\tau_{R}$ son números reales del mismo signo.
+Reordenando se obtiene:
+$$
+\beta \tau_{R}
+% \quad> 
+\stackrel{>}{<} -1
+$$
+Como ambos son valores positivos 
+$$
+\beta \tau_{R}
+> -1
+$$
+Si propagamos la desigualdad
+$$
+\left(\frac{\beta \tau_{l}-1}{\tau_{I}+\tau_{R}}+\frac{1}{\tau_{R}}\right) 
+> 0
+$$
+lo cual implica que que los autovalores complejos tienen siempre parte real negativa, la raíz, en caso de tener radicando negativo es un numero complejo. Esto implica que cuando se tienen oscilaciones siempre se amortiguan. 
 
-No podemos afirmar a que para cualquier valores de los parámetros estos autovalores son imaginarios o reales. Si son imaginarios, tendremos dos autovalores complejos conjugados de parte real negativo, lo cual corresponde a una espiral estable en el espacio de fases. En cambio, si el discriminante es cero, tendremos un único autovalor negativo, lo cual implica la existencia de un nodo degenerado estable. Finalmente, si el discriminante es mayor a cero, tendremos dos autovalores reales de distinto signo, con lo cual habrá un saddle.
-
-A continuación, mostramos un valor de parámetros que cumple cada una de estas condiciones y el valor correspondiente del determinante con su signo. Primero, graficaremos el diagrama de fases en torno al punto de equilibrio, como una manera de constatar computacionalmente que el resultado del análisis lineal es correcto. Allí, dibujaremos también algunas trayectorias del sistema para diferentes condiciones iniciales arbitrarias. Adicionalmente, señalamos el punto de equilibrio correspondiente con un punto azul.
-
-
-\section{Resolución Ej 2:}
+\section{Resolución Ej 2}
 % ███████╗██╗  ██╗    ██████╗  
 % ██╔════╝╚██╗██╔╝    ╚════██╗
 % █████╗   ╚███╔╝      █████╔╝
@@ -264,7 +295,7 @@ A continuación, mostramos un valor de parámetros que cumple cada una de estas 
     \label{fig:ex02Resumen}
 \end{figure*}
 
-En la Fig. \ref{fig:ex02Resumen} se tiene un grafico que resume, numero de infectados, de fallecidos, de testeados y de UTI!!!.
+En la Fig. \ref{fig:ex02Resumen} se tiene un gráfico que resume, numero de infectados, de fallecidos, de testeados y de UTI(Unidad de terapia intensiva).
 
 \begin{figure*}[ht!]
   \centering
@@ -341,41 +372,3 @@ El pico que figura en los datos sin feriados y fines de semana, ocurre el \textb
 \end{figure*}
 
 \end{document}
-
-% ███    ██  ██████  ████████  █████  ███████
-% ████   ██ ██    ██    ██    ██   ██ ██
-% ██ ██  ██ ██    ██    ██    ███████ ███████
-% ██  ██ ██ ██    ██    ██    ██   ██      ██
-% ██   ████  ██████     ██    ██   ██ ███████
-
-
-% ████████ ██    ██ ██████   ██████  ███████
-%    ██     ██  ██  ██   ██ ██    ██ ██
-%    ██      ████   ██████  ██    ██ ███████
-%    ██       ██    ██      ██    ██      ██
-%    ██       ██    ██       ██████  ███████
-
-% atomico
-% volumen
-% parametro
-% mantenia
-% dielectrico
-% perdida
-% ferroelectrico
-% difractograma
-% difractometro
-% minimo
-% maximo
-% tension
-% conversion
-% aislacion
-% medicion
-% resolucion
-% funcion
-% transicion
-% correccion
-% activacion
-% correlacion
-% tipico X
-% habia  X
-% agrego X
