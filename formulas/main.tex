@@ -55,10 +55,30 @@
 %%total={6.5in,8.75in}, top=1.2in, left=0.9in, includefoot,
 %%height=10in,a5paper,hmargin={3cm,0.8in},
 %]{geometry}
+\usepackage{subcaption}
+\usepackage{changepage}
+\usepackage{enumitem}
+\usepackage{amsfonts}
+\usepackage{xcolor}
+
 \usepackage[spanish]{babel}
 \selectlanguage{spanish}
 \usepackage[utf8]{inputenc}
 \usepackage{esint}
+
+\newcommand{\propiedad}{\textcolor{red}{\mathbf{>}}}
+\newcommand{\definir}{\color{red}{\textbf{\#}}}
+\newcommand{\tema}{\color{red}{\bullet}}
+\newcommand{\nota}{\textcolor{red}{\color{red}{\boldsymbol{\sim}}}}
+\newcommand{\ejemplo}{\textcolor{red}{\color{red}{\boldsymbol{*}}}}
+\newcommand{\demo}{\textcolor{red}{\color{red}{\boldsymbol{\|}}}}
+
+\newcommand*\sepline{%
+  \rule[0.5ex]{.45\textwidth}{.5pt}
+}
+
+\newcommand{\setOper}{{\cup\atop\cap}}
+
 \begin{document}
 
 %\preprint{APS/123-QED}
@@ -74,29 +94,38 @@
 %    ██    ██      ██   ██ ██  ██  ██ ██    ██
 %    ██    ███████ ██   ██ ██      ██  ██████
 
+\textbf{Notación:}
+
+$\nota$: Nota
+$,\ \tema$: Tema
+$,\ \propiedad$: Resultado
+$,\ \definir$: Definir,
+
+$\ejemplo$: Ejemplo, $\demo$: Demostracion
+
+\sepline
+
 \section{Introducción}
 
-\textbf{\# Función de Lipschitz: }
+$\definir$ \textbf{Función de Lipschitz:}
 $\mathrm{Una}$ función ${f}: \mathrm{M} \rightarrow \mathrm{N},$ entre dos espacios métricos con métricas $d_{M} d_{N}$ satisface la condición de Lipschitz(o es Lipschitz continua) si existe una constante $K>0$ tal que:
 $$
 d_{N}(f(x), f(y)) \leq K d_{M}(x, y) \quad \forall x, y \in M
 $$
 
-
 $K$ es la constante Lipschitz de la función.
 Si $M$ es $\mathbb{R}^{m}$ y $N$ es $\mathbb{R}^{n}$
-
-
 $$
 \|f(x)-f(y)\| \leq K\|x-y\| \quad \forall x, y \in \mathbb{R}^{m}
 $$
 
-$\sim$ Toda función Lipschitz continua es uniformemente continua y por tanto continua.
+$\nota$ Toda función Lipschitz continua es uniformemente continua y por tanto continua.
 
-$\sim$ Continuidad $\Rightarrow \exists$ soluciones (Teorema Peano, valido para EDO) 
+$\nota$ Continuidad $\Rightarrow \exists$ soluciones (Teorema Peano, válido para EDO) 
 
 % El teorema de Picard-Lindelöf (o Cauchy-Lipschitz) establece bajo qué condiciones puede asegurarse la existencia y unicidad de la solución de una ecuación diferencial ordinaria dado un problema de Cauchy.
-$>$ \textbf{Teorema de Picard-Lindelöf}:  Sea $f(t, x): \Omega \subseteq R \times R^{n} \rightarrow R^{n}$ con $\Omega$ un abierto, una función continua y localmente Lipschitz respecto de $x$. Entonces, dado $\left(t_{0}, x_{0}\right) \in \Omega$ es posible hallar un intervalo cerrado $\mathrm{I}_{\alpha}=\left[\mathrm{t}_{0}-\alpha, \mathrm{t}_{0}+\alpha\right] \in \mathbb{R}, \mathrm{a}>0$ donde existe una
+$\propiedad$ \textbf{Teorema de Picard-Lindelöf}:
+Sea $f(t, x): \Omega \subseteq R \times R^{n} \rightarrow R^{n}$ con $\Omega$ un abierto, una función continua y localmente Lipschitz respecto de $x$. Entonces, dado $\left(t_{0}, x_{0}\right) \in \Omega$ es posible hallar un intervalo cerrado $\mathrm{I}_{\alpha}=\left[\mathrm{t}_{0}-\alpha, \mathrm{t}_{0}+\alpha\right] \in \mathbb{R}, \mathrm{a}>0$ donde existe una
 solución de problema de Cauchy
 $$
 \left\{\begin{array}{l}
@@ -108,54 +137,66 @@ que cumple que los pares $(t, x(t)) \in \Omega,$ para todo $t$ en $I_{\alpha}$ y
 
 
 
-\textbf{\#} \textbf{Punto Fijo}(equilibrio, estado estacionario, punto singular): Punto del espacio de fases que no evoluciona en el tiempo.
+$\definir$ \textbf{Punto Fijo}(equilibrio, estado estacionario, punto singular): 
+Punto del espacio de fases que no evoluciona en el tiempo.
 
 $>>$ Encontrar puntos fijos($x^*$):
 \begin{itemize}
-  \item Caso continuo: Por ser $\frac{dx}{dt}=f(x)$ resolver, $f(x^*) = 0$.
+  \item Caso continuo: Resolver, $f(x^*) = 0$.
   \item Caso discreto: Resolver, $x^* = f(x^*)$
 \end{itemize}
 
-\textbf{\# Atractor:} Conjunto hacia el cual un sistema dinámico evoluciona con el tiempo. Puede ser un punto, una curva o una estructura más complicada.
+$\definir$ \textbf{Atractor:} 
+Conjunto hacia el cual un sistema dinámico evoluciona con el tiempo. Puede ser un punto, una curva o una estructura más complicada.
 
-\textbf{\# Punto fijo estable:} para todos los valores iniciales $x 0$ cerca de $x^{*}$ el sistema converge a $x^{*}$ cuando $t \rightarrow \infty .$
+$\definir$ \textbf{Punto fijo estable:} 
+para todos los valores iniciales $x_0$ cerca de $x^{*}$ el sistema converge a $x^{*}$ cuando $t \rightarrow \infty .$
 
-\textbf{\# Punto fijo marginalmente estable (neutral)}: para todos los valores iniciales $x_0$ cerca de $x^{*},$ el sistema permanece cerca de $x^{*}$ pero no converge a $x^{*}$.
+$\definir$ \textbf{Punto fijo marginalmente estable (neutral):} 
+para todos los valores iniciales $x_0$ cerca de $x^{*},$ el sistema permanece cerca de $x^{*}$ pero no converge a $x^{*}$.
 
-\textbf{\# punto fijo inestable}: para valores iniciales $x_0$ muy cerca de $x^{*},$ el sistema se aleja de $x^{*}$
+$\definir$ \textbf{Punto fijo inestable:}
+Para valores iniciales $x_0$ muy cerca de $x^{*},$ el sistema se aleja de $x^{*}$
 
-\textbf{\# Autonomía}
-
-$$\underbrace{\frac{d x}{d t}=\dot{x}=f(x, \lambda, t) }_{\textbf{No autónomo}}
+$\definir$ \textbf{Autonomía}
+$$
+\underbrace{\frac{d x}{d t}=\dot{x}=f(x, \lambda, t) }_{\textbf{No autónomo}}
 ,\quad 
 \underbrace{\frac{d x}{d t}=f(x, \lambda)}_{\textbf{Autónomo}}
 $$
 
-\textbf{\# Estabilidad de Lyapunov(Lineal)(Liapunov en algunos libros):} Un punto de equilibrio del sistema $\mathrm{x}^{\prime}(\mathrm{t})=\mathrm{Ax}(\mathrm{t})$ es estable en el sentido de Lyapunov (ESL) si para cualquier $\varepsilon>0$ existe un valor $\delta\left(t_{0}, \varepsilon\right)>0$ tal que:
+$\definir$ \textbf{Estabilidad de Lyapunov(Lineal)(Liapunov en algunos libros):} 
+Un punto de equilibrio del sistema $\mathrm{x}^{\prime}(\mathrm{t})=\mathrm{Ax}(\mathrm{t})$ es estable en el sentido de Lyapunov (ESL) si para cualquier $\varepsilon>0$ existe un valor $\delta\left(t_{0}, \varepsilon\right)>0$ tal que:
 $$
 \left\|x\left(t_{0}\right)-x^{*}\right\|<\delta \Rightarrow\left\|x(t)-x^{*}\right\|<\varepsilon
 $$
-independiente de $t$. Si ademàs $\delta$ no depende del tiempo inicial $t_{0}$ el punto es uniformemente estable
+independiente de $t$. Si además $\delta$ no depende del tiempo inicial $t_{0}$ el punto es uniformemente estable
 
-$\sim$ En criollo: "Si arranco \textit{cerca} del equilibrio, la evolución temporal ocurre \textit{cerca} del equilibrio", \textit{cerca} hace referencia a una cantidad finita, como en topología en algunos casos, los epsilon y delta se pueden hacer arbitrariamente chicos.
+$\nota$ 
+En criollo: "Si arranco \textit{cerca} del equilibrio, la evolución temporal ocurre \textit{cerca} del equilibrio", \textit{cerca} hace referencia a una cantidad finita, como en topología en algunos casos, los epsilon y delta se pueden hacer arbitrariamente chicos.
 
-$\sim$ Segun el tamaño de $\delta(t_0, \varepsilon)$, tendre estabilidad local($\delta$ chico) o global($\delta$ grande).
+$\nota$ 
+Según el tamaño de $\delta(t_0, \varepsilon)$, tendré estabilidad local($\delta$ chico) o global($\delta$ grande).
 
-$\sim$ Para sistemas lineales todos los puntos de equilibrio son globales, o son puntos aislados o son subespacios invariantes (Las trayectorias que empiezan en un dado subespacio evolucionan dentro de ese subespacio).
+$\nota$ 
+Para sistemas lineales todos los puntos de equilibrio son globales, o son puntos aislados o son subespacios invariantes (Las trayectorias que empiezan en un dado subespacio evolucionan dentro de ese subespacio).
 
-$\sim$ Sistemas no lineales: Hay estabilidad asintótica y de lyapunov.
-
-
-\textbf{\# Estabilidad Asintótica:} Es (ESL) y además se cumple $\left\|x(t)-x^{*}\right\| \rightarrow 0$ cuando $t \rightarrow \infty$ el punto es asintóticamente estable
-
-\textbf{$\cdot$ Estabilidad orbital (2D en adelante)}
-
-\textbf{\# Órbita estable} $x(t)$ es una órbita estable si dado $\epsilon>0,$ existe $\delta(\epsilon)>0$ tal que para cualquier otra solución $y(t),$ tal que $\| x\left(t_{0}\right)-y\left(t_{0}\right) \|<\delta \Rightarrow \| x(t)-y(t) \| < \delta$ para todo $t>t_{0}$
-
-\textbf{\# Órbita asintóticamente estable} $x(t)$ es una órbita asint. estable si es estable $y$ además para cualquier otra solución $y(t),$ existe $\delta$ tal que $\| x\left(t_{0}\right)-y\left(t_{0}\right) \|<\delta$ entonces $\lim _{t \rightarrow \infty} \| x\left(t\right)-y\left(t\right) \| =0$
+$\nota$ 
+Sistemas no lineales: Hay estabilidad asintótica y de Lyapunov.
 
 
-$>$ \textbf{Analisis lineal:}
+$\definir$ \textbf{Estabilidad Asintótica:} 
+Es (ESL) y además se cumple $\left\|x(t)-x^{*}\right\| \rightarrow 0$ cuando $t \rightarrow \infty$ el punto es asintóticamente estable
+
+$\tema$ \textbf{Estabilidad orbital (2D en adelante)}
+
+$\definir$ \textbf{Órbita estable:} 
+$x(t)$ es una órbita estable si dado $\epsilon>0,$ existe $\delta(\epsilon)>0$ tal que para cualquier otra solución $y(t),$ tal que $\| x\left(t_{0}\right)-y\left(t_{0}\right) \|<\delta \Rightarrow \| x(t)-y(t) \| < \delta$ para todo $t>t_{0}$
+
+$\definir$ \textbf{Órbita asintóticamente estable:} 
+$x(t)$ es una órbita asint. estable si es estable $y$ además para cualquier otra solución $y(t),$ existe $\delta$ tal que $\| x\left(t_{0}\right)-y\left(t_{0}\right) \|<\delta$ $\Rightarrow$ $\lim _{t \rightarrow \infty} \| x\left(t\right)-y\left(t\right) \| =0$
+
+$\propiedad$ \textbf{Análisis lineal:}
 $
 \left\lbrace 
 \begin{array}{l}
@@ -182,7 +223,6 @@ Es decir, tenemos ahora una ecuación diferencial lineal para el comportamiento 
 \end{itemize}
 
 Entonces:
-
 $$
 \begin{aligned}
 \frac{d x}{d t}=f(x, r), & \qquad f\left(x^{*}, r\right)=0 \\
@@ -195,9 +235,12 @@ $$
 
 Ya que la perturbación decrece o crece respectivamente. Si $\lambda=0$ no podemos decir nada.
 
+\begin{figure}[ht!]
+  \includegraphics[width = 0.28\textwidth]{estable-Inestable.pdf}
+  \caption{\label{fig:figura1} Criterio de estabilidad sistema 1D.}
+\end{figure}
 
-$>$ \textbf{Analisis lineal caso bidimensional:}
-
+$\propiedad$ \textbf{Análisis lineal caso bidimensional:}
 Flujos bidimensionales:
 
 $\lambda_{1,2}=\frac{1}{2}\left(\operatorname{Tr} \mathbf{A} 
@@ -206,61 +249,75 @@ $\lambda_{1,2}=\frac{1}{2}\left(\operatorname{Tr} \mathbf{A}
 
 \begin{itemize}
   \item Det $A<0$ 
+  $\rightarrow$ Saddle
+  % , $\equiv$
   
   Dos autovalores reales de diferente signo 
-  
   $\rightarrow$ Saddle
+  
   \item Det $\mathrm{A}=0$, Tr $\mathrm{A}<0$ 
+  $\rightarrow$ Acumulación de estables
+  % , $\equiv$
   
   Un autovalor nulo, otro real negativo 
-  
   $\rightarrow$ Acumulación de estables
+  
   \item Det $\mathrm{A}=0$, Tr $\mathrm{A}>0$ 
+  $\rightarrow$ Acumulación de inestables
+  % , $\equiv$
   
   Un autovalor nulo, otro real positivo 
-  
   $\rightarrow$ Acumulación de inestables
+  
   \item $0<$ Det $A<(\text { Tr } A)^{2} / 4$, Tr $A<0$ 
+  $\rightarrow$ Nodo estable
+  % , $\equiv$
   
   Dos autovalores reales negativos 
-  
   $\rightarrow$ Nodo estable
+
   \item $0<$ Det $A<(\operatorname{Tr} A)^{2} / 4$ Tr $A>0$ 
+  $\rightarrow$ Nodo inestable
+  % , $\equiv$
   
   Dos autovalores reales positivos 
-  
   $\rightarrow$ Nodo inestable
+  
   \item $(\operatorname{Tr} \mathrm{A})^{2} / 4<$ Det $\mathrm{A}$, Tr $\mathrm{A}<0$ 
-  
-  Dos autovalores complejos, parte real negativa 
-  
   $\rightarrow$ Espiral estable
+  % , $\equiv$
+
+  Dos autovalores complejos, parte real negativa 
+  $\rightarrow$ Espiral estable
+  
   \item $(\operatorname{Tr} A)^{2} / 4<$ Det $A$, Tr $A>0$ 
+  $\rightarrow$ Espiral inestable
+  % , $\equiv$
   
   Dos autovalores complejos, parte real posiiva 
-  
   $\rightarrow$ Espiral inestable
-  \item Det $A>0$, $\operatorname{Tr} A=0$ 
+  
+  \item Det $A>0$, $\operatorname{Tr} A=0$
+  $\rightarrow$ Centro
+  % , $\equiv$
   
   Dos autovalores imaginarios 
-  
   $\rightarrow$ Centro
-  \item Det $A=(\operatorname{Tr} A)^{2} / 4$, TrA $<0$, 
   
-  Dos autovalores iguales 
-  
+  \item Det $A=(\operatorname{Tr} A)^{2} / 4$, TrA $<0$
   $\rightarrow$ Nodo degenarado estable
-  \item Det $A=(\operatorname{Tr} A)^{2} / 4$, TrA $>0$, 
+  % , $\equiv$
+  
+  Dos autovalores iguales   
+  $\rightarrow$ Nodo degenarado estable
+  
+  \item Det $A=(\operatorname{Tr} A)^{2} / 4$, TrA $>0$
+  $\rightarrow$ Nodo degenarado inestable
+  % , $\equiv$
   
   Dos autovalores iguales 
-  
   $\rightarrow$ Nodo degenarado inestable
 \end{itemize}
-
-\begin{figure}[ht!]
-  \includegraphics[width = 0.28\textwidth]{estable-Inestable.pdf}
-  \caption{\label{fig:figura1} Criterio de estabilidad.}
-\end{figure}
 
 \section{Bifurcaciones}
 
@@ -272,23 +329,14 @@ Estos cambios cualitativos de la dinámica se llaman bifurcaciones, y los valore
 
 En sistemas de 1D hay 3 bifurcaciones fundamentales que se asocian a la creación y destrucción de equilibrios o cambios de estabilidad.
 
-% $$
-% (\exists K > 0: 
-% d_{N}(f(x), f(y)) \leq K d_{M}(x, y), \forall x, y \in M)
-% \Leftrightarrow f es de Lipschitz
-% $$
-
-
-
-
-
 \section{Mapeos 1D}
 
-\# \textbf{Definición: } $
+$\definir$ \textbf{Definición:} 
+$
 x_{k+1} = f(x_k , r)
 $
 
-$>$ \textbf{Analisis lineal:}
+$\propiedad$ \textbf{Análisis lineal:}
 $
 \left\lbrace 
 \begin{array}{l}
@@ -315,7 +363,6 @@ $\varepsilon_{k+1} \approx \varepsilon_{k} f_{x}\left(x^{*}, r\right)
 Modulo de perturbación crece si $|f_{x}\left(x^{*},r\right)| = |\lambda| > 1$
 
 Entonces:
-
 $$
 \begin{aligned}
 |f_{x}\left(x^{*},r\right)| = |\lambda| &=\left\{\begin{array}{ll}
@@ -327,7 +374,8 @@ $$
 \end{aligned}
 $$
 
-\# \textbf{Orbita periódica:} De período $p$ si es el mínimo numero tal que: $
+$\definir$ \textbf{Orbita periódica:} 
+De período $p$ si es el mínimo numero tal que: $
 x_0 = f(x_{p-1},r)
 $
 
@@ -353,28 +401,33 @@ $\quad (f^p)'(x_k, r) =
 |f ' (x_k, r)|
 $
 
-\section{Matematica de sistemas biologicos}
+\section{Matemática de sistemas biológicos}
 
-\textbf{$>$ Modelo de Malthus(Crecimiento exponencial):}
-
-$$\frac{d x}{d t}=r x, \quad 
-r=\eta-\mu = \text{natalidad - mortalidad}$$
-
-
-\textbf{$\cdot$ Catastrofe malthusiana:} La población crece mas rápido que la capacidad de producir alimento.
-
-$$\frac{dh}{dt} = rh, \quad \frac{da}{dt} = k$$
-
-$$c(t)=\frac{a(t)}{h(t)}=\frac{a_{0} k t}{h_{0} e^{r t}}=c_{0} k t e^{-r t} \longrightarrow c_{\text {crit }} \rightarrow t_{\text {crit }}$$
-
+$\tema$ \textbf{Modelo de Malthus(Crecimiento exponencial):}
 $$
-\frac{c_{\text {crit }}}{c_{0}}=k t_{\text {crit }} e^{-r t_{\text {cint }}} \rightarrow t_{\text {crit }}=-W\left(-r \frac{c_{\text {crit }}}{c_{0}} e^{-r / k}\right) ^\text {Función de} _\text {Lambert}
+\frac{d x}{d t}=r x, \quad 
+r=\eta-\mu = \text{natalidad - mortalidad}
 $$
 
-Funcion de Lambert:
+$\tema$ \textbf{Catástrofe malthusiana:} 
+La población crece mas rápido que la capacidad de producir alimento.
+$$
+\frac{dh}{dt} = rh, \quad \frac{da}{dt} = k
+$$
+$$
+c(t)=\frac{a(t)}{h(t)}=\frac{a_{0} k t}{h_{0} e^{r t}}=c_{0} k t e^{-r t} \rightarrow c_{\text {crit }} \rightarrow t_{\text {crit }}
+$$
+$$
+\frac{c_{\text {crit }}}{c_{0}}
+=k t_{\text {crit }} e^{-r t_{\text {cint }}} 
+$$
+$$
+t_{\text {crit }}
+=-W\left(-r \frac{c_{\text {crit }}}{c_{0}} e^{-r \over k}\right) ^\text {Función de} _\text {Lambert}
+$$
 
-$$W=f^{-1}(z),\quad $$
-
+$\definir$ \textbf{Función de Lambert:} 
+$X=Y e^{Y} \Leftrightarrow Y=W(X)$
 $$
 \begin{array}{l}
 \frac{d x}{d t}=r x\left(1-\frac{x}{K}\right) \\
@@ -386,16 +439,13 @@ x=K
 \end{array}
 $$
 
-\textbf{$\cdot$ Mapeo Beverton Holt(Crecimiento limitado):}
-
+$\tema$ \textbf{Mapeo Beverton Holt(Crecimiento limitado):}
 En 1957 Beverton y Holt propusieron un mapeo que reproducia el comportamiento de ecuación logística
 
-\text{Mapeo logístico: }
-
+\text{Mapeo logístico:}
 $$
-% \text{Mapeo logístico: }
-x_{n+1}=\frac{r x_{n}}{1+\frac{r-1}{K} x_{n}}$$
-
+x_{n+1}=\frac{r x_{n}}{1+\frac{r-1}{K} x_{n}}
+$$
 
 $
 \text{Puntos fijos:}
@@ -413,13 +463,14 @@ Para hallarla se hace el cambio de variable:
 $
 u_{n}=1 / x_{n}
 $
-
 $$
-\frac{1}{u_{n+1}}=\frac{1}{u_{n}} \frac{K r}{K+\frac{r-1}{u_{n}}} \longrightarrow u_{n+1}=\frac{K u_{n}+r-1}{K r}=\frac{1}{r}\left(u_{n}+\frac{r-1}{K}\right)
+\frac{1}{u_{n+1}}=\frac{1}{u_{n}} \frac{K r}{K+\frac{r-1}{u_{n}}} 
+$$
+$$
+\longrightarrow u_{n+1}=\frac{K u_{n}+r-1}{K r}=\frac{1}{r}\left(u_{n}+\frac{r-1}{K}\right)
 $$
 
-\textbf{$\cdot$ Logística con delay }
-
+$\tema$ \textbf{Logística con delay }
 $$
 \begin{aligned}\centering
 % &\text { Logística con delay }\\
@@ -434,41 +485,44 @@ u(t-s)=\delta(t-T-s) \Rightarrow \int_{-\infty}^{t} u(t-s) N(s) d s=N(t-T)
 \end{aligned}
 $$
 
-\textbf{$\cdot$ Poblaciones estables Lotka:}
-
-
+$\tema$ \textbf{Poblaciones estables Lotka:}
 \begin{itemize}
   \item[] $\nu(t)$ Natalidad
-  \item[] $\rho(\tau)$ Probabilidad de supervivencia hasta la edad $\mathrm{T}$
-  \item[] $\phi(\tau)$ Fertilidad a la edad $\mathrm{T}$
+  \item[] $\rho(\tau)$ Probabilidad de supervivencia hasta la edad $\tau$
+  \item[] $\phi(\tau)$ Fertilidad a la edad $\tau$
   \item[] $\int_{0}^{\infty} \rho(\tau) d \tau$ Esperanza de vida
 \end{itemize}
 
 
 Por otro lado, podemos calcular la tasa de natalidad $v(t)$ en un tiempo dado a partir de la composición de la población, para eso debemos tener en cuenta la historia previa:
-$v(t)=\int_{0} v(t-\tau) \rho(\tau) \phi(\tau) d \tau$
-Es decir, debemos contar la cantidad de mujeres que nacieron en $\mathrm{t}-\mathrm{T}$ que sobrevivieron hasta t y considerar como contribuyen a la tasa de natalidad total dada su edad.
+$$
+v(t)=\int_{0} v(t-\tau) \rho(\tau) \phi(\tau) d \tau
+$$
 
+Es decir, debemos contar la cantidad de mujeres que nacieron en $t-\tau$ que sobrevivieron hasta t y considerar como contribuyen a la tasa de natalidad total dada su edad.
 
-$v(t)=\int_{0}^{\infty} v(t-\tau) \rho(\tau) \phi(\tau) d \tau \quad$ Natalidad
 Propongo una solución exponencial para la ecuación anterior $v(t)=v(0) e^{r t}$
-con $\mathrm{r}$ desconocidp
+con $\mathrm{r}$ desconocido
+
 Reemplazo y obtengo
-$v(t)=\int_{0}^{\infty} v(t) e^{-r \tau} \rho(\tau) \phi(\tau) d \tau \Rightarrow 1=\int_{0}^{\infty} e^{-r \tau} \rho(\tau) \phi(\tau) d \tau$
+$$
+v(t)=\int_{0}^{\infty} v(t) e^{-r \tau} \rho(\tau) \phi(\tau) d \tau \Rightarrow 1=\int_{0}^{\infty} e^{-r \tau} \rho(\tau) \phi(\tau) d \tau
+$$
+
 La ecuación de la derecha se conoce como ecuación de Lotka. La integral es siempre positiva y decrece monotonamente con $\mathrm{r}$. por eso hay un solo valor de $\mathrm{r}$ que satisface la ecuación, $\mathrm{r}_{1}$
 
-Poblaciones estables - Lotka
 Obtenido el valor de r, puedo calcular la población total a un tiempo dado
-$N(t)=\int_{0}^{\infty} v(t-\tau) \rho(\tau) d \tau=\int_{0}^{\infty} e^{r_{1}(\tau-\tau)} \rho(\tau) d \tau$
+$$
+N(t)=\int_{0}^{\infty} v(t-\tau) \rho(\tau) d \tau=\int_{0}^{\infty} e^{r_{1}(\tau-\tau)} \rho(\tau) d \tau
+$$
 Si quiero saber que cantidad de mujeres de una dada edad han sobrevivido hasta tiempo t calculo
 $$
 \frac{v(t-\eta) \rho(\eta)}{N(t)}=\frac{v_{0} e^{r_{1}(\tau-\eta)} \rho(\eta)}{\int_{0}^{\infty} v_{0} e^{r_{1}(\tau-\tau)} \rho(\tau) d \tau}-\stackrel{t \rightarrow \infty}{\rightarrow} \int_{0}^{\infty} e^{-r_{1} \tau} \rho(\tau) d \tau
 $$
-EI 'límite es una constante y es la estructura etaria buscada por Lotka
 
-\textbf{$\cdot$ Poblaciones estables - Matrices de Leslie:}
+EI límite es una constante y es la estructura etaria buscada por Lotka
 
-
+$\tema$ \textbf{Poblaciones estables - Matrices de Leslie:}
 Leslie al igual que Lotka, buscaba hallar la forma de un perfil estacionario, pero en modelo discreto. Introdujo un modelo para el crecimiento del número de hembras en una población no sujeta a procesos migratorios ni a limitaciones que pueda imponer el ambiente. La población está estratificada en edades y a lo largo del tiempo los individuos pueden permanecer en el mismo estrato etario durante un tiempo y finalmente moverse al nivel siguiente. Consideremos un caso con dos niveles etarios
 $$
 N_{1}(t+1)=f_{1} N_{1}(t)+f_{2} N_{2}(t)
@@ -478,8 +532,7 @@ Donde $f$, es la fecundidad de las hembras cada grupo etario y representa el val
 
 \section{Ejercicio 2}
 
-$>$ \textbf{Analisis lineal 2D:}
-
+$\propiedad$ \textbf{Análisis lineal 2D:}
 \begin{figure*}[ht!]
   \includegraphics[width = 0.98\textwidth]{Stability_Diagram.png}
   \caption{\label{fig:figura1} Criterio de estabilidad.}
@@ -487,7 +540,7 @@ $>$ \textbf{Analisis lineal 2D:}
 
 \section{Simulación estocástica}
 
-$*$ \textbf{Proceso de nacimiento}
+$\tema$ \textbf{Proceso de nacimiento}
 
 Sistema:
 \begin{itemize}
@@ -520,11 +573,9 @@ N_{0}-1
 \end{array}\right) e^{-b N_{0} t}\left(1-e^{-b t}\right)^{N-N_{0}}
 $$
 donde $N_{0}=N(0)$ es la condición inicial (es decir, la condición inicial es una delta de Dirac en $N_{0}$ ).
-
 $$
 \langle N\rangle=N_{0} e^{b t}, \text { el valor medio, }
 $$
-
 $$
 \sigma^{2}=N_{0} e^{b t}\left(e^{b t}-1\right), \text { la varianza. }
 $$
@@ -534,8 +585,7 @@ $$
 \frac{\sigma}{\langle N\rangle}=\frac{\sqrt{N_{0} e^{b}\left(e^{b}-1\right)}}{N_{0} e^{b t}}=\frac{\sqrt{1-e^{- b{t} }}}{\sqrt{N_{0}}} \approx \frac{1}{\sqrt{N_{0}}}
 $$
 
-$>$ \textbf{Simulacion estocastica:}
-
+$\propiedad$ \textbf{Simulacion estocastica:}
 $$
   b=\ln \left(1+p_{b}\right), p_{b}=e^{b}-1 \quad
   ^{b \text{: Tasa de reproduccion}}
@@ -543,15 +593,13 @@ $$
 $$
 
 
-$>$ \textbf{Algoritmo de Gillespie:}
-
+$\propiedad$ \textbf{Algoritmo de Gillespie:}
 Es posible sortear un valor numérico con distribución uniforme. Es posible transformar esos valores en otros, con la distribución de probabilidad que uno quiera. Para distribución exponencial si $w \in[0,1)$ con probabilidad uniforme, basta hacer:
 $$
 \tau=-\frac{\ln w}{b N}
 $$
 
 Y $P(\tau)$ tiene la distribución exponencial decreciente deseada. La simulación entonces procede de la siguiente manera:
-
 \begin{enumerate}
   \item Dar un valor inicial $N(0)=N_{0}$.
   \item Sortear $w$ uniforme.
@@ -561,14 +609,12 @@ Y $P(\tau)$ tiene la distribución exponencial decreciente deseada. La simulaci�
   \item Repetir desde 2 .
 \end{enumerate}
 
-
-
 % Cada repetición de todo el programa da una realización de la evolución. Distintas realizaciones dan evoluciones distintas, ya que son aleatorias. Pero el promedio de muchas de ellas, y su varianza, deben obedecer la evolución temporal dada por las Ecs. (4.22-4.23).
 
-\section{Teoria de juegos}
+\section{Teoría de juegos}
 
-$\#$ \textbf{Juego:} $(R, A)$ donde:
-
+$\definir$ \textbf{Juego:} 
+$(R, A)$ donde:
 \begin{itemize}
   \item[] 
   $R=\left\{R_{1}, R_{2}, \ldots, R_{N}\right\}$ Conjunto de estrategias llamadas estrategias puras. 
@@ -578,32 +624,31 @@ $\#$ \textbf{Juego:} $(R, A)$ donde:
   $a_{i j}$ El pago que recibe $R_i$ cuando juega con $R_j$
 \end{itemize}
 
-$\#$ \textbf{Estrategia mixta:} Una estrategia que consiste en tomar estrategias puras $R_i$ con una probabilidad $p_i$:
-
+$\definir$ \textbf{Estrategia mixta:} 
+Una estrategia que consiste en tomar estrategias puras $R_i$ con una probabilidad $p_i$:
 $$
 \boldsymbol{p}=\left(p_{1}, p_{2}, \ldots, p_{N}\right), \operatorname{con} p_{i} \geq 0 \ y \sum p_{i}=1
 $$
 
-$\sim$ La matriz de pagos está definida en términos de los payoff para estrategias puras. 
+$\nota$ La matriz de pagos está definida en términos de los payoff para estrategias puras. 
 
-$>$ \textbf{Payoff de estrategia 1 Vs. estrategia 2 (mixtas o no):}
-
+$\propiedad$ \textbf{Payoff de estrategia 1 Vs. estrategia 2 (mixtas o no):}
 $$
 \mathbf{p}_{1} A \mathbf{p}_{2} = \sum_{i, j} p_{1,i} p_{2,j} a_{i j}
 $$
 
-$>$ \textbf{Payoff de estrategia pura Vs. mixta:}
-
+$\propiedad$ \textbf{Payoff de estrategia pura Vs. mixta:}
 $$
 \sum a_{i j} p_{j}=(A p)_{i}
 $$
 
-$>$ \textbf{Mejor respuesta estrategia 1 Vs. estrategia 2:} 
+$\propiedad$ \textbf{Mejor respuesta estrategia 1 Vs. estrategia 2:} 
 \begin{itemize}
   \item[] Maximiza  $\mathbf{r}_{2} A \mathbf{r}_1$. 
 \end{itemize}
 
-$\#$ \textbf{Equilibrio de Nash:} Si todos los jugadores tienen la misma elección de estrategias, un equilibrio de Nash es una estrategia $\vec{p^{*}}$ que es la mejor respuesta a si misma
+$\definir$ \textbf{Equilibrio de Nash:} 
+Si todos los jugadores tienen la misma elección de estrategias, un equilibrio de Nash es una estrategia $\vec{p^{*}}$ que es la mejor respuesta a si misma
 $$
 \vec{p^{*}} \cdot U \vec{p^{*}} \geqslant \vec{q} \cdot U \vec{p^{*}}, \quad \forall \vec{q}
 $$
@@ -612,9 +657,9 @@ $$
 \vec{p^{*}} \cdot U \vec{p^{*}} > \vec{q} \cdot U \vec{p^{*}}, \quad \forall \vec{q}
 $$
 
-$\#$ \textbf{Dinamica del replicador:}
-
-$$ \left\lbrace
+$\definir$ \textbf{Dinamica del replicador:}
+$$ 
+\left\lbrace
 \begin{aligned}
   \dot{x}_{1} &= x_{1}\left[(A \vec{x})_{1}-\vec{x} \cdot A \vec{x}\right] \\
   \dot{x}_{2} &= x_{2}\left[(A \vec{x})_{2}-\vec{x} \cdot A \vec{x}\right] \\
@@ -633,14 +678,14 @@ Suposiciones:
   \item La población es grande, y las generaciones se mezclan, de modo que $\vec{x}(t)$ evoluciona de manera diferenciable. Para cada tipo $E_{i}$, la tasa de crecimiento relativa $\frac{\dot{x}_{i}}{x_{i}}$
 \end{itemize}
 
-$\sim$ El simplex $S_{n}$ es invariante por la ecuación, así que podemos considerarla restringida a $S_{n}$
+$\nota$ El simplex $S_{n}$ es invariante por la ecuación, así que podemos considerarla restringida a $S_{n}$
 
-$\sim$ La fitness del tipo $E_{i}$ es:
+$\nota$ La fitness del tipo $E_{i}$ es:
 $$
 f_{i}(\vec{x})=\sum_{j} a_{i j} x_{j}=\{A \vec{x}\}_{i}
 $$
 
-$\#$ \textbf{Equilibrio de nash (frecuencia):}
+$\definir$ \textbf{Equilibrio de nash (frecuencia):}
 
 $\vec{x^{*}} \in S_{n}$ es un equilibrio de Nash si
 $\vec{x} \cdot A \vec{x^{*}} \leqslant \vec{x^{*}} \cdot A \vec{x^{*}} \quad \forall \vec{x} \in S_{n}$
@@ -648,9 +693,7 @@ $\vec{x} \cdot A \vec{x^{*}} \leqslant \vec{x^{*}} \cdot A \vec{x^{*}} \quad \fo
 $\vec{x^{*}} \in S_{n}$ es un estado (no una estrategia) evolutivamente estable si
 $\vec{x}^{3} \cdot A \vec{x}>\vec{x} \cdot A \vec{x} \quad \forall \vec{x} \neq \vec{x^{*}}$ en un entorno de $\vec{x^{*}}$.
 
- 
-% $>$ \textbf{Teoremas}
-\textbf{Teoremas}
+$\propiedad$ \textbf{Teoremas}
 
 \begin{itemize}
   \item[$>$] Si $\vec{x}^{*}$ es un equilibrio de Nash, entonces es un equilibrio de la ecuación del replicador.
@@ -658,19 +701,13 @@ $\vec{x}^{3} \cdot A \vec{x}>\vec{x} \cdot A \vec{x} \quad \forall \vec{x} \neq 
   \item[$>$] Si $\vec{x}^{*}$ es estable de Lyapunov, entonces es un equilibrio de Nash.
   \item[$>$] Si $\vec{x}^{*} \in S_{n}$ es un estado evolutivamente estable, entonces es un equilibrio asintóticamente estable de la ecuación del replicador.
 \end{itemize}
-
 O en palabras:
-
 \begin{itemize}
   \item[$>$] Los equilibrios de Nash son equilibrios de E.R.
   \item[$>$] Los limites de órbitas interiores son E.N.
   \item[$>$] Los puntos estables son E.N.
   \item[$>$] Los Equilibrios estrictos son atractores
 \end{itemize}
-
-
-
-
 
 \end{document}
 %
