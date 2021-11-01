@@ -13,11 +13,6 @@ def sech_sir(x, a, b, c):
 # plt.ion()
 aDir = '../figuras/'
 
-style = {'linewidth':0.5, 
-         'ms':1.8, 
-         'marker':'o', 
-         'subplots':True}
-
 #%% # abrir y pre procesar
 df = pd.read_csv('2021-tp05-covid19.csv', index_col='Date')
 rename_dict = {'i':'infectados',
@@ -29,35 +24,30 @@ df.index = df.index.rename('Fecha')
 #%% ## feriados
 file1 = 'datasetFeriadosArgentina/feriadosArgentina2020.csv'
 file2 = 'datasetFeriadosArgentina/feriadosArgentina2021.csv'
-feriados = pd.read_csv(file1)
-feriados = pd.concat((feriados, pd.read_csv(file2))).reset_index()
+feriados_20_21 = (pd.read_csv(file1), pd.read_csv(file2))
+feriados = pd.concat(feriados_20_21).reset_index()
 month, day, year = feriados['month'], feriados['day'], feriados['year']
 month, day, year = month.astype('str'), day.astype('str'), year.astype('str') 
 feriados = month + ' ' + day + ' ' + year
 feriados = pd.to_datetime(feriados, format='%B %d %Y')
-
-feriados = feriados[(feriados >= df.index[0]) 
-                    & (feriados <= df.index[-1])]
 
 ## para plotear
 rename_plot = {'infectados':'Infectados',
                'fallecidos':'Fallecidos',
                'tests': 'Testeados',
                'difIt': 'Infectados-Fallecidos',}
+style = {'linewidth':0.5, 
+         'ms':1.8, 
+         'marker':'o', 
+         'subplots':True}
 plt_rename = {'columns':rename_plot}
+
 #%% # diferencia entre infectados y testeados
-df['difIt'] = df['infectados'].sub(df['tests'])
 axs = df.rename(**plt_rename).plot(**style)
 figs = axs[0].get_figure()
 figs.tight_layout()
 figs.savefig(aDir + 'ex02-resumen.pdf')
-#%% ## normalizado
-df_norm = df/df.max()
-df_norm['difIt'] = df['difIt']/df['difIt'].min()
-axs2 = df_norm.rename(**plt_rename).plot(**style)
-figs2 = axs2[0].get_figure()
-figs2.tight_layout()
-figs2.savefig(aDir + 'ex02-resumen-normalizado.pdf')
+
 #%% ## sin weekends
 df_weekday_2 = df[(df.index.weekday != 5) # sabado 
                 & (df.index.weekday != 6) # domingo
@@ -67,20 +57,14 @@ df_weekday_2 = df[(df.index.weekday != 5) # sabado
                 # & (df.index.weekday != 1) # martes
                 # & (df.index.weekday != 0) # lunes
                 ] 
-
-aux_df = df_weekday_2.index
-bool_index = aux_df != aux_df ## trivial case
-for aux_datetime in feriados:
-    bool_index |= (aux_df == aux_datetime)
-
-# podes comentar esto si queres tener en cuenta los feriados
-df_weekday_2 = df_weekday_2[~ bool_index] # feriados
+df_weekday_2 = df_weekday_2[~df_weekday_2.index.isin(feriados)]
 
 axs3 = df_weekday_2.rename(**plt_rename).plot(**style)
 figs3 = axs3[0].get_figure()
 figs3.tight_layout()
 figs3.savefig(aDir + 'ex02-sin-Finde.pdf')
-#%% # fecha donde termina el primer pico
+
+#%% # Primer pico
 pico_1 = datetime.datetime.strptime('2020-12-15','%Y-%m-%d')
 df_pico_11 = df[df.index < pico_1]
 df_pico_11.index = (df_pico_11.index - df_pico_11.index[0]).days
