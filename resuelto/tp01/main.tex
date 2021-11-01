@@ -72,26 +72,22 @@ Para este sistema discreto:
 $$n_{t+1} = f(n_t, K, r)= \frac{r n_t}{1+\frac{r-1}{K} n_t},$$ 
 
 los puntos fijos $n^*$ se obtienen resolviendo la ecuación:
-
 $$
 n^* = f(n^*, K, r)
 $$
 
 Reemplazando:
-
 $$
 \nstar = \frac{r \nstar}{1+\frac{r-1}{K} \nstar}
 $$
 
 
 Resolvemos esta ecuación para $r\neq 1$ (donde hay dinámica):
-
 $$
 \nstar (r-1) (\nstar-K) = 0 \Rightarrow \left\lbrace ^{\nstar = K} _{\nstar = 0}  \right .
 $$
 
 Usando el siguiente criterio de estabilidad, proveniente de un análisis de pequeñas perturbaciones (Válido bajo las mismas hipótesis que permiten un desarrollo en series de Taylor), donde $n_{t+1} = f(n_t,r)$ representa el mapeo 1D y $\nstar$ el punto fijo a analizar:
-
 $$
 \begin{aligned}
 |f_{n}\left(n^{*},r\right)| = |\lambda| &=\left\{\begin{array}{ll}
@@ -104,7 +100,6 @@ $$
 $$
 
 Se obtiene que:
-
 $$
 |f_{n}\left(n^{*},r\right)|=\frac{K^{2} r}{(K+\nstar(r-1))^{2}}
 $$
@@ -204,7 +199,6 @@ En la Fig. \ref{fig:scripts/ex1} se tienen gráficos de los mapeos. Se observa q
 \end{figure*}
 
 En la Fig. \ref{fig:scripts/ex2-cosa} se tiene un gráfico de soluciones de la ecuación logística con delay. Están presentes los 3 regímenes de la ecuación logística con delay:
-
 $$
 \begin{array}{|l|l|}
 \hline 0<r T <e^{-1} & \text { monótono } \\
@@ -233,7 +227,6 @@ Además se graficaron en la Fig. \ref{fig:scripts/ex2-cosaPrueba} la solución d
 \section{Resolución Ej 3:}
 
 Sea $R(r)$ la función polinomios:
-
 \begin{equation}\label{eqn:etiqueta1}
     R(r) = r^{k+1} 
         - \left( 
@@ -246,7 +239,6 @@ Sea $R(r)$ la función polinomios:
 \end{equation}
 
 tal que $R(1)=R$. Puede verse que:
-
 \begin{equation}\label{eqn:etiqueta2}
     R(0) = - f_k \cdot  s_{k-1} \cdot \ldots \cdot s_{0}
 \end{equation}
@@ -338,29 +330,24 @@ En el caso b el tiempo medio de desastres $\lambda$ es más corto que el tiempo 
 \section{Resolución Ej 6:}
 
 Para este sistema continuo:
-
 \begin{equation}\label{eqn:Alle}
 \frac{d N}{d t} =r N\left[1-\frac{N}{K}\right]\left[\frac{N}{A}-1\right] = f(N, K, r, A)
 \end{equation}
-
 $$
 \frac{d N}{d t} = f(N, K, r, A) \qquad r>0, K>0 , A>0
 $$
 
 es conocido que los puntos fijos $N^*$ son las soluciones a la ecuación:
-
 \begin{equation}\label{eqn:etiqueta3}
     0 = f(N^*, K, r, A), r>0, K>0, A >0
 \end{equation}
 
 Resolvemos esta ecuación para $r\neq 1$ (donde hay dinámica):
-
 \begin{equation}\label{eqn:etiqueta3}
     - r \Nstar  (1 - \frac{\Nstar}{K}) (1 - \frac{\Nstar}{A}) = 0 \Rightarrow \left\lbrace ^{\Nstar = K, \Nstar = A} _{\Nstar = 0, }  \right .
 \end{equation}
 
 Usando el siguiente criterio de estabilidad, proveniente de un análisis de pequeñas perturbaciones (Válido bajo las mismas hipótesis que permiten un desarrollo en series de Taylor), donde $\frac{dN}{dt} = f(N, K, r, A)$ representa el sistema dinámico y $\Nstar$ el punto fijo a analizar:
-
 $$
 \begin{aligned}
     \frac{d f\left(x^{*}, r\right)}{d x} &=\left\{ 
@@ -374,21 +361,24 @@ $$
 Se tiene en este caso 3 puntos fijos, pero hay 2 que provienen de dos binomios similares pero con un parámetro distinto, los puntos fijos son los ceros de la función.
 
 Para $\frac{d f\left(x^{*}, r\right)}{d x} (0):$ 
-
-$$\frac{d f\left(x^{*}, r\right)}{d x} (0) = -r \Rightarrow \text{Estable}$$ 
+$$
+\frac{d f\left(x^{*}, r\right)}{d x} (0) = -r \Rightarrow \text{Estable}
+$$ 
 
 Para $\frac{d f\left(x^{*}, r\right)}{d x} (A):$ 
-
-$$\frac{d f\left(x^{*}, r\right)}{d x} (A) = \frac{r}{K} (K-A)  
+$$
+\frac{d f\left(x^{*}, r\right)}{d x} (A) = \frac{r}{K} (K-A)  
 \left\lbrace
 ^{ K<A \Rightarrow \text{Estable}}
-_{ K>A \Rightarrow \text{Inestable}} \right.$$ 
+_{ K>A \Rightarrow \text{Inestable}} \right.
+$$ 
 
 Para $\frac{d f\left(x^{*}, r\right)}{d x} (K):$ 
-
-$$\frac{d f\left(x^{*}, r\right)}{d x} (K) = \frac{r}{A} (A-K) 
+$$
+\frac{d f\left(x^{*}, r\right)}{d x} (K) = \frac{r}{A} (A-K) 
 \left\lbrace ^{ K>A \Rightarrow \text{Estable}}
-_{ K<A \Rightarrow \text{Inestable}} \right. $$ 
+_{ K<A \Rightarrow \text{Inestable}} \right.
+$$ 
 
 En la Fig. \ref{fig:scripts/plots/ex6-y0chico02} se puede ver que para condiciones iniciales superiores a $A$ la población decrece hasta $A$, un punto fijo estable. Para valores de $A$ menores a $K$, el punto fijo resulta en $A$.
 
