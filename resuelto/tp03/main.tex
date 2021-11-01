@@ -132,6 +132,7 @@ Se tiene un modelo de población continua de dinámica discreta dado por:
 \begin{equation}\label{ec:map01}
   x_{n+1} = a x_n + z_n
 \end{equation}
+
 donde $z_n$ es una variable estocástica con distribución gaussiana con media cero y desviación estándar $\sigma$. Esta expresión recursiva no es tan rápida en algunos lenguajes de programación. Pero puede reescribirse, veamos como se comporta a distintos valores de $n$:
 \begin{equation}\label{ec:map01-evaluations}
   x_0 = x_0 \Rightarrow
@@ -144,10 +145,12 @@ donde $z_n$ es una variable estocástica con distribución gaussiana con media c
     x_n &= a^n x_0 + a^{n-1} z_0 + \ldots + a^0 z_{n-1}\\
   \end{aligned}\right. , 
 \end{equation}
+
 con esto proponemos que puede reescribirse como:
 \begin{equation}\label{ec:map01-r}
   x_n = a^{n} x_0 + \sum_{i=0}^{n-1} a^{n-(1+i)} \ z_i
 \end{equation}
+
 Una rápida prueba inductiva de que esto es cierto:
 $$
 \left|
@@ -214,8 +217,8 @@ Puede reescribirse como:
 \begin{equation}\label{ec:map02-r}
   x_n = x_0 \prod_{i=0}^{n-1} (a + z_i)
 \end{equation}
-Una rápida prueba inductiva de que esto es cierto:
 
+Una rápida prueba inductiva de que esto es cierto:
 \begin{equation}
   \left|
   \begin{aligned}
