@@ -81,7 +81,6 @@
 \section{Resolución Ej 1:}
 
 Supongamos que cada población tiene un comportamiento logístico en ausencia de la otra:
-
 $$
 \left\{
 \begin{aligned}
@@ -94,7 +93,6 @@ $$
 donde $b_{12}$ y $b_{21}$ miden los efectos de la mutua competencia. 
 
 Si se realiza el cambio de variable:
-
 \begin{equation} \label{eq:cambio de variable}
 \left\lvert 
     \begin{aligned}
@@ -105,7 +103,6 @@ Si se realiza el cambio de variable:
 \end{equation}
 
 se obtiene:
-
 \begin{equation} \label{eq:adimenzionalizada}
 \left\{
 \begin{aligned}
@@ -116,7 +113,6 @@ se obtiene:
 \end{equation}
 
 Los puntos de equilibrios $P_j = (u^*_{1,j},u^*_{2,j})$ donde $j= 1, 2, ..., 4$ están dados por: 
-
 $$
 \left\{
 \begin{aligned}
@@ -131,7 +127,6 @@ $$
 $$
 
 La estabilidad puede analizarse mediante la matriz Jacobiana:
-
 $$
 J_1 = \begin{bmatrix}
     1 & 0 \\
@@ -148,7 +143,6 @@ J_3 = \begin{bmatrix}
     0      & \rho \left( 1 + a_{21} \right)
 \end{bmatrix}
 $$
-
 \begin{itemize}
     \item Para $P_1$: Autovalores positivos $\Rightarrow$ nodo inestable.
     \item Para $P_2$: Autovalores de distinto signo $\Rightarrow$ punto silla.
@@ -156,7 +150,6 @@ $$
 \end{itemize}
 
 El cuarto punto de equilibrio tiene una expresión larga para sus autovalores, su matriz Jacobiana es:
-
 $$
 J_4 = 
 \frac{1}{1-a_{12} a_{21}}
@@ -179,7 +172,6 @@ $$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Para este punto es más conveniente un análisis gráfico de las trayectorias como el que puede verse en la Fig. \ref{fig:mosquitos}. El punto $P_4$ es la intersección de las rectas roja y azul. Se tienen tres casos según los valores de $a_{12}, a_{21}$:
-
 \begin{itemize}
     \item Si $a_{12} a_{21} = 1$ las rectas son paralelas y no hay un punto de equilibrio. 
     \item Si $a_{12} a_{21} > 1$ la intersección de la recta y por tanto el punto de equilibrio queda fuera del rango del problema ($u_1$ y $u_2$ son poblaciones y por tanto positivas). 
@@ -198,7 +190,6 @@ Para este punto es más conveniente un análisis gráfico de las trayectorias co
 \section{Resolución Ej 2:}
 
 Para el sistema:
-
 \begin{equation}\label{eq:esteril1}
     \frac{d N}{d t} = f(N,a,b,k,n) 
     = \left[\frac{a N}{N+n}-b\right] N- k N(N+n)
@@ -209,7 +200,6 @@ donde $a$ es la natalidad, $b$ es la mortalidad y $k$ un coeficiente de capacida
 Este modelo asume lo siguiente:
 
 % We incorporated into our model(s) the following explicit assumptions that would seem to apply to a rather wide range of biological situations: 
-
 \begin{enumerate}[label=\alph*)]
     \item Las poblaciones existen como continuos y se reproducen de forma continua en el tiempo.
     \item La población crece similar a una curva logística.
@@ -228,7 +218,6 @@ Este modelo asume lo siguiente:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Para obtener la capacidad del sistema analizamos el caso particular en el que $n=0$. 
-
 \begin{equation}\label{eq:esteril2}
     \frac{d N}{d t} = f(N,a,b,k,0) 
     = 
@@ -239,7 +228,6 @@ Para obtener la capacidad del sistema analizamos el caso particular en el que $n
 Puede verse que la Ec. \ref{eq:esteril1} es una ecuación logística modificada, la natalidad está controlada por la porción de mosquitos que son estériles. Además que los mosquitos estériles influyen en la capacidad del sistema. Como sabemos los puntos fijos de un sistema logístico son, 0 y la capacidad del sistema, por esto de Ec. \ref{eq:esteril2} puede verse que $\frac{a-b}{k}$ es la capacidad del sistema.
 
 Volviendo a Ec. \ref{eq:esteril1} los puntos fijos están dados por: $f(N,a,b,k,n) = 0$
-
 $$
 \Nstar_1 = 0, 
 \Nstar_{2,3} = \pm 
@@ -251,14 +239,12 @@ $$
 $$
 
 Para analizar la estabilidad de los puntos fijos, analizamos $\frac{d f}{d N}$:
-
 $$
 \frac{d f}{d N} = \frac{ aN^2 + 2 a n N}{( N + n )^2}
 - k (2N + n) - b 
 $$
 
 La estabilidad de $\Nstar_1$:
-
 $$
 \frac{d f}{d N} = - b - k  n  
 \ \Rightarrow  \ 
@@ -266,7 +252,6 @@ $$
 $$
 
 La estabilidad de los puntos $\Nstar_{2,3}$ es un tanto más complicada, pero podemos analizar bajo que condiciones estos puntos fijos desaparecen. Podemos obtener un número crítico de mosquitos estériles $n_c$ a partir del cual $\Nstar_{2,3}$ es un número complejo si analizamos donde se anula el radicando:
-
 $$
 n_c =  
 \frac{1}{4} 
@@ -275,7 +260,6 @@ n_c =
 $$
 
 Donde, reordenando, vemos que $n_c$ es menor que $ \frac{1}{4} $ de la capacidad:
-
 $$
 n_c =  
 \underbrace{\frac{a-b}{a} }_{<1}
@@ -290,7 +274,6 @@ Con esto puede verse que bajo este modelo $n > n_c$ es una condición suficiente
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Con Ec. \ref{eq:esteril1} en cuenta puede plantearse un sistema en el que se suelte una única vez a los mosquitos estériles.
-
 \begin{equation} \label{eq:unaLiberacion}
     \left\lbrace
     \begin{aligned}
@@ -299,7 +282,6 @@ Con Ec. \ref{eq:esteril1} en cuenta puede plantearse un sistema en el que se sue
     \end{aligned}
     \right. ,
 \end{equation}
-
 % \begin{equation}
 %     \left\lbrace
 %     \begin{aligned}
@@ -310,7 +292,6 @@ Con Ec. \ref{eq:esteril1} en cuenta puede plantearse un sistema en el que se sue
 %     \end{aligned}
 %     \right. ,
 % \end{equation}
-
 % \begin{equation}
 %     \left\lbrace
 %     \begin{aligned}
@@ -326,27 +307,23 @@ Con Ec. \ref{eq:esteril1} en cuenta puede plantearse un sistema en el que se sue
 
 
 Son 3 puntos de equilibrios $P_j = (\nstar_{j},\Nstar_{j}), j= 1, 2, 3$. Para el caso de $P_2$ se analiza mediante una matriz Jacobiana.
-
 % $$
 % \begin{aligned}
 %     P_1 &= (0, 0) , &P_2 &= \left( 0, \frac{a-b}{k} \right) \\ 
 %     P_3 &= \left(- \frac{b}{k}, 0 \right) \left(^\text{Población}_\text{Negativa} \right) ,  &P_4 &= \left(- \frac{b}{k}, \frac{b+a}{k} \right) \left(^\text{Población}_\text{Negativa} \right)
 % \end{aligned}
 % $$
-
 % $$
 % \begin{aligned}
 %     P_1 &= (0, 0) , &P_2 &= \left( 0, \frac{a-b}{k} \right) \\ 
 %     P_3 &= \left(- \frac{b}{k}, 0 \right) \left(^\text{Población}_\text{Negativa} \right)
 % \end{aligned}
 % $$
-
 % $$
 % \begin{aligned}
 %     P_1 = (0, 0), \quad P_3 = \left(- \frac{b}{k}, 0 \right) \left(^\text{Población}_\text{Negativa} \right)
 % \end{aligned}
 % $$
-
 % $$
 % J = 
 % \begin{bmatrix}
@@ -354,9 +331,6 @@ Son 3 puntos de equilibrios $P_j = (\nstar_{j},\Nstar_{j}), j= 1, 2, 3$. Para el
 %     \frac{-ky^2-2kyx-ay-kx^2}{\left(y+x\right)^2} & \frac{-kx^2+ax-2kyx-ky^2}{\left(y+x\right)^2}
 % \end{bmatrix}
 % $$
-
-
-
 $$
 P_2 = \left( 0, \frac{a-b}{k} \right)  \Rightarrow  
 J_2 = 
@@ -371,7 +345,6 @@ El punto $P_3$ no forma parte de la dinámica (No hay poblaciones negativas).
 El origen ($P_1$) no esta correctamente definido en el sistema de ecuaciones, sin embargo es un posible valor para asignarle al limite. El Jacobiano no esta correctamente definido tampoco, por lo que se realiza un análisis gráfico de los gradientes $(\frac{dn}{dt}, \frac{dN}{dt})$ que puede verse en la Fig. \ref{fig:cosa}. Los signos de las derivadas temporales indican la dirección del gradiente que permite inferir las posibles trayectorias, los distintos valores de los parámetros no cambian los signos de las componentes de los gradientes. Las posibles trayectorias no son consistentes con un nodo estable, por lo que se descarta ese caso.
 
 La ausencia de nodos estables con $N=0$ para una única liberación implica que la extinción no es inevitable en este caso. Por lo que este método de liberación no permite eliminar a los mosquitos fértiles. 
-
 % $$
 % P_1 = (0, 0)
 % \Rightarrow
@@ -444,7 +417,6 @@ Un ejemplo de resolución numérica puede verse en la Fig. \ref{fig:figuras/camp
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Si se propone que una fracción $\gamma$ de los mosquitos nace estériles se tiene que:
-
 \begin{equation}
     \left\lbrace
     \begin{aligned}
@@ -454,21 +426,18 @@ Si se propone que una fracción $\gamma$ de los mosquitos nace estériles se tie
     \end{aligned}
     \right. ,
 \end{equation}
-
 % \begin{figure}[!ht]
 %     \centering
 %     \includegraphics[width=0.51\textwidth]{figuras/ex02.pdf}
 %     \caption{Evolucion de los mosquitos fertiles para distintos valores de los mosquitos estériles.}
 %     \label{fig:estériles}
 % \end{figure}
-
 $$
 \begin{aligned}
     P_1 &= (0, 0) ,\\
     P_2 &= \left( \frac{\gamma}{b} \left( \tusa \right), \left( \tusa \right) \right), \\ 
 \end{aligned}
 $$
-
 % $$
 % J = 
 % \begin{bmatrix}
@@ -476,8 +445,6 @@ $$
 %     \frac{-ky^2-2kyx-ay-kx^2}{\left(y+x\right)^2} & \frac{-kx^2+ax-2kyx-ky^2}{\left(y+x\right)^2}
 % \end{bmatrix}
 % $$
-
-
 % $$
 % J_1 = 
 % \begin{bmatrix}
@@ -485,8 +452,6 @@ $$
 %     \frac{-k(0)^2-2k(0)(0)-a(0)-k(0)^2}{\left((0)+(0)\right)^2} & \frac{-k(0)^2+a(0)-2k(0)(0)-k(0)^2}{\left((0)+(0)\right)^2}
 % \end{bmatrix}
 % $$
-
-
 % $$
 % J_2 = 
 % \begin{bmatrix}
@@ -494,7 +459,6 @@ $$
 %     \frac{-k(N)^2-2k(N)(\frac{\gamma}{b} N)-a(N)-k(\frac{\gamma}{b} N)^2}{ N^2 \left( 1 + \frac{\gamma}{b} \right)^2} & \frac{-k(\frac{\gamma}{b} N)^2+a(\frac{\gamma}{b} N)-2k(N)(\frac{\gamma}{b} N)-k(N)^2}{ N^2 \left( 1 + \frac{\gamma}{b} \right)^2}
 % \end{bmatrix}
 % $$
-
 % $$
 % J_2 = 
 % \begin{bmatrix}
@@ -502,7 +466,6 @@ $$
 %     -k \frac{(2a-(b+\gamma)}{a-(b+\gamma)} & \frac{-k(\frac{\gamma}{b} N)^2+a(\frac{\gamma}{b} N)-2k(N)(\frac{\gamma}{b} N)-k(N)^2}{ N^2 \left( 1 + \frac{\gamma}{b} \right)^2}
 % \end{bmatrix}
 % $$
-
 % $$
 % J_2 = 
 % \begin{bmatrix}
@@ -546,7 +509,6 @@ $$
 
 
 Son 8 puntos de equilibrios $P_j = (\nstar_{1,j},\nstar_{2,j},\nstar_{3,j}), j= 1, 3, ..., 8$.
-
 $$
 \begin{aligned}
     P_1 &= (0, 0, 0) \\ 
@@ -562,7 +524,6 @@ $$
 $$
 
 Analizamos la matriz Jacobiana de este sistema:
-
 $$
 \mathbf{J}_1 = 
 \begin{bmatrix}
@@ -578,7 +539,6 @@ $$
     -\alpha & -\beta & -1
 \end{bmatrix}
 $$
-
 $$
 \mathbf{J}_2 = 
 \begin{bmatrix}
@@ -587,7 +547,6 @@ $$
     0 & 0 & 1- \alpha
 \end{bmatrix} (\text{Punto silla})
 $$
-
 $$
 \mathbf{J}_3 = 
 \begin{bmatrix}
@@ -596,7 +555,6 @@ $$
     0 & 0 & 1  - \beta
 \end{bmatrix} (\text{Punto silla})
 $$
-
 $$
 \mathbf{J}_4 = 
 \begin{bmatrix}
@@ -605,7 +563,6 @@ $$
     - \alpha  & -\beta & -1
 \end{bmatrix} (\text{Punto silla})
 $$
-
 % $$
 % \mathbf{J}_5 = 
 % \begin{bmatrix}
@@ -614,7 +571,6 @@ $$
 %     0 & 0 & 1 - \alpha (\talf) - \beta (\tbet)
 % \end{bmatrix}
 % $$
-
 % $$
 % \mathbf{J}_6 = 
 % \begin{bmatrix}
@@ -623,7 +579,6 @@ $$
 %     - \alpha (\tbet) & - \beta (\tbet) & \tbet
 % \end{bmatrix}
 % $$
-
 % $$
 % \mathbf{J}_7 = 
 % \begin{bmatrix}
@@ -768,7 +723,6 @@ Considerando competencia entre $s$ e $i$. Pero con una fracción de zonas habita
 $h:$ Fracción de zonas habitables.
 
 $v=h-p_{s}-p_{i}:$ Fracción de zonas vacías.
-
 % $$
 % \begin{aligned}
 %     \frac{d     v}{d t} &= e_{i} p_{i}+e_{s} p_{s}-v\left(c_{s} p_{s}+c_{i} p_{i}\right) \\
@@ -776,7 +730,6 @@ $v=h-p_{s}-p_{i}:$ Fracción de zonas vacías.
 %     \frac{d p_{i}}{d t} &= c_{i} p_{i}\left(h-p_{i}-p_{s}\right)-e_{i} p_{i}-c_{s} p_{i} p_{s} 
 % \end{aligned} 
 % $$
-
 $$
 \begin{aligned}
     \frac{d     x}{d t} &= e_{b} z +e_{a}  y -x\left(c_{a}  y +c_{b} z \right) \\
@@ -784,7 +737,6 @@ $$
     \frac{d z }{d t} &= c_{b} z \left(h-z - y \right)-e_{b} z -c_{a} z   y  
 \end{aligned} 
 $$
-
 % $$
 % \left\{
 % \begin{array}{l}
@@ -795,7 +747,6 @@ $$
 % p_{s}^{*}=h-\frac{e_{s}}{c_{s}}
 % \right.
 % $$
-
 % \begin{equation}
 %     \left\{
 %     \begin{array}{l}
@@ -805,7 +756,6 @@ $$
 %     \end{array}
 %     \right.
 % \end{equation}
-
 % \begin{equation}
 %     \left\{
 %     \begin{aligned}
@@ -815,7 +765,6 @@ $$
 %     \end{aligned}
 %     \right.
 % \end{equation}
-
 \begin{equation}
     \left\{
     \begin{aligned}
@@ -852,7 +801,6 @@ Los valores estacionarios muestran que cuando $h$ disminuye aumenta la població
 Metapoblaciones - Competencia:
 
 Tenemos dos especies compitiendo, pero una de las dos (s) es mejor colonizadora y
-
 $$
 \left\{
 \begin{aligned}
@@ -861,7 +809,6 @@ $$
 \end{aligned} 
 \right.
 $$
-
 $$
 \left\{
 \begin{array} { l } 
@@ -879,17 +826,12 @@ $$
 \end{array}
 \right.
 $$
-
-
-
 $$
 p_{s}^{*}=1-\frac{e_{s}}{c_{c}}, p_{i}^{*}=1-p_{s}^{*}-\frac{e_{i}+c_{s} p_{s}^{*}}{c_{i}}
 $$
-
 $$
 1 - \frac{e_{s}}{c_{s}} > 0
 $$
-
 \begin{equation}
     \mathbf{J}=\left(
     \begin{array}{cc}
@@ -900,17 +842,14 @@ $$
 \end{equation}
 
 Para que la coexistencia sea estable necesito dos autovalores negativos, es decir
-
 $$
 c_{i}\left(1-p_{s}^{*}-2 p_{i}^{*}\right)-e_{i}-c_{s} p_{s}^{*}<0
 $$
-
 $$
 c_{i}>c_{s}\left(\frac{e_{i}}{e_{s}}+\frac{p_{s}^{*}}{1-p_{s}^{*}}\right) \quad c_{i}>c_{s}\left(\frac{c_{s}+e_{i}-e_{s}}{e_{s}}\right)
 $$
 
 Supongamos que los coeficientes de extinción son iguales. Si $p_{s}{ }^{*}<1$ vemos que
-
 $$
 c_{i}>c_{s}
 $$
