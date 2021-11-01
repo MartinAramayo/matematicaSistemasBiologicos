@@ -90,7 +90,6 @@
 
 
 Analizando la dinámica del sistema:
-
 $$ \left\lbrace
 \begin{aligned}
   \dot{x} &= f_1(x,y,z) = x \left[(A \vec{x})_{x}-\vec{x} \cdot A \vec{x}\right] \\
@@ -105,7 +104,6 @@ Reduciendo a dos variables mediante la condición. $z = 1-x-y$
 \sepline
 
 Para el primer sistema y su correspondiente matriz de payoff
-
 $$
 Ax = 
 \begin{pmatrix}
@@ -125,16 +123,14 @@ Ax =
     \frac{g-cx}{2}
 \end{pmatrix}
 $$
-
-$$(Ax)_x = \frac{gy+g-c+cy}{2}
+$$
+(Ax)_x = \frac{gy+g-c+cy}{2}
 ,\quad 
 (Ax)_y = \frac{g-gx}{2}
 $$
-
 $$
 x^T Ax = \frac{cx^2-2cx+2cxy+g}{2}
 $$
-
 $$
 f_1(x, y) = 
 -x \frac{
@@ -146,12 +142,10 @@ f_1(x, y) =
     + c
     }{2}
 $$
-
 $$
 f_2(x, y) = 
 -xy \frac{cx+2cy+g-2c}{2}
 $$
-
 % $$
 % c((2-(g/c))-2y)^2
 % + 2cy((2-(g/c))-2y)
@@ -160,7 +154,6 @@ $$
 % - cy
 % + c
 % $$
-
 % $$ \left\lbrace
 % \begin{aligned}
 %   \dot{x} &= x \left[(A \vec{x})_{x}-\vec{x} \cdot A \vec{x}\right] \\
@@ -171,7 +164,6 @@ $$
 % $$
 
 Puntos de equilibrio:
-
 \begin{itemize}
     \item[] $P_1^* = (0, \frac{G-2C}{2C}, 1 - \frac{G-2C}{2C})$
     \item[] $P_2^* = (0, 0, 1)$
@@ -179,7 +171,6 @@ Puntos de equilibrio:
     \item[] $P_4^* = (1, 0, 0)$
     \item[] $P_5^* = (\frac{G}{C}, 1- \frac{G}{C}, 0)$
 \end{itemize}
-
 % $$ J =
 % \begin{pmatrix}
 %     \frac{\partial }{\partial x}\left(-x\frac{cx^2+2cyx-2cx-gy-cy+c}{2}\right) 
@@ -191,7 +182,6 @@ Puntos de equilibrio:
 %     \frac{\partial }{\partial y}\left(-xy\frac{cx+2cy+g-2c}{2}\right)
 % \end{pmatrix}
 % $$
-
 % $$J =
 % \begin{pmatrix}
 %     -\frac{3cx^2-4cx+4cxy+c-gy-cy}{2}
@@ -203,7 +193,6 @@ Puntos de equilibrio:
 %     -\frac{x\left(4cy-2c+g+cx\right)}{2}
 % \end{pmatrix}
 % $$
-
 % $$J_1 =
 % \begin{pmatrix}
 %     -\frac{3c(0)^2-4c(0)+4c(0)(\frac{g-2c}{2c})+c-g(\frac{g-2c}{2c})-c(\frac{g-2c}{2c})}{2}
@@ -215,7 +204,6 @@ Puntos de equilibrio:
 %     -\frac{(0)\left(4c(\frac{g-2c}{2c})-2c+g+c(0)\right)}{2}
 % \end{pmatrix}
 % $$
-
 % $$J_1 =
 % \begin{pmatrix}
 %     -\frac{-g^2+cg+4c^2}{4c}
@@ -227,8 +215,6 @@ Puntos de equilibrio:
 %     0
 % \end{pmatrix}
 % $$
-
-
 $$J_1 =
 \begin{pmatrix}
     -\frac{-g^2+cg+4c^2}{4c}
@@ -241,8 +227,6 @@ $$J_1 =
 \end{pmatrix}
 \Rightarrow \text{Acumulación}
 $$
-
-
 % $$J_2 =
 % \begin{pmatrix}
 %     -\frac{3c(0)^2-4c(0)+4c(0)(0)+c-g(0)-c(0)}{2}
@@ -266,8 +250,8 @@ $$
 %     -\frac{(0)\left(4c(0)-2c+g+c(0)\right)}{2}
 % \end{pmatrix}
 % $$
-
-$$J_2=
+$$
+J_2=
 \begin{pmatrix}
     -\frac{c}{2}
     &
@@ -279,7 +263,6 @@ $$J_2=
 \end{pmatrix}
 \Rightarrow \text{Acumulación de estables} 
 $$
-
 % $$J_3 =
 % \begin{pmatrix}
 %     -\frac{3c(0)^2-4c(0)+4c(0)(\frac{c}{g+c})+c-g(\frac{c}{g+c})-c(\frac{c}{g+c})}{2}
@@ -291,8 +274,8 @@ $$
 %     -\frac{(0)\left(4c(\frac{c}{g+c})-2c+g+c(0)\right)}{2}
 % \end{pmatrix}
 % $$
-
-$$J_3 =
+$$
+J_3 =
 \begin{pmatrix}
     0
     &
@@ -304,9 +287,6 @@ $$J_3 =
 \end{pmatrix}
 \Rightarrow \text{Inconcluso}
 $$
-
-
-
 % $$J_4 =
 % \begin{pmatrix}
 %     -\frac{3c(1)^2-4c(1)+4c(1)(0)+c-g(0)-c(0)}{2}
@@ -318,8 +298,8 @@ $$
 %     -\frac{(1)\left(4c(0)-2c+g+c(1)\right)}{2}
 % \end{pmatrix}
 % $$
-
-$$J_4 =
+$$
+J_4 =
 \begin{pmatrix}
     0
     &
@@ -331,7 +311,6 @@ $$J_4 =
 \end{pmatrix}
 \Rightarrow \text{Acumulación de } ^{\text{Estables si } g>c}_{\text{Inestables si } g<c}
 $$
-
 % $$J_5 =
 % \begin{pmatrix}
 %     -\frac{3c(\frac{g}{c})^2-4c(\frac{g}{c})+4c(\frac{g}{c})(1 - \frac{g}{c})+c-g(1 - \frac{g}{c})-c(1 - \frac{g}{c})}{2}
@@ -343,8 +322,8 @@ $$
 %     -\frac{(\frac{g}{c})\left(4c(1 - \frac{g}{c})-2c+g+c(\frac{g}{c})\right)}{2}
 % \end{pmatrix}
 % $$
-
-$$J_5 =
+$$
+J_5 =
 \begin{pmatrix}
     0
     &
@@ -357,7 +336,6 @@ $$J_5 =
 \Rightarrow  \lambda_{1,2} = \frac{g}{c} \frac{g-c}{2}
 % \Rightarrow \text{Equilibrio }  ^{\text{Estables si } g<c}_{\text{Inestables si } g>c}
 $$
-
 $$
 \Rightarrow \text{Equilibrio }  ^{\text{Estables si } g<c}_{\text{Inestables si } g>c}
 $$
@@ -389,7 +367,6 @@ En la Fig. \ref{fig:figuras/ex01-a} se tiene una resolución numérica con $G=1,
 %**********
 
 Para el segundo sistema
-
 $$
 Ax =
 \begin{pmatrix}
@@ -409,8 +386,6 @@ Ax =
     \frac{-gx+gy+g}{2}
 \end{pmatrix}
 $$
-
-
 $$
 (Ax)_x = \frac{-gx+2g-cx}{2}
 , \quad 
@@ -418,7 +393,6 @@ $$
 , \quad 
 x^T Ax = \frac{g-cx^2}{2}
 $$
-
 $$
 f_1(x, y) 
 % = 
@@ -431,7 +405,6 @@ f_1(x, y)
     +g
     )
 $$
-
 $$
 f_2(x, y) 
 % = y
@@ -439,7 +412,6 @@ f_2(x, y)
 =
 \frac{y}{2} (cx^2+gy-g)
 $$
-
 % $$ \left\lbrace
 % \begin{aligned}
 %   \dot{x} &= x \left[(A \vec{x})_{x}-\vec{x} \cdot A \vec{x}\right] \\
@@ -450,14 +422,12 @@ $$
 % $$
 
 Puntos de equilibrio:
-
 \begin{itemize}
     \item[] $P_1^* = (0, 0, 1 )$
     \item[] $P_2^* = (0, 1, 0)$
     \item[] $P_3^* = (1, 0, 0)$
     \item[] $P_4^* = (\frac{G}{C}, 0, 1- \frac{G}{C})$
 \end{itemize}
-
 % $$ J =
 % \begin{pmatrix}
 %     \frac{\partial }{\partial x}\left(\frac{x}{2} (cx^2-x(g+c)+g)\right)
@@ -469,7 +439,6 @@ Puntos de equilibrio:
 %     \frac{\partial }{\partial y}\left(\frac{y}{2} (cx^2+gy-g)\right)
 % \end{pmatrix}
 % $$
-
 % $$ J =
 % \begin{pmatrix}
 %     \frac{3x^2c-2xc-2xg+g}{2}
@@ -481,7 +450,6 @@ Puntos de equilibrio:
 %     \frac{2gy-g+cx^2}{2}
 % \end{pmatrix}
 % $$
-
 $$ J_1 =
 \begin{pmatrix}
     \frac{g}{2}
@@ -494,8 +462,8 @@ $$ J_1 =
 \end{pmatrix}
 \Rightarrow Saddle
 $$
-
-$$ J_2 =
+$$
+J_2 =
 \begin{pmatrix}
     \frac{g}{2}
     &
@@ -507,8 +475,8 @@ $$ J_2 =
 \end{pmatrix}
 \Rightarrow \text{Inestable}
 $$
-
-$$ J_3 =
+$$
+J_3 =
 \begin{pmatrix}
     \frac{c-g}{2}
     &
@@ -520,8 +488,8 @@ $$ J_3 =
 \end{pmatrix}
 \Rightarrow \text{Equilibrio }  ^{\text{Estables si } g>c}_{\text{Inestables si } g<c}
 $$
-
-$$ J_4 =
+$$
+J_4 =
 \begin{pmatrix}
     \frac{g}{c} \frac{g-c}{2}
     &
@@ -582,7 +550,6 @@ En la Fig. \ref{fig:figuras/ex01-b} se tiene una resolución numérica con $G=1,
 \end{table}
 
 El dilema de dos jugadores viene dado por:
-
 $$
 \begin{aligned}
     T &= \text{ Tentación para defraudar}\\
@@ -593,13 +560,11 @@ $$
 $$
 
 resultando
-
 $$
 T > R > P > S
 $$
 
 Para 2 jugadores:
-
 \begin{itemize}
     \item Defraudar cuando uno coopera ofrece el mayor payoff $T$.
     \item Cooperar cuando uno coopera ofrece el segundo mejor payoff $R$.
@@ -610,27 +575,23 @@ Para 2 jugadores:
 \textbf{Dilema del prisionero multijugador:}
 
 Para el caso multijugador se considera:
-
 \begin{itemize}
     \item $C_i$: Payoff si cooperan $i$ jugadores y coopero.
     \item $D_i$: Payoff si cooperan $i$ jugadores y defraudo.
 \end{itemize}
 
 Con esto en cuenta para $n=2$ jugadores se tiene:
-
 $$
 D_1 > C_1 > D_0 > C_0
 $$
 
 Extendiendo esto para mas jugadores:
-
 \begin{itemize}
     \item Defraudar cuando todos cooperan ofrece el mayor payoff $T$.
     \item Cooperar cuando uno coopera ofrece el segundo mejor payoff $R$.
     \item Defraudar cuando nadie coopera ofrece el segundo peor payoff $P$.
     \item Cooperar cuando nadie cooperan ofrece el peor payoff $S$.
 \end{itemize}
-
 $$
   \underbrace{D_{n-1 }}_{T} 
 > \underbrace{C_{n-1 }}_{R} 
@@ -640,7 +601,6 @@ $$
 $$
 
 Uno podría detenerse en este punto, con el resto de payoffs en un orden arbitrario. Pero, si deseo que cada subconjunto de jugadores tengan un dilema del prisionero con reglas similares uno podría tomar caso de $n$ jugadores como una extensión del caso $n-1$ jugadores, arrancando desde dos jugadores. Algo como:
-
 $$
 \begin{aligned}
   D_{1 }   > C_{1 }   > D_{0 }   &> C_{0 }    \\
