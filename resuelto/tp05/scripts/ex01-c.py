@@ -73,7 +73,8 @@ speed = np.sqrt(u*u + v*v)
 
 # Varying color along a streamline
 s = ax.pcolor(Y1, Y2, speed, shading='nearest', rasterized=True)
-fig.colorbar(s, ax=ax)
+cbar = fig.colorbar(s, ax=ax)
+cbar.set_label('Densidad')
 
 Q = ax.quiver(Y1, Y2, u/speed, v/speed, 
               angles="xy", 

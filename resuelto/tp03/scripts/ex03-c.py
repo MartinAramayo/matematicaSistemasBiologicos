@@ -102,6 +102,7 @@ aux_args = {'data': simulaciones_df,
             'discrete': (False, True), 
             'rasterized': True,
             'cbar': True, 
+            'cbar_kws': {'label': 'Densidad'},
             'ax': ax}    
 sns.histplot(**aux_args)
 

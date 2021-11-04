@@ -47,7 +47,7 @@ speed = np.sqrt(U*U + V*V)
 
 # Varying color along a streamline
 s = ax1.pcolor(X, Y, speed, shading='nearest', rasterized=True)
-fig1.colorbar(s, ax=ax1)
+fig1.colorbar(s, ax=ax1, label='Gradiente')
 
 # nuclina
 ax1.contour(X, Y, nuclina(X, Y, *args), [0], 
@@ -97,7 +97,7 @@ speed = np.sqrt(U*U + V*V)
 
 # Varying color along a streamline
 s = ax2.pcolor(X, Y, speed, shading='nearest', rasterized=True)
-fig2.colorbar(s, ax=ax2)
+fig2.colorbar(s, ax=ax2, label='Gradiente')
 
 # nuclina
 ax2.contour(X, Y, V, [0], linewidths=1, colors='white')
@@ -142,7 +142,7 @@ speed = np.sqrt(U*U + V*V)
 
 # Varying color along a streamline
 s = ax3.pcolor(X, Y, speed, shading='nearest', rasterized=True)
-fig3.colorbar(s, ax=ax3)
+fig3.colorbar(s, ax=ax3, label='Gradiente')
 
 # nuclina
 ax3.contour(X, Y, V, [0], linewidths=1, colors='white')

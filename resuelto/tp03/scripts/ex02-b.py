@@ -1,7 +1,6 @@
 import numpy as np
 from copy import deepcopy
 import matplotlib.pyplot as plt
-plt.rcParams["axes.grid"] = False
 from matplotlib import cm
 import seaborn as sns 
 import pylab
@@ -43,7 +42,7 @@ sigma = 0.2
 a = 1.05
 
 all_maps = {}
-for t in range(N_simulaciones:=8000):
+for t in range(N_simulaciones:=4000):
     z = np.random.normal(loc=0, scale=sigma, size=N_steps)
     map1d = [func_mapeo(z, a, x0, n) for n in range(1,N_steps)]
     map1d.insert(0,x0)
@@ -70,19 +69,23 @@ for step in range(N_simulaciones):
     columns = ['t', 'x']
     aux_df = simulation_histogram(values, N_steps, columns)
     histo_df = pd.concat( (histo_df, aux_df) )
-    
-sns.histplot(
-    histo_df, 
-    x='t',
-    y='x',
-    stat='density',
-    rasterized=True,
-    discrete=(True, False), 
-    cbar=True, 
-    ax=ax
+
+H, xedges, yedges = np.histogram2d(histo_df.t.values, 
+                                   histo_df.x.values,
+                                   bins=(50,100),
+                                   density=True)
+H = H.T
+
+im = ax.imshow(
+    H, interpolation='nearest', origin='lower',
+    extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]],
+    cmap='gnuplot'
 )
 
-fig.tight_layout()
+cbar = fig.colorbar(im) 
+cbar.set_label('Densidad')
+
 ax.set_xlabel('$t$')
 ax.set_ylabel('$x(t)$')
+fig.tight_layout()
 fig.savefig('../figuras/ex02-histograma.pdf')

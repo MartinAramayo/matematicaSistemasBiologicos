@@ -68,7 +68,6 @@
 % ╚══════╝╚═╝  ╚═╝ ╚═╝
 
 \section{Preámbulo}
-
 Durante este trabajo se hace mención de los parámetros $a, b$ y $c$ que se refieren a los parámetros de la siguiente función de $p$:
 \begin{equation}\label{eq:gr}
     g_{R}(p) = \frac{a}{b + c p^{h}}
@@ -143,8 +142,13 @@ $$
 
 con tasas y funciones de represión iguales para ambos genes.
 Reducción del sistema a dos variables
-si $\beta_{m}>>\beta_{p}$, entonces la dinámica está dominada por la proteína, dado que la degradación del mRNA sucede muy rápidamente. Por ello, podemos suponer que $\frac{dm_1}{dt} \approx \frac{dm_2}{dt} \approx 0 .$ Con esto en cuneta el sistema de ecuaciones resulta:
-$$\left\lbrace
+si $\beta_{m}>>\beta_{p}$, entonces la dinámica está 
+dominada por la proteína, dado que la degradación del mRNA 
+sucede muy rápidamente. Por ello, podemos suponer que 
+$\frac{dm_1}{dt} \approx \frac{dm_2}{dt} \approx 0$. 
+Con esto en cuneta el sistema de ecuaciones resulta:
+$$
+\left\lbrace
 \begin{aligned}
   m_{1} &=\frac{\alpha_{m}}{\beta_{m}} g_{R}\left(p_{2}\right) \\
   m_{2} &=\frac{\alpha_{m}}{\beta_{m}} g_{R}\left(p_{1}\right) \\
@@ -175,12 +179,11 @@ $$
       \caption{}
       \label{fig:figuras/ex02-cosa1-2}
   \end{subfigure}\quad
-  \caption{Puntos fijos del sistema para distintos valores del parámetro b.}
+  \caption{Puntos fijos del sistema para distintos valores del parámetro $b$.}
   \label{fig:figuras/ex02-puntos fijos}
 \end{figure*}
 
 Un análisis de estabilidad numérico de este sistema de ecuaciones reducido puede verse en la Fig. \ref{fig:figuras/ex02-puntos fijos}. Las intersecciones de curvas de un mismo color son los puntos fijos del sistema de ecuaciones.
-
 
 \begin{figure*}[ht!]
   \centering
@@ -216,7 +219,7 @@ Un análisis de estabilidad numérico de este sistema de ecuaciones reducido pue
       \centering
       \includegraphics[width = 0.999\textwidth]{figuras/ex02-cosa3-7.pdf}
   \end{subfigure}\quad
-  \caption{}
+  \caption{Simulación con $h=1$.}
   \label{fig:figuras/ex02-cosa3}
 \end{figure*}
 %********** 
@@ -255,7 +258,7 @@ Un análisis de estabilidad numérico de este sistema de ecuaciones reducido pue
       \centering
       \includegraphics[width = 0.999\textwidth]{figuras/ex02-cosa2-7.pdf}
   \end{subfigure}\quad
-  \caption{}
+  \caption{Simulación con $h=3$.}
   \label{fig:figuras/ex02-cosa2}
 \end{figure*}
 
@@ -263,10 +266,7 @@ En las Figs. \ref{fig:figuras/ex02-cosa3} y \ref{fig:figuras/ex02-cosa2} se tien
 Los gradientes de la Fig. \ref{fig:figuras/ex02-cosa3} corresponden a los parámetros de la Fig. \ref{fig:figuras/ex02-cosa1-3}.
 Los gradientes de la Fig. \ref{fig:figuras/ex02-cosa2} corresponden a los parámetros de la Fig. \ref{fig:figuras/ex02-cosa1-2}. 
 
-Los gradientes de la Fig. \ref{fig:figuras/ex02-cosa2} indican que hay una bifurcación al alternar el parámetro b. Esta desaparece para las condiciones iniciales de la Fig. \ref{fig:figuras/ex02-cosa1-2}. Donde pasamos de un nodo estable a dos nodos estables y un punto saddle.
-
-
+Los gradientes de la Fig. \ref{fig:figuras/ex02-cosa2} indican que hay una bifurcación al alternar el parámetro $b$. Esta desaparece para las condiciones iniciales de la Fig. \ref{fig:figuras/ex02-cosa1-2}. Donde pasamos de un nodo estable a dos nodos estables y un punto saddle.
 
 % \bibliography{sample}
-
 \end{document}

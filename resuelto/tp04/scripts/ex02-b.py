@@ -85,7 +85,8 @@ for indx, b_val in np.ndenumerate(b_list):
     
     # modulo en color
     s = ax.pcolor(Y1, Y2, norm, cmap='summer', shading='nearest', rasterized=True)
-    fig.colorbar(s, ax=ax)
+    cbar = fig.colorbar(s, ax=ax)
+    cbar.set_label('Densidad')
     
     # direccion 
     Q = ax.quiver(Y1, Y2, u/norm, v/norm, 

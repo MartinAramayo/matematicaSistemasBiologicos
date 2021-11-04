@@ -26,7 +26,7 @@ file2 = 'datasetFeriadosArgentina/feriadosArgentina2021.csv'
 feriados_20_21 = (pd.read_csv(file1), pd.read_csv(file2))
 feriados = pd.concat(feriados_20_21).reset_index()
 month, day, year = feriados['month'], feriados['day'], feriados['year']
-month, day, year = month.astype('str'), day.astype('str'), year.astype('str') 
+month, day, year = month.astype('str'), day.astype('str'), year.astype('str')
 feriados = month + ' ' + day + ' ' + year
 feriados = pd.to_datetime(feriados, format='%B %d %Y')
 
@@ -73,7 +73,7 @@ def check_fit(dataframe, aDir, sin_finde=False):
     
     suffix = ''    
     if sin_finde==True:
-        suffix = '-sin-finde'
+        suffix = '-sin-Finde'
 
     ## para plotear
     rename_plot = {'infectados':'Infectados',
@@ -117,7 +117,7 @@ def check_fit(dataframe, aDir, sin_finde=False):
 
     fig, ax = plt.subplots()
     ax.scatter(x, df_pico_11['infectados'] - y, color='royalblue')
-    ax.set_xlabel('Dias despues del 2020-03-05')
+    ax.set_xlabel('Dias después del 2020-03-05')
     ax.set_ylabel('Residuos')
     ax.axhline(y=0, color='k', ls='dashed')
     fig.tight_layout()
@@ -126,7 +126,7 @@ def check_fit(dataframe, aDir, sin_finde=False):
     fig, ax = plt.subplots()
     ax.scatter(x, df_pico_11['infectados'], color='royalblue')
     ax.plot(x, y, 'salmon')
-    ax.set_xlabel('Dias despues del 2020-03-05')
+    ax.set_xlabel('Dias después del 2020-03-05')
     ax.set_ylabel('Infectados')
     fig.tight_layout()
     fig.savefig(aDir + 'ex02-fit'+suffix+'.pdf')
@@ -181,9 +181,9 @@ aux_args = {'data': prediction,
 prediction_df = pd.DataFrame(**aux_args)
 
 fig, ax = plt.subplots()
-rename_dict = {'n_semanas':'\# de semanas despues de 2020-03-05 usadas en el ajuste',
-               'prediction':'Predicción',
-               'fecha_prediccion':'Fecha de predicción',
+rename_dict = {'n_semanas': '\# de semanas después de 2020-03-05 usadas en el ajuste',
+               'prediction': 'Predicción',
+               'fecha_prediccion': 'Fecha de predicción',
                'error': 'Error en días'}
 aux_args = {'x': rename_dict['n_semanas'], 
             'y': rename_dict['error'], 

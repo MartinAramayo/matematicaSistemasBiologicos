@@ -35,7 +35,7 @@ def tuple_generar(t, b, d, N0, N_steps):
         counter -= 1
         yield (t, N)
         
-N_simulaciones = 2000
+N_simulaciones = 1000
 
 aux = {'b': 0.1,
        'd': 0.001,
@@ -82,6 +82,7 @@ aux_args = {'data': simulaciones_df,
             'discrete': (False, True), 
             'rasterized': True,
             'cbar': True, 
+            'cbar_kws': {'label': 'Densidad'},
             'ax': ax}    
 sns.histplot(**aux_args)
 

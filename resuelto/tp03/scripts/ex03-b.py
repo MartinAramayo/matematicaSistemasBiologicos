@@ -118,6 +118,7 @@ aux_args = {'data': n_limit,
             'discrete': True, 
             'cbar': True, 
             'color': 'royalblue',
+            'cbar_kws': {'label': 'Densidad'},
             'ax': ax}    
 sns.histplot(**aux_args)
 
